@@ -10,5 +10,6 @@ namespace mini_java_compiler
     {
         char[] charsToTrim = { '\t', ' ', '\n', '\r' };
 
+
     }
 }

@@ -45,7 +45,7 @@ namespace mini_java_compiler
                 }
             }
 
-            if (fileContent != null)
+            if (!fileContent.Equals(""))
             {
                 MessageBox.Show(fileContent, "File Content at path: " + filePath, MessageBoxButtons.OK);
             }
