@@ -1,6 +1,6 @@
 ﻿namespace mini_java_compiler
 {
-    partial class Form1
+    partial class Principal
     {
         /// <summary>
         /// Variable del diseñador necesaria.
@@ -28,13 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.btnLoadFile = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // btnLoadFile
+            // 
+            this.btnLoadFile.Location = new System.Drawing.Point(318, 85);
+            this.btnLoadFile.Name = "btnLoadFile";
+            this.btnLoadFile.Size = new System.Drawing.Size(92, 38);
+            this.btnLoadFile.TabIndex = 0;
+            this.btnLoadFile.Text = "Load File";
+            this.btnLoadFile.UseVisualStyleBackColor = true;
+            this.btnLoadFile.Click += new System.EventHandler(this.btnLoadFile_Click);
+            // 
+            // principal
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            this.ClientSize = new System.Drawing.Size(1136, 463);
+            this.Controls.Add(this.btnLoadFile);
+            this.Name = "principal";
+            this.Text = "Mini Java Compiler";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.Button btnLoadFile;
     }
 }
 
