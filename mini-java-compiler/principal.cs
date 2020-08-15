@@ -13,6 +13,8 @@ namespace mini_java_compiler
 {
     public partial class Principal : Form
     {
+        Reader rdr = new Reader();
+
         public Principal()
         {
             InitializeComponent();
@@ -40,7 +42,12 @@ namespace mini_java_compiler
 
                     using (StreamReader reader = new StreamReader(fileStream))
                     {
-                        fileContent = reader.ReadToEnd();
+                        while (!reader.EndOfStream)
+                        {
+                            fileContent = reader.ReadLine();
+                            rdr.ReadProgram(fileContent);
+                        }
+                        
                     }
                 }
             }
