@@ -28,12 +28,20 @@ namespace mini_java_compiler
             {
                 if (Char.IsWhiteSpace(c) || c.Equals(';'))
                 {
+                    Segmentation(buffer);
                     tokens.Add(buffer);
                     buffer = "";
                 }
                 buffer += c;
                 
             }
-        } 
+
+        }
+
+        private int Segmentation(string buffer)
+        {
+            if (buffer)
+            return 0;
+        }
     }
 }
