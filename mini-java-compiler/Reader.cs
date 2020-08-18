@@ -59,8 +59,6 @@ namespace mini_java_compiler
             }
         }
         
-
-        }
         /// <summary>
         /// Method to organice what is the 
         /// </summary>
