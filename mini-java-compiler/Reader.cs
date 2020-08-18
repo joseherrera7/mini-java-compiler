@@ -38,16 +38,18 @@ namespace mini_java_compiler
     };
         List<String> tokens = new List<string>();
         
-
+        /// <summary>
+        /// Read Line per line the file, and this calls another methods to confirm
+        /// </summary>
+        /// <param name="line">the line</param>
         public void ReadProgram(string line)
         {
             string buffer = "";
-            line = line.Trim(charsToTrim);
             foreach (var c in line)
             {
-                if (Char.IsWhiteSpace(c) || c.Equals(';'))
+                if (Char.IsWhiteSpace(c) || c.Equals(';')) // ignore blankspaces
                 {
-                    Segmentation(buffer);
+                    Segmentation(buffer); //call segmentacion to return into the switch
                     tokens.Add(buffer);
                     buffer = "";
                 }
@@ -56,10 +58,16 @@ namespace mini_java_compiler
             }
 
         }
-
+        /// <summary>
+        /// Method to organice what is the 
+        /// </summary>
+        /// <param name="buffer"></param>
+        /// <returns></returns>
         private int Segmentation(string buffer)
         {
-            if (buffer)
+            string idPattern = "";
+            string anotherPattern = "";
+            //if (buffer)
             return 0;
         }
     }
