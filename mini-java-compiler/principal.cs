@@ -57,5 +57,20 @@ namespace mini_java_compiler
                 MessageBox.Show(fileContent, "File Content at path: " + filePath, MessageBoxButtons.OK);
             }
         }
+
+   
+
+        private void btn_createFile_Click(object sender, EventArgs e)
+        {
+            string[] codigo = {/*Colocar aqui lo que se recibira*/};
+            using (StreamWriter outputFile = new StreamWriter(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Resultado\\Codigo.out"))
+            {
+                foreach (string fuente in codigo )
+                {
+                    outputFile.WriteLine(fuente);
+                }
+            }
+
+        }
     }
 }
