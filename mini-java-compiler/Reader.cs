@@ -125,7 +125,7 @@ namespace mini_java_compiler
             var idPattern = "^[A-Za-z_$]{1}[a-zA-Z\\d$_]*$";
             var consTrue = "true";
             var constFalse = "false";
-            var consDecimal = "regex para entero decimal"; 
+            var consDecimal = "[0-9]+([0-9][0-9]?)?"; 
             var consHexa = "regex para entero hexadecimal"; 
             var consDouble = "regex para double"; 
             var consString = "regex para cadena";
@@ -137,6 +137,15 @@ namespace mini_java_compiler
                 {
                     return 2;
                 }
+                else if (Regex.IsMatch(buffer, consTrue))
+                {
+                    return 1;
+                }
+                else if (Regex.IsMatch(buffer, constFalse))
+                {
+                    return 1;
+                }
+          
                 else
                 {
                     return 0;
