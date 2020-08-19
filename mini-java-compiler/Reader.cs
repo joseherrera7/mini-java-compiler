@@ -12,7 +12,7 @@ namespace mini_java_compiler
     class Reader
     {
         //INCLUÍR MÁS OPERADORES SI ME HIZO FALTA ALGUNO
-        string[] operadores = { "+","-","*", "/", "%", "<", "<=", ">", ">=", "=", "==", "!=", "&&", "||", "!", ";", ",", ".", "[", "]", 
+        string[] operadores = { "+","-","*", "/", "%", "<", "<=", ">", ">=", "=", "==", "!=", "&&", "||", "!", ";", ",", ".", "[", "]",
             "(", ")", "{", "}",
     "[]", "()", "{}" };
 
@@ -33,15 +33,7 @@ namespace mini_java_compiler
         string[] reserved = { "void", "int", "double", "boolean",
                 "string", "class", "const", "interface", "null", "this",
                 "extends", "implements", "for", "while", "if", "else",
-                "return", "break", "New", "System", "out", "println", 
-                "abstract", "assert", "byte", "case", "catch", "char", 
-                "continue", "default", "do", "enum", "exports", "final",
-                "finally", "float", "import", "instanceof", "long", "module",
-                "native", "new", "package", "private", "protected", "public",
-                "requires", "short", "static", "strictfp", "super", "switch",
-                "synchronized", "throw", "throws", "transient", "try", "volatile",
-                "true", "false", "var", "goto", "const"
-    };
+                "return", "break", "New", "System", "out", "println" };
         
         /// <summary>
         /// Read Line per line the file, and this calls another methods to confirm
@@ -55,13 +47,16 @@ namespace mini_java_compiler
             string buffer = "";
             foreach (var c in line)
             {
-                if (Char.IsWhiteSpace(c) || c.Equals(';')) // ignore blankspaces
+                if (Char.IsWhiteSpace(c)) // ignore blankspaces
                 {
-                    columnEnd = columnCounter-1;
-                    idOrReserved(buffer);
-                    buffer = "";
+                    if (!buffer.Equals(""))
+                    {
+                        columnEnd = columnCounter - 1;
+                        idOrReserved(buffer);
+                        buffer = "";
+                    }                 
                 }  
-                else if (operadores.Contains(c.ToString()) || operadores.Contains(buffer))
+                else if ((operadores.Contains(c.ToString()) || operadores.Contains(buffer)) && ! c.Equals('/'))
                 {
                     if (operadores.Contains(buffer))
                     {
@@ -98,6 +93,13 @@ namespace mini_java_compiler
                         }
                     }
                 }
+                else if (buffer.Equals("/"))
+                {
+                    if(c.Equals('/'))
+                    {
+                        return;
+                    }                    
+                }
                 else
                 {
                     if (buffer.Equals(""))
@@ -122,7 +124,14 @@ namespace mini_java_compiler
         private int Segmentation(string buffer)
         {
             var idPattern = "^[A-Za-z_$]{1}[a-zA-Z\\d$_]*$";
-            
+            var consTrue = "true";
+            var constFalse = "false";
+            var consDecimal = "regex para entero decimal"; 
+            var consHexa = "regex para entero hexadecimal"; 
+            var consDouble = "regex para double"; 
+            var consString = "regex para cadena";
+
+
             if (reserved.Contains(buffer)) return 1;
             else
             {
