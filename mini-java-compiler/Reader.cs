@@ -15,7 +15,8 @@ namespace mini_java_compiler
         string[] operadores = { "+","-","*", "/", "%", "<", "<=", ">", ">=", "=", "==", "!=", "&&", "||", "!", ";", ",", ".", "[", "]", 
             "(", ")", "{", "}",
     "[]", "()", "{}" };
-
+        //RECONOCER COMENTARIOS
+        string comentario = "//";
         //LLEVA EL CONTROL SI ACTION CONTIENE LLAVE DE APERTURA Y CIERRE
         int contReservadas = 1;
         bool actionLlaves = false;
