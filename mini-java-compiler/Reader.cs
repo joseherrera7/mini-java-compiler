@@ -127,7 +127,7 @@ namespace mini_java_compiler
             var constFalse = "false";
             var consDecimal = "[0-9]+([0-9][0-9]?)?"; 
             var consHexa = "^[0-9A-F]+$"; 
-            var consDouble = "regex para double"; 
+            var consDouble = "[-+]?[0-9]*.?[0-9]*"; 
             var consString = "regex para cadena";
 
             if (reserved.Contains(buffer)) return 1;
@@ -152,6 +152,10 @@ namespace mini_java_compiler
                 else if (Regex.IsMatch(buffer, consHexa))
                 {
                     return 4;
+                }
+                else if (Regex.IsMatch(buffer, consDouble))
+                {
+                    return 5;
                 }
                 else
                 {
@@ -182,6 +186,9 @@ namespace mini_java_compiler
                     break;
                 case 4:
                     tokens.Add(buffer, "ENTERO HEXADECIMAL CONSTANTE");
+                    break;
+                case 5:
+                    tokens.Add(buffer, "DECIMAL CONSTANTE");
                     break;
             }
         }
