@@ -145,7 +145,10 @@ namespace mini_java_compiler
                 {
                     return 1;
                 }
-          
+                else if (Regex.IsMatch(buffer, consDecimal))
+                {
+                    return 3;
+                }
                 else
                 {
                     return 0;
@@ -169,6 +172,9 @@ namespace mini_java_compiler
                     break;
                 case 2:
                     tokens.Add(buffer, "IDENTIFICADOR");
+                    break;
+                case 3:
+                    tokens.Add(buffer, "ENTERO DECIMAL CONSTANTE");
                     break;
             }
         }
