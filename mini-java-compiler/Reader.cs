@@ -125,8 +125,8 @@ namespace mini_java_compiler
             var idPattern = "^[A-Za-z_$]{1}[a-zA-Z\\d$_]*$";
             var consTrue = "true";
             var constFalse = "false";
-            var consDecimal = "[0-9]+([0-9][0-9]?)?"; 
-            var consHexa = "^[0-9A-F]+$"; 
+            var consDecimal = "^[0-9]+([0-9][0-9]?)?"; 
+            var consHexa = "[0-9A-F]+$"; 
             var consDouble = "[-+]?[0-9]*.?[0-9]*"; 
             var consString = "[a-zA-Z0-9]+";
 
