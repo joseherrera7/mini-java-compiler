@@ -28,8 +28,6 @@ namespace mini_java_compiler
         string writer = "";
 
         Dictionary<string, string> tokens = new Dictionary<string, string>();
-        Hashtable hashtable = new Hashtable();
-        char[] charsToTrim = { '\t', ' ', '\n', '\r' };
         
         string[] reserved = { "void", "int", "double", "boolean",
                 "string", "class", "const", "interface", "null", "this",
@@ -53,17 +51,17 @@ namespace mini_java_compiler
                     if (!buffer.Equals(""))
                     {
                         columnEnd = columnCounter - 1;
-                        idOrReserved(buffer);
+                        addTokens(buffer);
                         buffer = "";
                     }                 
                 }  
-                else if ((operadores.Contains(c.ToString()) || operadores.Contains(buffer)) && ! c.Equals('/'))
+                else if ((operadores.Contains(c.ToString()) || operadores.Contains(buffer)) && ! c.Equals('/')) //verfica que sea un operador
                 {
-                    if (operadores.Contains(buffer))
+                    if (operadores.Contains(buffer)) // si el operador está en el bufer 
                     {
-                        if (operadores.Contains(buffer+c))
+                        if (operadores.Contains(buffer+c)) // prueba si es un operador doble
                         {
-                            if (buffer.Contains(""))
+                            if (buffer.Contains("")) // si está vacio mete el operador e inicializa columna
                             {
                                 columnStart = columnCounter;
                                 buffer += c;
@@ -73,37 +71,37 @@ namespace mini_java_compiler
                                 buffer += c;
                             }
                         }
-                        else
+                        else // sino es operador doble lo mete a los tokens el operador del buffer y continua
                         {
                             addOperator(buffer);
                             buffer = c.ToString();
                             columnEnd = columnCounter-1;
                         }
                     }
-                    else
+                    else // sino es sigue
                     {
-                        if (buffer.Equals(""))
+                        if (buffer.Equals("")) // sino hay nada en el bufer sigue
                         {
                             columnStart = columnCounter;
                             buffer = c.ToString();
                         }
-                        else
+                        else //si el buffer es el toro vuelve a llamar si es una reservada
                         {
-                            idOrReserved(buffer);
+                            addTokens(buffer);
                             buffer = c.ToString();
                         }
                     }
                 }
-                else if (buffer.Equals("/"))
+                else if (buffer.Equals("/")) //verfica que es un comentario y se lo salta
                 {
                     if(c.Equals('/'))
                     {
                         return;
                     }                    
                 }
-                else
+                else // mete el simbolo sino detecta un token
                 {
-                    if (buffer.Equals(""))
+                    if (buffer.Equals("")) // inicia el contador de columna
                     {
                         buffer += c;
                         columnStart = columnCounter;
@@ -118,7 +116,7 @@ namespace mini_java_compiler
         }
         
         /// <summary>
-        /// Method to organice what is the 
+        /// Method to organice what is the token
         /// </summary>
         /// <param name="buffer"></param>
         /// <returns></returns>
@@ -131,7 +129,6 @@ namespace mini_java_compiler
             var consHexa = "regex para entero hexadecimal"; 
             var consDouble = "regex para double"; 
             var consString = "regex para cadena";
-
 
             if (reserved.Contains(buffer)) return 1;
             else
@@ -146,8 +143,11 @@ namespace mini_java_compiler
                 }
             }
         }
-
-        private void idOrReserved(string buffer)
+        /// <summary>
+        /// Mete los tokens al diccionario de tokens
+        /// </summary>
+        /// <param name="buffer"></param>
+        private void addTokens(string buffer)
         {
             var bufferIs = Segmentation(buffer); //call segmentacion to return into the switch para ver si es reservada o id
             switch (bufferIs)
@@ -163,13 +163,15 @@ namespace mini_java_compiler
                     break;
             }
         }
-
+        /// <summary>
+        /// Mete los operadores al diccionario de tokens
+        /// </summary>
+        /// <param name="buffer"></param>
         private void addOperator(string buffer)
         {
             //code to add operator
             tokens.Add(buffer, "OPERADOR");
         }
         string blockComments = @"/\*(.*?)\*/";
-        string lineComments = @"//(.*?)\r?\n";
     }
 }
