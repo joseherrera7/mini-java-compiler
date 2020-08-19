@@ -83,6 +83,8 @@ namespace mini_java_compiler
         public static Token MULT = new Token(TokenType.Operador, "*");
         public static Token MULT_EQ = new Token(TokenType.Operador, "*=");
         public static Token DIV = new Token(TokenType.Operador, "/");
+        public static Token DIV_COPEN = new Token(TokenType.Operador, "/*");
+        public static Token DIV_CCLOSE = new Token(TokenType.Operador, "*/");
         public static Token DIV_EQ = new Token(TokenType.Operador, "/=");
         public static Token MOD = new Token(TokenType.Operador, "%");
         public static Token MOD_EQ = new Token(TokenType.Operador, "%=");
