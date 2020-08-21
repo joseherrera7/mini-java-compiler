@@ -15,16 +15,9 @@ namespace mini_java_compiler
         string[] operadores = { "+","-","*", "/", "%", "<", "<=", ">", ">=", "=", "==", "!=", "&&", "||", "!", ";", ",", ".", "[", "]",
             "(", ")", "{", "}",
     "[]", "()", "{}" };
-        //RECONOCER COMENTARIOS
-        string comentario = "//";
-        //LLEVA EL CONTROL SI ACTION CONTIENE LLAVE DE APERTURA Y CIERRE
-        int contReservadas = 1;
-        bool actionLlaves = false;
         int columnCounter = 0;
         //GUARDA EL ERROR
         public int ERROR = 0;
-        //VERIFICA SI SE LEYÓ LA SECCIÓN ERROR
-        bool bError = false;
         string writer = "";
 
         Dictionary<string, string> tokens = new Dictionary<string, string>();
@@ -48,47 +41,67 @@ namespace mini_java_compiler
             {
                 if (Char.IsWhiteSpace(c)) // ignore blankspaces
                 {
-                    if (!buffer.Equals(""))
+                    if (!buffer.Equals("") && !operadores.Contains(buffer))
                     {
                         columnEnd = columnCounter - 1;
-                        addTokens(buffer);
+                        AddTokens(buffer, columnStart, columnEnd);
                         buffer = "";
-                    }                 
+                    } 
+                    else if (operadores.Contains(buffer))
+                    {
+                        columnEnd = columnCounter - 1;
+                        AddOperator(buffer, columnStart, columnEnd);
+                        buffer = "";
+                    }
                 }  
                 else if ((operadores.Contains(c.ToString()) || operadores.Contains(buffer)) && ! c.Equals('/')) //verfica que sea un operador
                 {
-                    if (operadores.Contains(buffer)) // si el operador está en el bufer 
+                    if (line.Length == columnCounter)
                     {
-                        if (operadores.Contains(buffer+c)) // prueba si es un operador doble
+                        if (operadores.Contains(c.ToString()))
                         {
-                            if (buffer.Contains("")) // si está vacio mete el operador e inicializa columna
-                            {
-                                columnStart = columnCounter;
-                                buffer += c;
-                            }
-                            else
-                            {
-                                buffer += c;
-                            }
+                            AddOperator(c.ToString(), columnStart, columnEnd);
                         }
-                        else // sino es operador doble lo mete a los tokens el operador del buffer y continua
+                        else
                         {
-                            addOperator(buffer);
-                            buffer = c.ToString();
-                            columnEnd = columnCounter-1;
+                            AddTokens(c.ToString(), columnStart, columnEnd);
                         }
                     }
-                    else // sino es sigue
+                    else
                     {
-                        if (buffer.Equals("")) // sino hay nada en el bufer sigue
+                        if (operadores.Contains(buffer)) // si el operador está en el bufer 
                         {
-                            columnStart = columnCounter;
-                            buffer = c.ToString();
+                            if (operadores.Contains(buffer + c)) // prueba si es un operador doble
+                            {
+                                if (buffer.Contains("")) // si está vacio mete el operador e inicializa columna
+                                {
+                                    columnStart = columnCounter;
+                                    buffer += c;
+                                }
+                                else
+                                {
+                                    buffer += c;
+                                }
+                            }
+                            else // sino es operador doble lo mete a los tokens el operador del buffer y continua
+                            {
+                                AddOperator(buffer, columnStart, columnEnd);
+                                buffer = c.ToString();
+                                columnEnd = columnCounter - 1;
+                            }
                         }
-                        else //si el buffer es el toro vuelve a llamar si es una reservada
+                        else // sino es sigue
                         {
-                            addTokens(buffer);
-                            buffer = c.ToString();
+                            if (buffer.Equals("")) // sino hay nada en el bufer sigue
+                            {
+                                columnStart = columnCounter;
+                                buffer = c.ToString();
+                            }
+                            else //si el buffer es el toro vuelve a llamar si es una reservada
+                            {
+                                AddTokens(buffer, columnStart, columnEnd);
+                                buffer = c.ToString();
+                            }
                         }
                     }
                 }
@@ -103,9 +116,71 @@ namespace mini_java_compiler
                 {
                     if (buffer.Equals("")) // inicia el contador de columna
                     {
-                        buffer += c;
-                        columnStart = columnCounter;
-                    } 
+                        if (line.Length == columnCounter)
+                        {
+                            if (operadores.Contains(c.ToString()))
+                            {
+                                AddOperator(c.ToString(), columnStart, columnEnd);
+                            }
+                            else
+                            {
+                                AddTokens(c.ToString(), columnStart, columnEnd);
+                            }
+                        }
+                        else
+                        {
+                            buffer += c;
+                            columnStart = columnCounter;
+                        }
+                    }
+                    else if (operadores.Contains(buffer))
+                    {
+                        if (operadores.Contains(buffer + c)) // prueba si es un operador doble
+                        {
+                            if (buffer.Contains("")) // si está vacio mete el operador e inicializa columna
+                            {
+                                columnStart = columnCounter;
+                                buffer += c;
+                            }
+                            else
+                            {
+                                buffer += c;
+                            }
+                        }
+                        else // sino es operador doble lo mete a los tokens el operador del buffer y continua
+                        {
+                            if (line.Length == columnCounter)
+                            {
+                                if (operadores.Contains(c.ToString()) && operadores.Contains(buffer))
+                                {
+                                    AddOperator(c.ToString(), columnStart, columnEnd-1);
+                                    AddOperator(buffer, columnCounter, columnCounter);
+                                }
+                                else if (operadores.Contains(c.ToString()) && !operadores.Contains(buffer))
+                                {
+                                    AddOperator(c.ToString(), columnStart, columnEnd - 1);
+                                    AddTokens(buffer, columnCounter, columnCounter);
+                                }
+                                else if (!operadores.Contains(c.ToString()) && operadores.Contains(buffer))
+                                {
+                                    AddTokens(c.ToString(), columnStart, columnEnd - 1);
+                                    AddOperator(buffer, columnCounter, columnCounter);
+                                }
+                                else
+                                {
+                                    AddTokens(c.ToString(), columnStart, columnEnd - 1);
+                                    AddTokens(buffer, columnCounter, columnCounter);
+                                }
+                            }
+                            else
+                            {
+                                columnStart = columnCounter;
+                                columnEnd = columnCounter;
+                                AddOperator(buffer, columnStart, columnEnd);
+                                buffer = "";
+                            }
+                        }
+                    }
                     else
                     {
                         buffer += c;
@@ -123,33 +198,23 @@ namespace mini_java_compiler
         private int Segmentation(string buffer)
         {
             var idPattern = "^[A-Za-z_$]{1}[a-zA-Z\\d$_]*$";
-            var consTrue = "true";
-            var constFalse = "false";
-            var consDecimal = "^[0-9]+([0-9][0-9]?)?"; 
-            var consHexa = "[0-9A-F]+$"; 
-            var consDouble = "[-+]?[0-9]*.?[0-9]*"; 
-            var consString = "[a-zA-Z0-9]+";
+            var constBooleana = "true|false";
+            var constEntera = "(0[xX][0-9a-fA-F]+)|([0-9]+)"; 
+            var consDouble = "\\d+\\.(\\d*(E\\+\\d?))"; 
+            var consString = "^\"[a-zA-Z0-9]+\"$";
 
             if (reserved.Contains(buffer)) return 1;
             else
             {
-                if (Regex.IsMatch(buffer, idPattern))
-                {
-                    return 2;
-                }
-                else if (Regex.IsMatch(buffer, consTrue))
-                {
-                    return 1;
-                }
-                else if (Regex.IsMatch(buffer, constFalse))
-                {
-                    return 1;
-                }
-                else if (Regex.IsMatch(buffer, consDecimal))
+                if (Regex.IsMatch(buffer, constBooleana))
                 {
                     return 3;
                 }
-                else if (Regex.IsMatch(buffer, consHexa))
+                else if (Regex.IsMatch(buffer, idPattern))
+                {
+                    return 2;
+                }                
+                else if (Regex.IsMatch(buffer, constEntera))
                 {
                     return 4;
                 }
@@ -171,43 +236,66 @@ namespace mini_java_compiler
         /// Mete los tokens al diccionario de tokens
         /// </summary>
         /// <param name="buffer"></param>
-        private void addTokens(string buffer)
+        private void AddTokens(string buffer, int columnStart, int columnEnd)
         {
-            var bufferIs = Segmentation(buffer); //call segmentacion to return into the switch para ver si es reservada o id
-            switch (bufferIs)
+            if (!tokens.ContainsKey(buffer))
             {
-                case 0:
-                    tokens.Add(buffer,"ERROR");
-                    break;
-                case 1:
-                    tokens.Add(buffer, "RESERVADA");
-                    break;
-                case 2:
-                    tokens.Add(buffer, "IDENTIFICADOR");
-                    break;
-                case 3:
-                    tokens.Add(buffer, "ENTERO DECIMAL CONSTANTE");
-                    break;
-                case 4:
-                    tokens.Add(buffer, "ENTERO HEXADECIMAL CONSTANTE");
-                    break;
-                case 5:
-                    tokens.Add(buffer, "DECIMAL CONSTANTE");
-                    break;
-                case 6:
-                    tokens.Add(buffer, "CADENA");
-                    break;
+                var bufferIs = Segmentation(buffer); //call segmentacion to return into the switch para ver si es reservada o id
+                switch (bufferIs)
+                {
+                    case 0:
+                        tokens.Add(buffer, "ERROR");
+                        break;
+                    case 1:
+                        tokens.Add(buffer, "RESERVADA");
+                        break;
+                    case 2:
+                        tokens.Add(buffer, "IDENTIFICADOR");
+                        break;
+                    case 3:
+                        tokens.Add(buffer, "CONSTANTE_BOOLEANA");
+                        break;
+                    case 4:
+                        tokens.Add(buffer, "CONSTANTE_ENTERO");
+                        break;
+                    case 5:
+                        tokens.Add(buffer, "CONSTANTE_DOUBLE");
+                        break;
+                    case 6:
+                        tokens.Add(buffer, "CONSTANTE_CADENA");
+                        break;
+                }
+            } 
+            else
+            {
+
             }
         }
         /// <summary>
         /// Mete los operadores al diccionario de tokens
         /// </summary>
         /// <param name="buffer"></param>
-        private void addOperator(string buffer)
+        private void AddOperator(string buffer, int columnStart, int columnEnd)
         {
             //code to add operator
-            tokens.Add(buffer, "OPERADOR");
+            if (!tokens.ContainsKey(buffer))
+            {
+                tokens.Add(buffer, "OPERADOR");
+            }
+            else
+            {
+
+            }
         }
+
+        private void MakeWriter(string buffer, int columnStart, int columnEnd, string token)
+        {
+            writer.Concat(buffer).Concat("      Token: ").Concat(token).Concat(" cols ");
+        }
+
+        
         string blockComments = @"/\*(.*?)\*/";
+
+        public string Writer { get => writer; set => writer = value; }
     }
 }

@@ -14,6 +14,7 @@ namespace mini_java_compiler
     public partial class Principal : Form
     {
         Reader rdr = new Reader();
+        List<String> codigo = new List<string>();
 
         public Principal()
         {
@@ -22,47 +23,49 @@ namespace mini_java_compiler
 
         private void btnLoadFile_Click(object sender, EventArgs e)
         {
-            var fileContent = string.Empty;
-            var filePath = string.Empty;
 
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            try
             {
-                openFileDialog.InitialDirectory = "c:\\";
-                openFileDialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-                openFileDialog.FilterIndex = 2;
-                openFileDialog.RestoreDirectory = true;
-
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                using (OpenFileDialog openFileDialog = new OpenFileDialog())
                 {
-                    //Get the path of specified file
-                    filePath = openFileDialog.FileName;
+                    openFileDialog.InitialDirectory = "c:\\";
+                    openFileDialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+                    openFileDialog.FilterIndex = 2;
+                    openFileDialog.RestoreDirectory = true;
 
-                    //Read the contents of the file into a stream
-                    var fileStream = openFileDialog.OpenFile();
-
-                    using (StreamReader reader = new StreamReader(fileStream))
+                    if (openFileDialog.ShowDialog() == DialogResult.OK)
                     {
-                        while (!reader.EndOfStream)
+                        //Read the contents of the file into a stream
+                        var fileStream = openFileDialog.OpenFile();
+
+                        using (StreamReader reader = new StreamReader(fileStream))
                         {
-                            fileContent = reader.ReadLine();
-                            rdr.ReadProgram(fileContent);
+                            var fileContent = string.Empty;
+                            int lineCounter = 0;
+                            while (!reader.EndOfStream)
+                            {
+                                lineCounter++;
+                                fileContent = reader.ReadLine();
+                                rdr.ReadProgram(fileContent);
+                                string texto = rdr.Writer;
+                                rdr.Writer = "";
+                                codigo.Add(texto + " linea numero " + lineCounter.ToString());
+                            }
+
                         }
-                        
                     }
                 }
+                MessageBox.Show("Se leyo el archivo");
             }
-
-            if (!fileContent.Equals(""))
+            catch
             {
-                MessageBox.Show(fileContent, "File Content at path: " + filePath, MessageBoxButtons.OK);
+                MessageBox.Show("No se pudo leer el archivo");
             }
         }
 
-   
-
         private void btn_createFile_Click(object sender, EventArgs e)
         {
-            string[] codigo = {/*Colocar aqui lo que se recibira*/};
+            
             using (StreamWriter outputFile = new StreamWriter(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Resultado\\Codigo.out"))
             {
                 foreach (string fuente in codigo )
