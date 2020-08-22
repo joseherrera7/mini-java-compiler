@@ -37,9 +37,10 @@ namespace mini_java_compiler
             int columnStart = 0;
             int columnEnd = 0;
             string buffer = "";
+            bool cadenaAbrir = false;
             foreach (var c in line)
             {
-                if (Char.IsWhiteSpace(c)) // ignore blankspaces
+                if (Char.IsWhiteSpace(c) && !cadenaAbrir) // ignore blankspaces
                 {
                     if (!buffer.Equals("") && !operadores.Contains(buffer))
                     {
@@ -104,6 +105,11 @@ namespace mini_java_compiler
                             }
                         }
                     }
+                }
+                else if (buffer.Equals("\""))
+                {
+                    cadenaAbrir = !cadenaAbrir;
+                    buffer += c;
                 }
                 else if (buffer.Equals("/")) //verfica que es un comentario y se lo salta
                 {
