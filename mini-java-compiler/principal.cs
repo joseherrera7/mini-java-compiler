@@ -1,12 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace mini_java_compiler
@@ -14,7 +8,7 @@ namespace mini_java_compiler
     public partial class Principal : Form
     {
         Reader rdr = new Reader();
-        List<String> codigo = new List<string>();
+        string codigo = "";
 
         public Principal()
         {
@@ -46,12 +40,8 @@ namespace mini_java_compiler
                             {
                                 lineCounter++;
                                 fileContent = reader.ReadLine();
-                                rdr.ReadProgram(fileContent);
-                                string texto = rdr.Writer;
-                                rdr.Writer = "";
-                                codigo.Add(texto + " linea numero " + lineCounter.ToString());
+                                rdr.ReadProgram(fileContent, lineCounter);
                             }
-
                         }
                     }
                 }
@@ -65,14 +55,12 @@ namespace mini_java_compiler
 
         private void btn_createFile_Click(object sender, EventArgs e)
         {
-            
-            using (StreamWriter outputFile = new StreamWriter(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Resultado\\Codigo.out"))
+            codigo = rdr.Writer;
+            MessageBox.Show(codigo);
+            /*using (StreamWriter outputFile = new StreamWriter(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Resultado\\Codigo.out"))
             {
-                foreach (string fuente in codigo )
-                {
-                    outputFile.WriteLine(fuente);
-                }
-            }
+                
+            }*/
 
         }
     }
