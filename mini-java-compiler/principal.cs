@@ -61,11 +61,13 @@ namespace mini_java_compiler
                 if (!Directory.Exists(ruta))
                     Directory.CreateDirectory(ruta);
 
+                string lineas = rdr.Writer;
+
                 using (StreamWriter outputFile = new StreamWriter(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Resultado\\Codigo.txt"))
                 {
-                    foreach (char codigo in Convert.ToString(rdr.Writer))
+                    foreach (char codigo in lineas)
                     {
-                        outputFile.WriteLine(rdr);
+                        outputFile.WriteLine(codigo);
 
                     }
                 }
