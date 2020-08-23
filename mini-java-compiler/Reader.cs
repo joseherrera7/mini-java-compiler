@@ -8,18 +8,18 @@ namespace mini_java_compiler
     class Reader
     {
         //INCLUÍR MÁS OPERADORES SI ME HIZO FALTA ALGUNO
-        string[] operadores = { "+","-","*", "/", "%", "<", "<=", ">", ">=", "=", "==", "!=", "&&", "||", "!", ";", ",", ".", "[", "]",
+        private string[] operadores = { "+","-","*", "/", "%", "<", "<=", ">", ">=", "=", "==", "!=", "&&", "||", "!", ";", ",", ".", "[", "]",
             "(", ")", "{", "}",
     "[]", "()", "{}" };
-        int columnCounter = 0;
+        private int columnCounter = 0;
         //GUARDA EL ERROR
         public int ERROR = 0;
         private string writer = "";
-        bool esMultilinea = false;
+        private bool esMultilinea = false;
 
-        Dictionary<string, string> tokens = new Dictionary<string, string>();
+        private Dictionary<string, string> tokens = new Dictionary<string, string>();
 
-        string[] reserved = { "void", "int", "double", "boolean",
+        private string[] reserved = { "void", "int", "double", "boolean",
                 "string", "class", "const", "interface", "null", "this",
                 "extends", "implements", "for", "while", "if", "else",
                 "return", "break", "New", "System", "out", "println" };
@@ -329,6 +329,14 @@ namespace mini_java_compiler
             }
         }
 
+        /// <summary>
+        /// This class writes all the things 
+        /// </summary>
+        /// <param name="buffer"></param>
+        /// <param name="columnStart"></param>
+        /// <param name="columnEnd"></param>
+        /// <param name="token"></param>
+        /// <param name="lineNumber"></param>
         public void MakeWriter(string buffer, int columnStart, int columnEnd, string token, int lineNumber)
         {
             writer += buffer + "        Token: " + token + "        cols " + columnStart + "-" + columnEnd + "          en linea: " + lineNumber + "\n";

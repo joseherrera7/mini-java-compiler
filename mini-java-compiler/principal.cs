@@ -6,7 +6,7 @@ namespace mini_java_compiler
 {
     public partial class Principal : Form
     {
-        Reader rdr = new Reader();
+        private Reader rdr = new Reader();
 
         public Principal()
         {
