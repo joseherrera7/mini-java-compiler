@@ -8,7 +8,6 @@ namespace mini_java_compiler
     public partial class Principal : Form
     {
         Reader rdr = new Reader();
-        string codigo = "";
 
         public Principal()
         {
@@ -55,13 +54,28 @@ namespace mini_java_compiler
 
         private void btn_createFile_Click(object sender, EventArgs e)
         {
-            codigo = rdr.Writer;
-            MessageBox.Show(codigo);
-            /*using (StreamWriter outputFile = new StreamWriter(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Resultado\\Codigo.out"))
+            try
             {
-                
-            }*/
+                //SE CREA LA CARPETA RESULTADO
+                string ruta = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Resultado";
+                if (!Directory.Exists(ruta))
+                    Directory.CreateDirectory(ruta);
 
+                using (StreamWriter outputFile = new StreamWriter(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Resultado\\Codigo.txt"))
+                {
+                    foreach (char codigo in Convert.ToString(rdr.Writer))
+                    {
+                        outputFile.WriteLine(rdr);
+
+                    }
+                }
+
+                MessageBox.Show("Se creó el archivo");
+            }
+            catch
+            {
+                MessageBox.Show("No se pudo crear el archivo");
+            }
         }
     }
 }
