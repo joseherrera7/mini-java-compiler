@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 
@@ -65,11 +64,10 @@ namespace mini_java_compiler
 
                 using (StreamWriter outputFile = new StreamWriter(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Resultado\\Codigo.txt"))
                 {
-                    foreach (char codigo in lineas)
-                    {
-                        outputFile.WriteLine(codigo);
 
-                    }
+                    outputFile.WriteLine(lineas);
+
+
                 }
 
                 MessageBox.Show("Se creó el archivo");

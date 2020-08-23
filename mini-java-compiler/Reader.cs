@@ -14,7 +14,7 @@ namespace mini_java_compiler
         int columnCounter = 0;
         //GUARDA EL ERROR
         public int ERROR = 0;
-        string writer = "";
+        private string writer = "";
         bool esMultilinea = false;
 
         Dictionary<string, string> tokens = new Dictionary<string, string>();
@@ -336,9 +336,5 @@ namespace mini_java_compiler
 
         public string Writer { get => writer; set => writer = value; }
 
-        public String getWriter()
-        {
-            return Writer;
-        }
     }
 }
