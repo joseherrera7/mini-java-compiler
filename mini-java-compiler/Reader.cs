@@ -329,11 +329,16 @@ namespace mini_java_compiler
             }
         }
 
-        private void MakeWriter(string buffer, int columnStart, int columnEnd, string token, int lineNumber)
+        public void MakeWriter(string buffer, int columnStart, int columnEnd, string token, int lineNumber)
         {
             writer += buffer + "        Token: " + token + "        cols " + columnStart + "-" + columnEnd + "          en linea: " + lineNumber + "\n";
         }
 
         public string Writer { get => writer; set => writer = value; }
+
+        public String getWriter()
+        {
+            return Writer;
+        }
     }
 }
