@@ -42,6 +42,12 @@ namespace mini_java_compiler
                     esMultilinea = true;
                     buffer += c;
                 }
+                else if (!BufferEsCorrecto(buffer) && !operadores.Contains(buffer))
+                {
+                    AddTokens(buffer, columnCounter-1, columnCounter-1, lineNumber);
+                    buffer = c.ToString();
+                    columnStart = columnCounter;
+                }
                 else if (Char.IsWhiteSpace(c) && !cadenaAbrir) // ignore blankspaces
                 {
                     if (!buffer.Equals("") && !operadores.Contains(buffer))
@@ -289,6 +295,7 @@ namespace mini_java_compiler
             var consString = "\".*\"";
             buffer.Trim();
             if (reserved.Contains(buffer)) return 1;
+            else if (buffer == "") return 7;
             else
             {
                 if (Regex.IsMatch(buffer, constBooleana))
@@ -423,6 +430,11 @@ namespace mini_java_compiler
         public bool getComentarioAbierto()
         {
             return esMultilinea;
+        }
+
+        private bool BufferEsCorrecto(string buffer)
+        {
+            return Segmentation(buffer) != 0 ? true : false; 
         }
     }
 }
