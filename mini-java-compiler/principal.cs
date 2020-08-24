@@ -40,6 +40,7 @@ namespace mini_java_compiler
                                 fileContent = reader.ReadLine();
                                 rdr.ReadProgram(fileContent, lineCounter);
                             }
+                            reader.Close();
                         }
                     }
                 }
@@ -66,7 +67,7 @@ namespace mini_java_compiler
                 {
 
                     outputFile.WriteLine(lineas);
-
+                    outputFile.Close();
 
                 }
 

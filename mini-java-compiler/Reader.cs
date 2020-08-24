@@ -16,6 +16,7 @@ namespace mini_java_compiler
         public int ERROR = 0;
         private string writer = "";
         private bool esMultilinea = false;
+        private bool cadenaAbrir = false;
 
         private Dictionary<string, string> tokens = new Dictionary<string, string>();
 
@@ -34,7 +35,6 @@ namespace mini_java_compiler
             int columnStart = 0;
             int columnEnd = 0;
             string buffer = "";
-            bool cadenaAbrir = false;
             foreach (var c in line)
             {
                 if (buffer.Equals("/") && c.Equals('*'))
@@ -57,17 +57,44 @@ namespace mini_java_compiler
                         buffer = "";
                     }
                 }
-                else if ((operadores.Contains(c.ToString()) || operadores.Contains(buffer)) && !c.Equals('/')) //verfica que sea un operador
+                else if ((operadores.Contains(c.ToString()) || operadores.Contains(buffer)) && !c.Equals('/') && !buffer.Equals("\"")) //verfica que sea un operador
                 {
                     if (line.Length == columnCounter)
                     {
-                        if (operadores.Contains(c.ToString()))
+                        if (operadores.Contains(c.ToString()) && buffer.Equals(""))
                         {
-                            AddOperator(c.ToString(), columnStart, columnEnd, lineNumber);
+                            AddOperator(c.ToString(), columnCounter, columnCounter, lineNumber);
+                        }
+                        else if (operadores.Contains(c.ToString()) && !buffer.Equals("") && !operadores.Contains(buffer+c))
+                        {
+                            if (operadores.Contains(c.ToString()) && operadores.Contains(buffer))
+                            {
+                                AddOperator(buffer, columnStart, columnCounter-1, lineNumber);
+                                AddOperator(c.ToString(), columnCounter, columnCounter, lineNumber);
+                                buffer = "";
+                            }
+                            else
+                            {
+                                columnEnd = columnCounter - 1;
+                                AddTokens(buffer, columnStart, columnEnd, lineNumber);
+                                AddOperator(c.ToString(), columnCounter, columnCounter, lineNumber);
+                                columnStart = columnCounter;
+                                buffer = "";
+                            }  
                         }
                         else
                         {
-                            AddTokens(c.ToString(), columnStart, columnEnd, lineNumber);
+                            if (operadores.Contains(buffer+c))
+                            {
+                                AddOperator(buffer + c, columnCounter, columnCounter, lineNumber);
+                                buffer = "";
+                            }
+                            else
+                            {
+                                columnEnd = columnCounter - 1;
+                                AddTokens(c.ToString(), columnStart, columnCounter, lineNumber);
+                            }
+                            
                         }
                     }
                     else
@@ -86,11 +113,18 @@ namespace mini_java_compiler
                                     buffer += c;
                                 }
                             }
+                            else if (operadores.Contains(c.ToString()) && operadores.Contains(buffer))
+                            {
+                                
+                                AddOperator(buffer, columnCounter-1, columnCounter-1, lineNumber);
+                                AddOperator(c.ToString(), columnCounter, columnCounter, lineNumber);
+                                buffer = "";
+                            }
                             else // sino es operador doble lo mete a los tokens el operador del buffer y continua
                             {
-                                AddOperator(buffer, columnStart, columnEnd, lineNumber);
+                                AddOperator(buffer, columnCounter, columnCounter, lineNumber);
+                                columnStart = columnCounter;
                                 buffer = c.ToString();
-                                columnEnd = columnCounter - 1;
                             }
                         }
                         else // sino es sigue
@@ -102,20 +136,37 @@ namespace mini_java_compiler
                             }
                             else //si el buffer es el toro vuelve a llamar si es una reservada
                             {
+                                columnEnd = columnCounter - 1;
                                 AddTokens(buffer, columnStart, columnEnd, lineNumber);
                                 buffer = c.ToString();
+                                columnStart = columnCounter;
                             }
                         }
                     }
                 }
-                else if (buffer.Equals("*") && c.Equals('/'))
+                else if (buffer.Equals("*") && c.Equals('/') && esMultilinea)
                 {
                     esMultilinea = false;
                 }
-                else if (buffer.Equals("\""))
+                else if (buffer.Equals("\"\""))
                 {
-                    cadenaAbrir = !cadenaAbrir;
-                    buffer += c;
+                    AddTokens(buffer, columnStart, columnCounter-1, lineNumber);
+                    columnStart = columnCounter;
+                    buffer = c.ToString();
+                }
+                else if (buffer.Equals("\"") || c.Equals('\"'))
+                {
+                    if (line.Length == columnCounter)
+                    {
+                        cadenaAbrir = !cadenaAbrir;
+                        AddTokens(buffer+c, columnStart, columnCounter, lineNumber);
+                        buffer = "";
+                    }
+                    else
+                    {
+                        cadenaAbrir = !cadenaAbrir;
+                        buffer += c;
+                    }  
                 }
                 else if (buffer.Equals("/")) //verfica que es un comentario y se lo salta
                 {
@@ -132,12 +183,12 @@ namespace mini_java_compiler
                         {
                             if (operadores.Contains(c.ToString()))
                             {
-                                AddOperator(c.ToString(), columnStart, columnEnd, lineNumber);
-                                AddOperator(c.ToString(), columnStart, columnEnd, lineNumber);
+                                AddOperator(c.ToString(), columnCounter-1, columnCounter-1, lineNumber);
+                                AddOperator(c.ToString(), columnCounter, columnCounter, lineNumber);
                             }
                             else
                             {
-                                AddTokens(c.ToString(), columnStart, columnEnd, lineNumber);
+                                AddTokens(c.ToString(), columnCounter, columnCounter, lineNumber);
                             }
                         }
                         else
@@ -166,23 +217,27 @@ namespace mini_java_compiler
                             {
                                 if (operadores.Contains(c.ToString()) && operadores.Contains(buffer))
                                 {
-                                    AddOperator(c.ToString(), columnStart, columnEnd - 1, lineNumber);
-                                    AddOperator(buffer, columnCounter, columnCounter, lineNumber);
+                                    AddOperator(buffer, columnCounter - 1, columnCounter - 1, lineNumber);
+                                    AddOperator(c.ToString(), columnCounter, columnCounter, lineNumber);
+                                    buffer = "";
                                 }
                                 else if (operadores.Contains(c.ToString()) && !operadores.Contains(buffer))
                                 {
-                                    AddOperator(c.ToString(), columnStart, columnEnd - 1, lineNumber);
-                                    AddTokens(buffer, columnCounter, columnCounter, lineNumber);
+                                    AddTokens(buffer, columnStart, columnCounter - 1, lineNumber);
+                                    AddOperator(c.ToString(), columnCounter, columnCounter, lineNumber);
+                                    buffer = "";
                                 }
                                 else if (!operadores.Contains(c.ToString()) && operadores.Contains(buffer))
                                 {
-                                    AddTokens(c.ToString(), columnStart, columnEnd - 1, lineNumber);
-                                    AddOperator(buffer, columnCounter, columnCounter, lineNumber);
+                                    AddOperator(buffer, columnStart, columnCounter - 1, lineNumber);
+                                    AddTokens(c.ToString(), columnCounter, columnCounter, lineNumber);                                    
+                                    buffer = "";
                                 }
                                 else
                                 {
-                                    AddTokens(c.ToString(), columnStart, columnEnd - 1, lineNumber);
-                                    AddTokens(buffer, columnCounter, columnCounter, lineNumber);
+                                    AddTokens(buffer, columnStart, columnCounter - 1, lineNumber);
+                                    AddTokens(c.ToString(), columnCounter, columnCounter, lineNumber);
+                                    buffer = "";
                                 }
                             }
                             else
@@ -196,7 +251,15 @@ namespace mini_java_compiler
                     }
                     else
                     {
-                        buffer += c;
+                        if (columnCounter == line.Length)
+                        {
+                            AddTokens(buffer+c, columnStart, columnCounter, lineNumber);
+                            buffer = "";
+                        }
+                        else
+                        {
+                            buffer += c;
+                        }  
                     }
                 }
                 columnCounter++;
@@ -215,7 +278,7 @@ namespace mini_java_compiler
             var constEntera = "(0[xX][0-9a-fA-F]+)|([0-9]+)";
             var consDouble = "\\d+\\.(\\d*(E\\+\\d?))";
             var consString = "\".*\"";
-
+            buffer.Trim();
             if (reserved.Contains(buffer)) return 1;
             else
             {
@@ -241,6 +304,10 @@ namespace mini_java_compiler
                 }
                 else
                 {
+                    if (buffer.Contains("\""))
+                    {
+                        writer += "Error: Cadena sin cerrar ";
+                    }
                     return 0;
                 }
             }
