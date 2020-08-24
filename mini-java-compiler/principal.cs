@@ -76,10 +76,6 @@ namespace mini_java_compiler
                 {
                     lineas += ("\n***ERROR:  Comentario en EOF***");
                 }
-                else if (rdr.CadenaAbrir)
-                {
-                    lineas += ("\n***ERROR:  Cadena sin cerrar***");
-                }
                 using (StreamWriter outputFile = new StreamWriter(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Resultado\\Codigo.txt"))
                 {
 

@@ -133,12 +133,12 @@ namespace mini_java_compiler
                         }
                     }
                 }
-                else if (buffer.Equals("\"\""))
+                /*else if (buffer.Equals("\"\""))
                 {
                     AddTokens(buffer, columnStart, columnCounter - 1, lineNumber);
                     columnStart = columnCounter;
                     buffer = c.ToString();
-                }
+                }*/
                 else if (buffer.Equals("\"") || c.Equals('\"'))
                 {
                     if (buffer.Equals("") && c.Equals('\"'))
@@ -294,6 +294,8 @@ namespace mini_java_compiler
             var constEntera = "(0[xX][0-9a-fA-F]+)|([0-9]+)";
             var consDouble = "\\d+\\.(\\d*(E\\+\\d?))";
             var consString = "\".*\"";
+            string cadenaInvalida = "[\0\r\n\\\"]";
+            string cadenaSinTerminar = "\\\"(.*)?"; // string sin terminar 
             if (reserved.Contains(buffer)) return 1;
             else if (buffer == "") return 7;
             else
@@ -314,13 +316,109 @@ namespace mini_java_compiler
                 {
                     return 5;
                 }
-                else if (Regex.IsMatch(buffer, consString))
+                else if (Regex.IsMatch(buffer, consString) || Regex.IsMatch(buffer, cadenaSinTerminar)/*Regex.IsMatch(buffer, consString)*/)
+                {                
+                    return VerificarCadena(buffer, consString, cadenaInvalida, cadenaSinTerminar);
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+        }
+        private int Segmentation2(string buffer)
+        {
+            var idPattern = "^[A-Za-z_$]{1}[a-zA-Z\\d$_]*$";
+            var constBooleana = "true|false";
+            var constEntera = "(0[xX][0-9a-fA-F]+)|([0-9]+)";
+            var consDouble = "\\d+\\.(\\d*(E\\+\\d?))";
+            var consString = "\".*\"";
+            string cadenaInvalida = "[\0\r\n\\\"]";
+            string cadenaSinTerminar = "\\\"(.*)?"; // string sin terminar 
+            if (reserved.Contains(buffer)) return 1;
+            else if (buffer == "") return 7;
+            else
+            {
+                if (Regex.IsMatch(buffer, constBooleana))
+                {
+                    return 3;
+                }
+                else if (Regex.IsMatch(buffer, idPattern))
+                {
+                    return 2;
+                }
+                else if (Regex.IsMatch(buffer, constEntera))
+                {
+                    return 4;
+                }
+                else if (Regex.IsMatch(buffer, consDouble))
+                {
+                    return 5;
+                }
+                else if (Regex.IsMatch(buffer, consString) || Regex.IsMatch(buffer, cadenaSinTerminar)/*Regex.IsMatch(buffer, consString)*/)
+                {
+                    return VerificarCadena2(buffer, consString, cadenaInvalida, cadenaSinTerminar);
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+        }
+        private int VerificarCadena2(string buffer, string consString, string cadenaInvalida, string cadenaSinTerminar)
+        {
+            int start = buffer.IndexOf(buffer) + 1;
+
+            if (Regex.IsMatch(buffer, consString))
+            {
+                string test = buffer.Substring(1, buffer.Length - 2);
+                if (!Regex.IsMatch(test, cadenaInvalida))
                 {
                     return 6;
                 }
                 else
                 {
-   
+                    return 0;
+                }
+            }
+            else
+            {
+                if (Regex.IsMatch(buffer, cadenaSinTerminar))
+                {
+                    return 0;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+        }
+        private int VerificarCadena(string buffer, string consString, string cadenaInvalida, string cadenaSinTerminar)
+        {
+            int start = buffer.IndexOf(buffer) + 1;
+
+            if (Regex.IsMatch(buffer,consString))
+            {
+                string test = buffer.Substring(1, buffer.Length - 2);
+                if (!Regex.IsMatch(test, cadenaInvalida))
+                {
+                    return 6;
+                }
+                else
+                {
+                    writer += "*** ERROR: Cadena invalida ***  ";
+                    return 0;
+                }
+            } 
+            else
+            {
+                if (Regex.IsMatch(buffer, cadenaSinTerminar))
+                {
+                    writer += "*** ERROR: Cadena sin terminar***  ";
+                    return 0;
+                }
+                else
+                {
                     return 0;
                 }
             }
@@ -433,7 +531,7 @@ namespace mini_java_compiler
 
         private bool BufferEsCorrecto(string buffer)
         {
-            return Segmentation(buffer) != 0 ? true : false; 
+            return Segmentation2(buffer) != 0 ? true : false; 
         }
     }
 }
