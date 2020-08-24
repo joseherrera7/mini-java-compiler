@@ -62,7 +62,14 @@ namespace mini_java_compiler
                 if (!Directory.Exists(ruta))
                     Directory.CreateDirectory(ruta);
                 string lineas = rdr.Writer;
-           
+                if (rdr.getComentarioAbierto())
+                {
+                    lineas += ("\n*** ERROR:  Comentario en EOF  ERRRORRRRR VIVO AHI MIJO ***");
+                }
+                else if (rdr.CadenaAbrir)
+                {
+                    lineas += ("\n*** ERROR:  Cadena sin cerrar ***");
+                }
                 using (StreamWriter outputFile = new StreamWriter(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Resultado\\Codigo.txt"))
                 {
 

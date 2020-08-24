@@ -42,13 +42,49 @@ namespace mini_java_compiler
                     esMultilinea = true;
                     buffer += c;
                 }
-                else if (!BufferEsCorrecto(buffer) && !operadores.Contains(buffer))
+                else if (buffer.Equals("*") && c.Equals('/') && esMultilinea && !CadenaAbrir)
+                {
+                    esMultilinea = false;
+                }
+                else if (buffer.Equals("\"\""))
+                {
+                    AddTokens(buffer, columnStart, columnCounter - 1, lineNumber);
+                    columnStart = columnCounter;
+                    buffer = c.ToString();
+                }
+                else if (buffer.Equals("\"") || c.Equals('\"'))
+                {
+                    if (buffer.Equals("") && c.Equals('\"'))
+                    {
+                        buffer = c.ToString();
+                        columnStart = columnCounter;
+                    }
+                    else if (line.Length == columnCounter)
+                    {
+                        CadenaAbrir = !CadenaAbrir;
+                        AddTokens(buffer + c, columnStart, columnCounter, lineNumber);
+                        buffer = "";
+                    }
+                    else
+                    {
+                        CadenaAbrir = !CadenaAbrir;
+                        buffer += c;
+                    }
+                }
+                else if (buffer.Equals("/") && !CadenaAbrir) //verfica que es un comentario y se lo salta
+                {
+                    if (c.Equals('/'))
+                    {
+                        return;
+                    }
+                }
+                else if (!BufferEsCorrecto(buffer) && !operadores.Contains(buffer) && !esMultilinea && !CadenaAbrir)
                 {
                     AddTokens(buffer, columnCounter-1, columnCounter-1, lineNumber);
                     buffer = c.ToString();
                     columnStart = columnCounter;
                 }
-                else if (Char.IsWhiteSpace(c) && !cadenaAbrir) // ignore blankspaces
+                else if (Char.IsWhiteSpace(c) && !CadenaAbrir) // ignore blankspaces
                 {
                     if (!buffer.Equals("") && !operadores.Contains(buffer))
                     {
@@ -63,7 +99,7 @@ namespace mini_java_compiler
                         buffer = "";
                     }
                 }
-                else if ((operadores.Contains(c.ToString()) || operadores.Contains(buffer)) && !c.Equals('/') && !cadenaAbrir && !buffer.Equals("\"")) //verfica que sea un operador
+                else if ((operadores.Contains(c.ToString()) || operadores.Contains(buffer)) && !c.Equals('/') && !CadenaAbrir && !buffer.Equals("\"")) //verfica que sea un operador
                 {
                     if (line.Length == columnCounter)
                     {
@@ -149,43 +185,7 @@ namespace mini_java_compiler
                             }
                         }
                     }
-                }
-                else if (buffer.Equals("*") && c.Equals('/') && esMultilinea && !cadenaAbrir)
-                {
-                    esMultilinea = false;
-                }
-                else if (buffer.Equals("\"\""))
-                {
-                    AddTokens(buffer, columnStart, columnCounter-1, lineNumber);
-                    columnStart = columnCounter;
-                    buffer = c.ToString();
-                }
-                else if (buffer.Equals("\"") || c.Equals('\"'))
-                {
-                    if (buffer.Equals("") && c.Equals('\"'))
-                    {
-                        buffer = c.ToString();
-                        columnStart = columnCounter;
-                    }
-                    else if (line.Length == columnCounter)
-                    {
-                        cadenaAbrir = !cadenaAbrir;
-                        AddTokens(buffer+c, columnStart, columnCounter, lineNumber);
-                        buffer = "";
-                    }
-                    else
-                    {
-                        cadenaAbrir = !cadenaAbrir;
-                        buffer += c;
-                    }  
-                }
-                else if (buffer.Equals("/") && !cadenaAbrir) //verfica que es un comentario y se lo salta
-                {
-                    if (c.Equals('/'))
-                    {
-                        return;
-                    }
-                }
+                } 
                 /*else if ()
                 {
 
@@ -320,10 +320,6 @@ namespace mini_java_compiler
                 }
                 else
                 {
-                    if (buffer.Contains("\""))
-                    {
-                        writer += "Error: Cadena sin cerrar ";
-                    }
                     return 0;
                 }
             }
@@ -426,6 +422,7 @@ namespace mini_java_compiler
         }
 
         public string Writer { get => writer; set => writer = value; }
+        public bool CadenaAbrir { get => cadenaAbrir; set => cadenaAbrir = value; }
 
         public bool getComentarioAbierto()
         {
