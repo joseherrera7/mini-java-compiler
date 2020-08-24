@@ -54,13 +54,12 @@ namespace mini_java_compiler
 
         private void btn_createFile_Click(object sender, EventArgs e)
         {
+            //SE CREA LA CARPETA RESULTADO
+            string ruta = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Resultado";
+            if (!Directory.Exists(ruta))
+                Directory.CreateDirectory(ruta);
             try
             {
-                //SE CREA LA CARPETA RESULTADO
-                string ruta = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Resultado";
-                if (!Directory.Exists(ruta))
-                    Directory.CreateDirectory(ruta);
-
                 string lineas = rdr.Writer;
 
                 using (StreamWriter outputFile = new StreamWriter(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Resultado\\Codigo.txt"))
