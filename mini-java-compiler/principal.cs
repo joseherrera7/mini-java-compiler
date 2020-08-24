@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -46,10 +47,14 @@ namespace mini_java_compiler
                     }
                 }
                 MessageBox.Show("Se leyo el archivo");
+                estado.Text = "Estado: Archivo Cargado";
+                estado.ForeColor = Color.Green;
             }
             catch
             {
                 MessageBox.Show("No se pudo leer el archivo");
+                estado.ForeColor = Color.Red;
+                estado.Text = "Estado: Error";
             }
         }
 
@@ -79,10 +84,14 @@ namespace mini_java_compiler
                 }
 
                 MessageBox.Show("Se creó el archivo");
+                creado.Text = "Estado: Archivo Creado";
+                creado.ForeColor = Color.Green;
             }
             catch
             {
                 MessageBox.Show("No se pudo crear el archivo");
+                creado.ForeColor = Color.Red;
+                creado.Text = "Estado: Error";
             }
         }
     }
