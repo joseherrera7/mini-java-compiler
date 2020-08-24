@@ -57,7 +57,7 @@ namespace mini_java_compiler
                         buffer = "";
                     }
                 }
-                else if ((operadores.Contains(c.ToString()) || operadores.Contains(buffer)) && !c.Equals('/') && !buffer.Equals("\"")) //verfica que sea un operador
+                else if ((operadores.Contains(c.ToString()) || operadores.Contains(buffer)) && !c.Equals('/') && !cadenaAbrir && !buffer.Equals("\"")) //verfica que sea un operador
                 {
                     if (line.Length == columnCounter)
                     {
@@ -144,7 +144,7 @@ namespace mini_java_compiler
                         }
                     }
                 }
-                else if (buffer.Equals("*") && c.Equals('/') && esMultilinea)
+                else if (buffer.Equals("*") && c.Equals('/') && esMultilinea && !cadenaAbrir)
                 {
                     esMultilinea = false;
                 }
@@ -156,7 +156,12 @@ namespace mini_java_compiler
                 }
                 else if (buffer.Equals("\"") || c.Equals('\"'))
                 {
-                    if (line.Length == columnCounter)
+                    if (buffer.Equals("") && c.Equals('\"'))
+                    {
+                        buffer = c.ToString();
+                        columnStart = columnCounter;
+                    }
+                    else if (line.Length == columnCounter)
                     {
                         cadenaAbrir = !cadenaAbrir;
                         AddTokens(buffer+c, columnStart, columnCounter, lineNumber);
@@ -168,12 +173,16 @@ namespace mini_java_compiler
                         buffer += c;
                     }  
                 }
-                else if (buffer.Equals("/")) //verfica que es un comentario y se lo salta
+                else if (buffer.Equals("/") && !cadenaAbrir) //verfica que es un comentario y se lo salta
                 {
                     if (c.Equals('/'))
                     {
                         return;
                     }
+                }
+                else if ()
+                {
+
                 }
                 else // mete el simbolo sino detecta un token
                 {
