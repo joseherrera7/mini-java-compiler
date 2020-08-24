@@ -180,10 +180,10 @@ namespace mini_java_compiler
                         return;
                     }
                 }
-                else if ()
+                /*else if ()
                 {
 
-                }
+                }*/
                 else // mete el simbolo sino detecta un token
                 {
                     if (buffer.Equals("")) // inicia el contador de columna
