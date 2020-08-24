@@ -64,11 +64,11 @@ namespace mini_java_compiler
                 string lineas = rdr.Writer;
                 if (rdr.getComentarioAbierto())
                 {
-                    lineas += ("\n*** ERROR:  Comentario en EOF  ERRRORRRRR VIVO AHI MIJO ***");
+                    lineas += ("\n***ERROR:  Comentario en EOF***");
                 }
                 else if (rdr.CadenaAbrir)
                 {
-                    lineas += ("\n*** ERROR:  Cadena sin cerrar ***");
+                    lineas += ("\n***ERROR:  Cadena sin cerrar***");
                 }
                 using (StreamWriter outputFile = new StreamWriter(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Resultado\\Codigo.txt"))
                 {
