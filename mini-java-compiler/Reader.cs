@@ -46,6 +46,93 @@ namespace mini_java_compiler
                 {
                     esMultilinea = false;
                 }
+                else if ((operadores.Contains(c.ToString()) || operadores.Contains(buffer)) && !c.Equals('/') && !CadenaAbrir && !buffer.Equals("\"")) //verfica que sea un operador
+                {
+                    if (line.Length == columnCounter)
+                    {
+                        if (operadores.Contains(c.ToString()) && buffer.Equals(""))
+                        {
+                            AddOperator(c.ToString(), columnCounter, columnCounter, lineNumber);
+                        }
+                        else if (operadores.Contains(c.ToString()) && !buffer.Equals("") && !operadores.Contains(buffer + c))
+                        {
+                            if (operadores.Contains(c.ToString()) && operadores.Contains(buffer))
+                            {
+                                AddOperator(buffer, columnStart, columnCounter - 1, lineNumber);
+                                AddOperator(c.ToString(), columnCounter, columnCounter, lineNumber);
+                                buffer = "";
+                            }
+                            else
+                            {
+                                columnEnd = columnCounter - 1;
+                                AddTokens(buffer, columnStart, columnEnd, lineNumber);
+                                AddOperator(c.ToString(), columnCounter, columnCounter, lineNumber);
+                                columnStart = columnCounter;
+                                buffer = "";
+                            }
+                        }
+                        else
+                        {
+                            if (operadores.Contains(buffer + c))
+                            {
+                                AddOperator(buffer + c, columnCounter, columnCounter, lineNumber);
+                                buffer = "";
+                            }
+                            else
+                            {
+                                columnEnd = columnCounter - 1;
+                                AddTokens(c.ToString(), columnStart, columnCounter, lineNumber);
+                            }
+
+                        }
+                    }
+                    else
+                    {
+                        if (operadores.Contains(buffer)) // si el operador está en el bufer 
+                        {
+                            if (operadores.Contains(buffer + c)) // prueba si es un operador doble
+                            {
+                                if (buffer.Contains("")) // si está vacio mete el operador e inicializa columna
+                                {
+                                    columnStart = columnCounter;
+                                    buffer += c;
+                                }
+                                else
+                                {
+                                    buffer += c;
+                                }
+                            }
+                            else if (operadores.Contains(c.ToString()) && operadores.Contains(buffer))
+                            {
+
+                                AddOperator(buffer, columnCounter - 1, columnCounter - 1, lineNumber);
+                                AddOperator(c.ToString(), columnCounter, columnCounter, lineNumber);
+                                buffer = "";
+                            }
+                            else // sino es operador doble lo mete a los tokens el operador del buffer y continua
+                            {
+                                AddOperator(buffer, columnCounter, columnCounter, lineNumber);
+                                columnStart = columnCounter;
+                                buffer = c.ToString();
+                            }
+                        }
+                        else // sino es sigue
+                        {
+                            if (buffer.Equals("")) // sino hay nada en el bufer sigue
+                            {
+                                columnStart = columnCounter;
+                                buffer = c.ToString();
+                            }
+                            else //si el buffer es el toro vuelve a llamar si es una reservada
+                            {
+                                columnEnd = columnCounter - 1;
+                                AddTokens(buffer, columnStart, columnEnd, lineNumber);
+                                buffer = c.ToString();
+                                columnStart = columnCounter;
+                            }
+                        }
+                    }
+                }
                 else if (buffer.Equals("\"\""))
                 {
                     AddTokens(buffer, columnStart, columnCounter - 1, lineNumber);
@@ -99,93 +186,7 @@ namespace mini_java_compiler
                         buffer = "";
                     }
                 }
-                else if ((operadores.Contains(c.ToString()) || operadores.Contains(buffer)) && !c.Equals('/') && !CadenaAbrir && !buffer.Equals("\"")) //verfica que sea un operador
-                {
-                    if (line.Length == columnCounter)
-                    {
-                        if (operadores.Contains(c.ToString()) && buffer.Equals(""))
-                        {
-                            AddOperator(c.ToString(), columnCounter, columnCounter, lineNumber);
-                        }
-                        else if (operadores.Contains(c.ToString()) && !buffer.Equals("") && !operadores.Contains(buffer+c))
-                        {
-                            if (operadores.Contains(c.ToString()) && operadores.Contains(buffer))
-                            {
-                                AddOperator(buffer, columnStart, columnCounter-1, lineNumber);
-                                AddOperator(c.ToString(), columnCounter, columnCounter, lineNumber);
-                                buffer = "";
-                            }
-                            else
-                            {
-                                columnEnd = columnCounter - 1;
-                                AddTokens(buffer, columnStart, columnEnd, lineNumber);
-                                AddOperator(c.ToString(), columnCounter, columnCounter, lineNumber);
-                                columnStart = columnCounter;
-                                buffer = "";
-                            }  
-                        }
-                        else
-                        {
-                            if (operadores.Contains(buffer+c))
-                            {
-                                AddOperator(buffer + c, columnCounter, columnCounter, lineNumber);
-                                buffer = "";
-                            }
-                            else
-                            {
-                                columnEnd = columnCounter - 1;
-                                AddTokens(c.ToString(), columnStart, columnCounter, lineNumber);
-                            }
-                            
-                        }
-                    }
-                    else
-                    {
-                        if (operadores.Contains(buffer)) // si el operador está en el bufer 
-                        {
-                            if (operadores.Contains(buffer + c)) // prueba si es un operador doble
-                            {
-                                if (buffer.Contains("")) // si está vacio mete el operador e inicializa columna
-                                {
-                                    columnStart = columnCounter;
-                                    buffer += c;
-                                }
-                                else
-                                {
-                                    buffer += c;
-                                }
-                            }
-                            else if (operadores.Contains(c.ToString()) && operadores.Contains(buffer))
-                            {
-                                
-                                AddOperator(buffer, columnCounter-1, columnCounter-1, lineNumber);
-                                AddOperator(c.ToString(), columnCounter, columnCounter, lineNumber);
-                                buffer = "";
-                            }
-                            else // sino es operador doble lo mete a los tokens el operador del buffer y continua
-                            {
-                                AddOperator(buffer, columnCounter, columnCounter, lineNumber);
-                                columnStart = columnCounter;
-                                buffer = c.ToString();
-                            }
-                        }
-                        else // sino es sigue
-                        {
-                            if (buffer.Equals("")) // sino hay nada en el bufer sigue
-                            {
-                                columnStart = columnCounter;
-                                buffer = c.ToString();
-                            }
-                            else //si el buffer es el toro vuelve a llamar si es una reservada
-                            {
-                                columnEnd = columnCounter - 1;
-                                AddTokens(buffer, columnStart, columnEnd, lineNumber);
-                                buffer = c.ToString();
-                                columnStart = columnCounter;
-                            }
-                        }
-                    }
-                } 
+                
                 /*else if ()
                 {
 
@@ -293,7 +294,6 @@ namespace mini_java_compiler
             var constEntera = "(0[xX][0-9a-fA-F]+)|([0-9]+)";
             var consDouble = "\\d+\\.(\\d*(E\\+\\d?))";
             var consString = "\".*\"";
-            buffer.Trim();
             if (reserved.Contains(buffer)) return 1;
             else if (buffer == "") return 7;
             else
@@ -320,6 +320,7 @@ namespace mini_java_compiler
                 }
                 else
                 {
+   
                     return 0;
                 }
             }
@@ -332,6 +333,7 @@ namespace mini_java_compiler
         {
             if (!esMultilinea)
             {
+                buffer = buffer.Trim();
                 var bufferIs = Segmentation(buffer); //call segmentacion to return into the switch para ver si es reservada o id
                 switch (bufferIs)
                 {
