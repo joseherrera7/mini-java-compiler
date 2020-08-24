@@ -15,7 +15,7 @@ namespace mini_java_compiler
         //GUARDA EL ERROR
         public int ERROR = 0;
         private string writer = "";
-        private bool esMultilinea = false;
+        public bool esMultilinea = false;
         private bool cadenaAbrir = false;
 
         private Dictionary<string, string> tokens = new Dictionary<string, string>();
@@ -420,5 +420,9 @@ namespace mini_java_compiler
 
         public string Writer { get => writer; set => writer = value; }
 
+        public bool getComentarioAbierto()
+        {
+            return esMultilinea;
+        }
     }
 }
