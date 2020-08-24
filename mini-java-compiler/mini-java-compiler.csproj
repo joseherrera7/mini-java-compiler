@@ -66,6 +66,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -82,6 +83,24 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Music\High Spirits.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Music\Aceptado.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Music\Creado.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Music\Error.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Music\Abrir.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Music\Error2.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

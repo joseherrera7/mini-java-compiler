@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Media;
 using System.Windows.Forms;
 
 namespace mini_java_compiler
@@ -9,7 +10,6 @@ namespace mini_java_compiler
     public partial class Principal : Form
     {
         private Reader rdr = new Reader();
-
         public Principal()
         {
             InitializeComponent();
@@ -17,7 +17,8 @@ namespace mini_java_compiler
 
         private void btnLoadFile_Click(object sender, EventArgs e)
         {
-
+            SoundPlayer audio5 = new SoundPlayer(mini_java_compiler.Properties.Resources.Abrir);
+            audio5.Play();
             try
             {
                 using (OpenFileDialog openFileDialog = new OpenFileDialog())
@@ -46,12 +47,16 @@ namespace mini_java_compiler
                         }
                     }
                 }
+                SoundPlayer audio3 = new SoundPlayer(mini_java_compiler.Properties.Resources.Aceptado);
+                audio3.Play();
                 MessageBox.Show("¡Se leyó el archivo correctamente! Proceda a crear el archivo de salida.");
                 estado.Text = "Estado: Archivo Cargado";
                 estado.ForeColor = Color.Green;
             }
             catch
             {
+                SoundPlayer audio4 = new SoundPlayer(mini_java_compiler.Properties.Resources.Error2);
+                audio4.Play();
                 MessageBox.Show("No se pudo leer el archivo, por favor revisar que su archivo de entrada sea válido o que el archivo de entrada no esté corrupto.");
                 estado.ForeColor = Color.Red;
                 estado.Text = "Estado: Error";
@@ -82,13 +87,16 @@ namespace mini_java_compiler
                     outputFile.Close();
 
                 }
-
+                SoundPlayer audio1 = new SoundPlayer(mini_java_compiler.Properties.Resources.Creado);
+                audio1.Play();
                 MessageBox.Show("¡El archivo de creó exitosamente! Podrá encontrarlo en la carpeta Resultado ubicada en el Escritorio de su computadora.");
                 creado.Text = "Estado: Archivo Creado";
                 creado.ForeColor = Color.Green;
             }
             catch
             {
+                SoundPlayer audio2 = new SoundPlayer(mini_java_compiler.Properties.Resources.Error2);
+                audio2.Play();
                 MessageBox.Show("No se pudo crear el archivo, por favor revisar que su archivo de entrada sea válido o que el archivo de entrada no esté corrupto.");
                 creado.ForeColor = Color.Red;
                 creado.Text = "Estado: Error";
