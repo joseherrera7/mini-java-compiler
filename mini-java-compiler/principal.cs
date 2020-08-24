@@ -76,7 +76,7 @@ namespace mini_java_compiler
                 {
                     lineas += ("\n***ERROR:  Comentario en EOF***");
                 }
-                using (StreamWriter outputFile = new StreamWriter(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Resultado\\Codigo.txt"))
+                using (StreamWriter outputFile = new StreamWriter(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Resultado\\result.out"))
                 {
 
                     outputFile.WriteLine(lineas);

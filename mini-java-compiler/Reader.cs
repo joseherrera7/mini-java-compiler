@@ -438,55 +438,55 @@ namespace mini_java_compiler
                     case 0:
                         if (!tokens.ContainsKey(buffer))
                         {
-                            tokens.Add(buffer, "ERROR");
+                            tokens.Add(buffer, "T_ERROR");
                         }
-                        MakeWriter(buffer, columnStart, columnEnd, "ERROR", lineNumber);
+                        MakeWriter(buffer, columnStart, columnEnd, "T_ERROR", lineNumber);
                         break;
                     case 1:
                         if (!tokens.ContainsKey(buffer))
                         {
-                            tokens.Add(buffer, "RESERVADA");
+                            tokens.Add(buffer, $"T_{buffer}");
                         }
-                        MakeWriter(buffer, columnStart, columnEnd, "RESERVADA", lineNumber);
+                        MakeWriter(buffer, columnStart, columnEnd, $"T_{buffer}", lineNumber);
                         break;
                     case 2:
                         if (!tokens.ContainsKey(buffer))
                         {
-                            tokens.Add(buffer, "IDENTIFICADOR");
+                            tokens.Add(buffer, "T_ID");
                         }
 
-                        MakeWriter(buffer, columnStart, columnEnd, "IDENTIFICADOR", lineNumber);
+                        MakeWriter(buffer, columnStart, columnEnd, "T_ID", lineNumber);
                         break;
                     case 3:
                         if (!tokens.ContainsKey(buffer))
                         {
-                            tokens.Add(buffer, "CONSTANTE_BOOLEANA");
+                            tokens.Add(buffer, "T_BOOLEAN");
                         }
 
-                        MakeWriter(buffer, columnStart, columnEnd, "CONSTANTE_BOOLEANA", lineNumber);
+                        MakeWriter(buffer, columnStart, columnEnd, "T_BOOLEAN", lineNumber);
                         break;
                     case 4:
                         if (!tokens.ContainsKey(buffer))
                         {
-                            tokens.Add(buffer, "CONSTANTE_ENTERO");
+                            tokens.Add(buffer, "T_ENTERO");
                         }
 
-                        MakeWriter(buffer, columnStart, columnEnd, "CONSTANTE_ENTERO", lineNumber);
+                        MakeWriter(buffer, columnStart, columnEnd, "T_ENTERO", lineNumber);
                         break;
                     case 5:
                         if (!tokens.ContainsKey(buffer))
                         {
-                            tokens.Add(buffer, "CONSTANTE_DOUBLE");
+                            tokens.Add(buffer, "T_DOUBLE");
                         }
-                        MakeWriter(buffer, columnStart, columnEnd, "CONSTANTE_DOUBLE", lineNumber);
+                        MakeWriter(buffer, columnStart, columnEnd, "T_DOUBLE", lineNumber);
                         break;
                     case 6:
                         if (!tokens.ContainsKey(buffer))
                         {
-                            tokens.Add(buffer, "CONSTANTE_CADENA");
+                            tokens.Add(buffer, "T_CADENA");
                         }
 
-                        MakeWriter(buffer, columnStart, columnEnd, "CONSTANTE_CADENA", lineNumber);
+                        MakeWriter(buffer, columnStart, columnEnd, "T_CADENA", lineNumber);
                         break;
                 }
             }
@@ -502,9 +502,9 @@ namespace mini_java_compiler
             {
                 if (!tokens.ContainsKey(buffer))
                 {
-                    tokens.Add(buffer, "OPERADOR");
+                    tokens.Add(buffer, "T_OPERADOR");
                 }
-                MakeWriter(buffer, columnStart, columnEnd, "OPERADOR", lineNumber);
+                MakeWriter(buffer, columnStart, columnEnd, "T_OPERADOR", lineNumber);
             }
         }
 
