@@ -46,13 +46,13 @@ namespace mini_java_compiler
                         }
                     }
                 }
-                MessageBox.Show("Se leyo el archivo");
+                MessageBox.Show("¡Se leyó el archivo correctamente! Proceda a crear el archivo de salida.");
                 estado.Text = "Estado: Archivo Cargado";
                 estado.ForeColor = Color.Green;
             }
             catch
             {
-                MessageBox.Show("No se pudo leer el archivo");
+                MessageBox.Show("No se pudo leer el archivo, por favor revisar que su archivo de entrada sea válido o que el archivo de entrada no esté corrupto.");
                 estado.ForeColor = Color.Red;
                 estado.Text = "Estado: Error";
             }
@@ -83,13 +83,13 @@ namespace mini_java_compiler
 
                 }
 
-                MessageBox.Show("Se creó el archivo");
+                MessageBox.Show("¡El archivo de creó exitosamente! Podrá encontrarlo en la carpeta Resultado ubicada en el Escritorio de su computadora.");
                 creado.Text = "Estado: Archivo Creado";
                 creado.ForeColor = Color.Green;
             }
             catch
             {
-                MessageBox.Show("No se pudo crear el archivo");
+                MessageBox.Show("No se pudo crear el archivo, por favor revisar que su archivo de entrada sea válido o que el archivo de entrada no esté corrupto.");
                 creado.ForeColor = Color.Red;
                 creado.Text = "Estado: Error";
             }
