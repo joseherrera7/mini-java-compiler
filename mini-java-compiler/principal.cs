@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace mini_java_compiler
@@ -62,7 +63,10 @@ namespace mini_java_compiler
                     Directory.CreateDirectory(ruta);
 
                 string lineas = rdr.Writer;
-
+                if (rdr.getComentarioAbierto())
+                {
+                    lineas += ("\n***Comentario en EOF  ERRRORRRRR VIVO AHI MIJO***");
+                }
                 using (StreamWriter outputFile = new StreamWriter(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Resultado\\Codigo.txt"))
                 {
 
