@@ -53,6 +53,9 @@ namespace mini_java_compiler
                 MessageBox.Show("¡Se leyó el archivo correctamente! Proceda a crear el archivo de salida.");
                 estado.Text = "Estado: Archivo Cargado";
                 estado.ForeColor = Color.Green;
+                string lineasError = rdr.Errores;
+                txtErrores.Text = lineasError;
+                
             }
             catch
             {
