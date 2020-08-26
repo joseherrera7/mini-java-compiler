@@ -14,9 +14,10 @@ namespace mini_java_compiler
         private int columnCounter = 0;
         //GUARDA EL ERROR
         public int ERROR = 0;
-        private string writer = "";
+        private string writer = String.Empty;
         public bool esMultilinea = false;
         private bool cadenaAbrir = false;
+        private string errores = String.Empty;
 
         private Dictionary<string, string> tokens = new Dictionary<string, string>();
 
@@ -287,7 +288,7 @@ namespace mini_java_compiler
         /// </summary>
         /// <param name="buffer"></param>
         /// <returns></returns>
-        private int Segmentation(string buffer)
+        private int Segmentation(string buffer, int lineNumber)
         {
             var idPattern = "^[A-Za-z_$]{1}[a-zA-Z\\d$_]*$";
             var constBooleana = "true|false";
@@ -318,7 +319,7 @@ namespace mini_java_compiler
                 }
                 else if (Regex.IsMatch(buffer, consString) || Regex.IsMatch(buffer, cadenaSinTerminar)/*Regex.IsMatch(buffer, consString)*/)
                 {                
-                    return VerificarCadena(buffer, consString, cadenaInvalida, cadenaSinTerminar);
+                    return VerificarCadena(buffer, consString, cadenaInvalida, cadenaSinTerminar, lineNumber);
                 }
                 else
                 {
@@ -393,7 +394,7 @@ namespace mini_java_compiler
                 }
             }
         }
-        private int VerificarCadena(string buffer, string consString, string cadenaInvalida, string cadenaSinTerminar)
+        private int VerificarCadena(string buffer, string consString, string cadenaInvalida, string cadenaSinTerminar, int lineNumber)
         {
             int start = buffer.IndexOf(buffer) + 1;
 
@@ -406,6 +407,7 @@ namespace mini_java_compiler
                 }
                 else
                 {
+                    errores += "*** ERROR: Cadena invalida *** en linea: " + lineNumber + " \n";
                     writer += "*** ERROR: Cadena invalida ***  ";
                     return 0;
                 }
@@ -414,6 +416,7 @@ namespace mini_java_compiler
             {
                 if (Regex.IsMatch(buffer, cadenaSinTerminar))
                 {
+                    errores += "*** ERROR: Cadena sin terminar*** en linea: " +  lineNumber +" \n";
                     writer += "*** ERROR: Cadena sin terminar***  ";
                     return 0;
                 }
@@ -432,12 +435,13 @@ namespace mini_java_compiler
             if (!esMultilinea)
             {
                 buffer = buffer.Trim();
-                var bufferIs = Segmentation(buffer); //call segmentacion to return into the switch para ver si es reservada o id
+                var bufferIs = Segmentation(buffer, lineNumber); //call segmentacion to return into the switch para ver si es reservada o id
                 switch (bufferIs)
                 {
                     case 0:
                         if (!tokens.ContainsKey(buffer))
                         {
+                            errores += "*** ERROR: No se reconoció *** en linea: " + lineNumber + " \n";
                             tokens.Add(buffer, "T_ERROR");
                         }
                         MakeWriter(buffer, columnStart, columnEnd, "T_ERROR", lineNumber);
@@ -523,6 +527,7 @@ namespace mini_java_compiler
 
         public string Writer { get => writer; set => writer = value; }
         public bool CadenaAbrir { get => cadenaAbrir; set => cadenaAbrir = value; }
+        public string Errores { get => errores; set => errores = value; }
 
         public bool getComentarioAbierto()
         {
