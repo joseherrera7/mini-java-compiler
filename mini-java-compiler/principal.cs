@@ -43,6 +43,7 @@ namespace mini_java_compiler
                                 fileContent = reader.ReadLine();
                                 rdr.ReadProgram(fileContent, lineCounter);
                             }
+                            
                             reader.Close();
                         }
                     }
@@ -97,6 +98,11 @@ namespace mini_java_compiler
                 creado.ForeColor = Color.Red;
                 creado.Text = "Estado: Error";
             }
+        }
+
+        private void txtErrores_TextChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }
