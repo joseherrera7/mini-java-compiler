@@ -150,7 +150,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(464, 34);
             this.label6.TabIndex = 8;
-            this.label6.Text = "NOTA: El archivo resultante llevará el nombre de Codigo \r\ny se creará en una carp" +
+            this.label6.Text = "NOTA: El archivo resultante llevará el nombre de result \r\ny se creará en una carp" +
     "eta llamada Resultado, en el Escritorio";
             this.label6.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
