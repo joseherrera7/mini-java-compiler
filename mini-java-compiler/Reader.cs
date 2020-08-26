@@ -441,10 +441,10 @@ namespace mini_java_compiler
                     case 0:
                         if (!tokens.ContainsKey(buffer))
                         {
-                            errores += "*** ERROR: No se reconoció " + buffer + " en linea: " + lineNumber + " \n";
                             tokens.Add(buffer, "T_ERROR");
                         }
                         MakeWriter(buffer, columnStart, columnEnd, "T_ERROR", lineNumber);
+                        errores += "*** ERROR: No se reconoció " + buffer + " en linea: " + lineNumber + " \n";
                         break;
                     case 1:
                         if (!tokens.ContainsKey(buffer))

@@ -9,6 +9,7 @@ namespace mini_java_compiler
 {
     public partial class Principal : Form
     {
+        private string lineas = string.Empty;
         private Reader rdr = new Reader();
         public Principal()
         {
@@ -54,8 +55,14 @@ namespace mini_java_compiler
                 estado.Text = "Estado: Archivo Cargado";
                 estado.ForeColor = Color.Green;
                 string lineasError = rdr.Errores;
-                txtErrores.Text = lineasError;
                 
+                lineas = rdr.Writer;
+                if (rdr.getComentarioAbierto())
+                {
+                    lineasError += ("\n***ERROR:  Comentario en EOF***");
+                    lineas += ("\n***ERROR:  Comentario en EOF***");
+                }
+                txtErrores.Text = lineasError;
             }
             catch
             {
@@ -75,11 +82,7 @@ namespace mini_java_compiler
                 string ruta = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Resultado";
                 if (!Directory.Exists(ruta))
                     Directory.CreateDirectory(ruta);
-                string lineas = rdr.Writer;
-                if (rdr.getComentarioAbierto())
-                {
-                    lineas += ("\n***ERROR:  Comentario en EOF***");
-                }
+                
                 using (StreamWriter outputFile = new StreamWriter(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Resultado\\result.out"))
                 {
 
