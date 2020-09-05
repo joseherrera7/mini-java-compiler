@@ -24,7 +24,7 @@ namespace mini_java_compiler
         private string[] reserved = { "void", "int", "double", "boolean",
                 "string", "class", "const", "interface", "null", "this",
                 "extends", "implements", "for", "while", "if", "else",
-                "return", "break", "New", "System", "out", "println" };
+                "return", "break", "New", "System", "out", "println", "print" };
 
         /// <summary>
         /// Read Line per line the file, and this calls another methods to confirm
