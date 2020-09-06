@@ -1,0 +1,26 @@
+Program ::= Decl
+Decl ::= VariableDecl | FunctionDecl | Decl
+VariableDecl ::= Variable ;
+Variable ::= Type ident
+Type ::= int | double | bool | string | ident| Type []
+FunctionDecl ::= Type A' |  void A'
+A' ::= ident ( Formals ) StmtIntermedia
+StmtIntermedia ::= Stmt StmtIntermedia | epsilon 
+Formals ::= Variable VariableIntermedia , | epsilon
+VariableIntermedia ::= Variable VariableIntermedia | epsilon
+Stmt ::= IfStmt | PrintStmt | Expr ;
+IfStmt ::= if ( Expr ) Stmt ElseViene
+ElseViene ::= else Stmt | epsilon
+PrintStmt ::= Print ( Expr ExprIntermedia , ) ;
+ExprIntermedia ::= Expr ExprIntermedia | epsilon
+Expr ::= -X | !X | X
+X ::= X + A | X - A | A
+A ::= A * B | A / B | A % B | B
+B ::= B < C | B <= C | B > C | B >= C | C
+C ::= C == D | C != D | D
+D ::= D && E | E 
+E ::= E || F | F
+F ::= LValue = Expr | Constant | LValue | this | ExprViene | New(ident) 
+ExprViene ::= Expr | epsilon
+LValue ::= ident | Expr.ident | Expr [Expr]
+Constant ::= intConstant | doubleConstant | boolConstant | stringConstant | null
