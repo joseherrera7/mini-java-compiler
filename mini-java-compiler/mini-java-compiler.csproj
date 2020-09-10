@@ -47,7 +47,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ASDR.cs" />
+    <Compile Include="ElToken.cs" />
     <Compile Include="Operacion.cs" />
+    <Compile Include="Parser.cs" />
     <Compile Include="Principal.cs">
       <SubType>Form</SubType>
     </Compile>

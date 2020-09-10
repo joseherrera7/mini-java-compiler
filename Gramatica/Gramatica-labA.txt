@@ -4,8 +4,8 @@ VariableDecl ::= Variable ;
 Variable ::= Type ident
 Type ::= int Z | double Z | bool Z | string Z | ident Z
 Z ::= [] Z | epsilon
-FunctionDecl ::= Type Z' |  void Z'
-Z' ::= ident ( Formals ) StmtIntermedia
+FunctionDecl ::= Type K |  void K
+K ::= ident ( Formals ) StmtIntermedia
 StmtIntermedia ::= Stmt StmtIntermedia | epsilon 
 Formals ::= Variable VariableIntermedia , | epsilon
 VariableIntermedia ::= Variable VariableIntermedia | epsilon
@@ -27,5 +27,3 @@ C' ::= *D C' | /D C' | %D C' | epsilon
 D ::= LValue = Expr | Constant | LValue | this | ExprViene | New(ident) | (Expr) | - Expr
 LValue ::= ident | Expr.ident | Expr [Expr]
 Constant ::= intConstant | doubleConstant | boolConstant | stringConstant | null
-
-

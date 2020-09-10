@@ -7,6 +7,7 @@ namespace mini_java_compiler
 {
     class Reader
     {
+        Parser parser = new Parser();
         //INCLUÍR MÁS OPERADORES SI ME HIZO FALTA ALGUNO
         private string[] operadores = { "+","-","*", "/", "%", "<", "<=", ">", ">=", "=", "==", "!=", "&&", "||", "!", ";", ",", ".", "[", "]",
             "(", ")", "{", "}",
@@ -441,6 +442,7 @@ namespace mini_java_compiler
         /// <param name="buffer"></param>
         private void AddTokens(string buffer, int columnStart, int columnEnd, int lineNumber)
         {
+            ElToken token = new ElToken();
             if (!esMultilinea)
             {
                 buffer = buffer.Trim();
@@ -454,6 +456,9 @@ namespace mini_java_compiler
                         }
                         MakeWriter(buffer, columnStart, columnEnd, "T_ERROR", lineNumber);
                         errores += "*** ERROR: No se reconoció " + buffer + " en linea: " + lineNumber + " \n";
+                        token.Elemento = buffer;
+                        token.Tipo = "T_ERROR";
+                        parser.Empezar(token);
                         break;
                     case 1:
                         if (!tokens.ContainsKey(buffer))
@@ -461,6 +466,9 @@ namespace mini_java_compiler
                             tokens.Add(buffer, $"T_{buffer}");
                         }
                         MakeWriter(buffer, columnStart, columnEnd, $"T_{buffer}", lineNumber);
+                        token.Elemento = buffer;
+                        token.Tipo = $"T_{buffer}";
+                        parser.Empezar(token);
                         break;
                     case 2:
                         if (buffer.Length < 32)
@@ -469,8 +477,10 @@ namespace mini_java_compiler
                             {
                                 tokens.Add(buffer, "T_ID");
                             }
-
                             MakeWriter(buffer, columnStart, columnEnd, "T_ID", lineNumber);
+                            token.Elemento = buffer;
+                            token.Tipo = "T_ID";
+                            parser.Empezar(token);
                             break;
                         }
                         else
@@ -482,6 +492,9 @@ namespace mini_java_compiler
                             }
                             errores += "*** Error: id muy largo, se trunco a 31 caracteres, ID: " + buffer + "   ***    en linea: " + lineNumber;
                             MakeWriter(buffer, columnStart, columnEnd, "T_ID", lineNumber);
+                            token.Elemento = buffer;
+                            token.Tipo = "T_ID";
+                            parser.Empezar(token);
                             break;
                         }
                     case 3:
@@ -489,16 +502,20 @@ namespace mini_java_compiler
                         {
                             tokens.Add(buffer, "T_BOOLEAN");
                         }
-
+                        token.Elemento = buffer;
+                        token.Tipo = "T_BOOLEAN";
                         MakeWriter(buffer, columnStart, columnEnd, "T_BOOLEAN", lineNumber);
+                        parser.Empezar(token);
                         break;
                     case 4:
                         if (!tokens.ContainsKey(buffer))
                         {
                             tokens.Add(buffer, "T_ENTERO");
                         }
-
                         MakeWriter(buffer, columnStart, columnEnd, "T_ENTERO", lineNumber);
+                        token.Elemento = buffer;
+                        token.Tipo = "T_ENTERO";
+                        parser.Empezar(token);
                         break;
                     case 5:
                         if (!tokens.ContainsKey(buffer))
@@ -506,14 +523,19 @@ namespace mini_java_compiler
                             tokens.Add(buffer, "T_DOUBLE");
                         }
                         MakeWriter(buffer, columnStart, columnEnd, "T_DOUBLE", lineNumber);
+                        token.Elemento = buffer;
+                        token.Tipo = "T_DOUBLE";
+                        parser.Empezar(token);
                         break;
                     case 6:
                         if (!tokens.ContainsKey(buffer))
                         {
                             tokens.Add(buffer, "T_CADENA");
                         }
-
                         MakeWriter(buffer, columnStart, columnEnd, "T_CADENA", lineNumber);
+                        token.Elemento = buffer;
+                        token.Tipo = "T_CADENA";
+                        parser.Empezar(token);
                         break;
                 }
             }
