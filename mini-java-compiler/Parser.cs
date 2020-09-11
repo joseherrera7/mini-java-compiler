@@ -24,6 +24,8 @@ namespace mini_java_compiler
                 Program();
             }
         }
+
+        //AQUI COMIENZA LA GRAMATICA
         private void Program()
         {
             Decl();
@@ -31,21 +33,29 @@ namespace mini_java_compiler
 
         private void Decl()
         {
-            /*if (Token == "")
+            /*if (Token == "")  // vaer los tterminales de viariableDecl
+
+            }
+            else if (true)
             {
 
             }
-            VariableDecl();*/
+            else if (true)
+            {
+
+            }*/
         }
 
         private void VariableDecl()
         {
-           
+            Variable();
+            Consumir(new ElToken(";","T_OPERADOR"));
         }
 
         private void Variable()
         {
-
+            Type();
+            Consumir("T_ID");
         }
 
         private void Type()
@@ -96,16 +106,25 @@ namespace mini_java_compiler
 
         private void FunctionDecl()
         {
-            Type();
-            if (true)
+            if (Token.Tipo.Equals("T_void"))
             {
-
+                Consumir("T_void");
+                K();
+            }
+            else
+            {
+                Type();
+                K();
             }
         }
 
         private void K()
         {
-
+            Consumir("T_ID");
+            Consumir(new ElToken("(","T_OPERADOR"));
+            Formals();
+            Consumir("T_OPERADOR");
+            StmtIntermedia();
         }
 
         private void StmtIntermedia()
@@ -157,16 +176,21 @@ namespace mini_java_compiler
 
         private void X()
         {
-
+            A();
+            XPrima();
         }
         private void XPrima()
         {
+            if (true)
+            {
 
+            }
         }
 
         private void A()
         {
-
+            B();
+            APrima();
         }
         private void APrima()
         {
@@ -175,7 +199,8 @@ namespace mini_java_compiler
 
         private void B()
         {
-
+            C();
+            BPrima();
         }
 
         private void BPrima()
@@ -184,7 +209,8 @@ namespace mini_java_compiler
         }
         private void C()
         {
-
+            D();
+            CPrima();
         }
 
         private void CPrima()
@@ -193,7 +219,10 @@ namespace mini_java_compiler
         }
         private void D()
         {
+            if (true)
+            {
 
+            }
         }
         private void LValue()
         {
@@ -242,6 +271,18 @@ namespace mini_java_compiler
             }
         }
 
+        private void Consumir(ElToken esperado)
+        {
+            if (Token == esperado)
+            {
+                SiguienteToken();
+            }
+            else
+            {
+                ErrorSintaxis(esperado);
+            }
+        }
+
         private void Consumir(string esperado)
         {
             if (Token.Tipo == esperado)
@@ -257,6 +298,11 @@ namespace mini_java_compiler
         private void SiguienteToken()
         {
             return;
+        }
+
+        private void ErrorSintaxis(ElToken esperado)
+        {
+            Builder.Append("ERROR, SE ESPERABA: ").Append(esperado.Elemento);
         }
 
         private void ErrorSintaxis(string esperado)
