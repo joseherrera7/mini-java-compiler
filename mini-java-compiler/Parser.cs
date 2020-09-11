@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http.Headers;
-using System.Runtime.InteropServices;
+﻿using System.Collections.Generic;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace mini_java_compiler
 {
@@ -14,6 +9,7 @@ namespace mini_java_compiler
         StringBuilder builder = new StringBuilder();
         ElToken Token;
         int contador = 0;
+        bool estaVaciaListaTokens = false;
 
         public StringBuilder Builder { get => builder; set => builder = value; }
 
@@ -22,7 +18,7 @@ namespace mini_java_compiler
             ListaTokens = Listatoken;
             Token = ListaTokens[contador];
             Program();
-            
+
         }
 
         //AQUI COMIENZA LA GRAMATICA
@@ -36,21 +32,36 @@ namespace mini_java_compiler
             if (Token.Tipo == "T_int" || Token.Tipo == "T_double" || Token.Tipo == "T_bool" || Token.Tipo == "T_string" || Token.Tipo == "T_ID")  // vaer los tterminales de viariableDecl
             {
                 VariableDecl();
+                DeclPrima();
             }
             else if (Token.Tipo == "T_int" || Token.Tipo == "T_double" || Token.Tipo == "T_bool" || Token.Tipo == "T_string" || Token.Tipo == "T_ID" || Token.Tipo == "T_void")
             {
                 FunctionDecl();
+                DeclPrima();
             }
-            else 
+            else
+            {
+                return;
+            }
+        }
+
+        private void DeclPrima()
+        {
+            if (Token.Tipo == "T_int" || Token.Tipo == "T_double" || Token.Tipo == "T_bool" || Token.Tipo == "T_string" || Token.Tipo == "T_ID" || Token.Tipo == "T_void")
             {
                 Decl();
+                DeclPrima();
+            }
+            else
+            {
+                return;
             }
         }
 
         private void VariableDecl()
         {
             Variable();
-            Consumir(new ElToken(";","T_OPERADOR"));
+            Consumir(new ElToken(";", "T_OPERADOR"));
         }
 
         private void Variable()
@@ -112,32 +123,45 @@ namespace mini_java_compiler
                 Consumir("T_void");
                 K();
             }
-            else
+            else if (Token.Tipo.Equals("T_int") || Token.Tipo.Equals("T_double") || Token.Tipo.Equals("T_bool") || Token.Tipo.Equals("T_string") || Token.Tipo.Equals("T_ID"))
             {
                 Type();
                 K();
+            }
+            else
+            {
+                ErrorSintaxis("T_int, T_bool, T_string, T_double, T_ID o T_void");
             }
         }
 
         private void K()
         {
-            Consumir("T_ID");
-            if (Token.Elemento.Equals("()"))
+            if (Token.Tipo.Equals("T_ID"))
             {
-                Consumir(new ElToken("()", "T_OPERADOR"));
-            } 
-            else {
-                Consumir(new ElToken("(", "T_OPERADOR"));
-                Formals();
-                Consumir(new ElToken(")", "T_OPERADOR"));
+                Consumir("T_ID");
+                if (Token.Elemento.Equals("()"))
+                {
+                    Consumir(new ElToken("()", "T_OPERADOR"));
+                }
+                else
+                {
+                    Consumir(new ElToken("(", "T_OPERADOR"));
+                    Formals();
+                    Consumir(new ElToken(")", "T_OPERADOR"));
+                }
+
+                StmtIntermedia();
+            }
+            else
+            {
+                ErrorSintaxis("T_ID, (), (, )");
             }
             
-            StmtIntermedia();
         }
 
         private void StmtIntermedia()
         {
-            if (Token.Tipo.Equals(Token.Tipo.Equals("T_if") || Token.Tipo.Equals("T_Print") || Token.Tipo.Equals("T_X")))
+            if (!estaVaciaListaTokens)
             {
                 Stmt();
                 StmtIntermedia();
@@ -146,11 +170,12 @@ namespace mini_java_compiler
             {
                 return;
             }
+            
         }
 
         private void Formals()
         {
-            if (Token.Tipo.Equals("T_Variable"))
+            if ((Token.Tipo.Equals("T_int") || Token.Tipo.Equals("T_double") || Token.Tipo.Equals("T_bool") || Token.Tipo.Equals("T_string") || Token.Tipo.Equals("T_ID")))
             {
                 Variable();
                 VariableIntermedia();
@@ -164,7 +189,7 @@ namespace mini_java_compiler
 
         private void VariableIntermedia()
         {
-            if (Token.Tipo.Equals("T_Variable"))
+            if ((Token.Tipo.Equals("T_int") || Token.Tipo.Equals("T_double") || Token.Tipo.Equals("T_bool") || Token.Tipo.Equals("T_string") || Token.Tipo.Equals("T_ID")))
             {
                 Variable();
                 VariableIntermedia();
@@ -185,20 +210,32 @@ namespace mini_java_compiler
             {
                 PrintStmt();
             }
-            else
+            else if (Token.Elemento == "-" || (Token.Elemento == "(") || Token.Elemento == "New" || Token.Elemento == "this" || Token.Tipo == "T_ENTERO" || Token.Tipo == "T_DOUBLE" || Token.Tipo == "T_BOOLEAN" || Token.Tipo == "T_CADENA" || Token.Tipo == "T_null" || Token.Tipo ==("T_ID"))
             {
                 Expr();
+            }
+            else
+            {
+                ErrorSintaxis("T_if, T_print o expresión");
             }
         }
 
         private void IfStmt()
         {
-            Consumir("T_if");
-            Consumir(new ElToken("(", "T_OPERADOR"));
-            Expr();
-            Consumir("T_OPERADOR");
-            Stmt();
-            ElseViene();
+            if (Token.Tipo.Equals("T_if"))
+            {
+                Consumir("T_if");
+                Consumir(new ElToken("(", "T_OPERADOR"));
+                Expr();
+                Consumir("T_OPERADOR");
+                Stmt();
+                ElseViene();
+            }
+            else
+            {
+                ErrorSintaxis("T_if");
+            }
+            
         }
         private void ElseViene()
         {
@@ -215,18 +252,25 @@ namespace mini_java_compiler
 
         private void PrintStmt()
         {
-            Consumir(new ElToken("Print", "T_print"));
-            Consumir(new ElToken("(", "T_OPERADOR"));
-            Expr();
-            ExprIntermedia();
-            Consumir(new ElToken(",", "T_OPERADOR"));
-            Consumir("T_OPERADOR");
-            Consumir(new ElToken(";", "T_OPERADOR"));
+            if (Token.Tipo.Equals("T_print"))
+            {
+                Consumir(new ElToken("Print", "T_print"));
+                Consumir(new ElToken("(", "T_OPERADOR"));
+                Expr();
+                ExprIntermedia();
+                Consumir(new ElToken(",", "T_OPERADOR"));
+                Consumir("T_OPERADOR");
+                Consumir(new ElToken(";", "T_OPERADOR"));
+            }
+            else
+            {
+                ErrorSintaxis("T_print");
+            }
         }
 
         private void ExprIntermedia()
         {
-            if (Token.Tipo.Equals("T_Expr"))
+            if (Token.Elemento == "-" || (Token.Elemento == "(") || Token.Elemento == "New" || Token.Elemento == "this" || Token.Tipo == "T_ENTERO" || Token.Tipo == "T_DOUBLE" || Token.Tipo == "T_BOOLEAN" || Token.Tipo == "T_CADENA" || Token.Tipo == "T_null")
             {
                 Expr();
                 ExprIntermedia();
@@ -238,17 +282,25 @@ namespace mini_java_compiler
         }
         private void Expr()
         {
-            X();
-            ExprPrima();
+            if (Token.Elemento == "-" || (Token.Elemento == "(") || Token.Elemento == "New" || Token.Elemento == "this" || Token.Tipo == "T_ENTERO" || Token.Tipo == "T_DOUBLE" || Token.Tipo == "T_BOOLEAN" || Token.Tipo == "T_CADENA" || Token.Tipo == "T_null")
+            {
+                X();
+                ExprPrima();
+            }
+            else
+            {
+                ErrorSintaxis("Expresiones");
+            }
+          
         }
         private void ExprPrima()
         {
-            if(Token.Tipo.Equals("T_&&") && Token.Tipo.Equals("T_Operador"))
+            if (Token.Elemento.Equals("&&") && Token.Tipo.Equals("T_Operador"))
             {
                 X();
                 Expr();
             }
-            else if(Token.Tipo.Equals("T_||") && Token.Tipo.Equals("T_Operador"))
+            else if (Token.Elemento.Equals("||") && Token.Tipo.Equals("T_Operador"))
             {
                 X();
                 Expr();
@@ -261,8 +313,16 @@ namespace mini_java_compiler
 
         private void X()
         {
-            A();
-            XPrima();
+            if (Token.Elemento == "-" || (Token.Elemento == "(") || Token.Elemento == "New" || Token.Elemento == "this" || Token.Tipo == "T_ENTERO" || Token.Tipo == "T_DOUBLE" || Token.Tipo == "T_BOOLEAN" || Token.Tipo == "T_CADENA" || Token.Tipo == "T_null")
+            {
+                A();
+                XPrima();
+            }
+            else
+            {
+                ErrorSintaxis("Se esperaba una expresion");
+            }
+            
         }
         private void XPrima()
         {
@@ -288,8 +348,16 @@ namespace mini_java_compiler
 
         private void A()
         {
-            B();
-            APrima();
+            if (Token.Elemento == "-" || (Token.Elemento == "(") || Token.Elemento == "New" || Token.Elemento == "this" || Token.Tipo == "T_ENTERO" || Token.Tipo == "T_DOUBLE" || Token.Tipo == "T_BOOLEAN" || Token.Tipo == "T_CADENA" || Token.Tipo == "T_null")
+            {
+                B();
+                APrima();
+            }
+            else
+            {
+                ErrorSintaxis("Se esperaba una expresion");
+            }
+          
         }
         private void APrima()
         {
@@ -325,8 +393,16 @@ namespace mini_java_compiler
 
         private void B()
         {
-            C();
-            BPrima();
+            if (Token.Elemento == "-" || (Token.Elemento == "(") || Token.Elemento == "New" || Token.Elemento == "this" || Token.Tipo == "T_ENTERO" || Token.Tipo == "T_DOUBLE" || Token.Tipo == "T_BOOLEAN" || Token.Tipo == "T_CADENA" || Token.Tipo == "T_null")
+            {
+                C();
+                BPrima();
+            }
+            else
+            {
+                ErrorSintaxis("Se esperaba una expresion");
+            }
+           
         }
 
         private void BPrima()
@@ -350,8 +426,16 @@ namespace mini_java_compiler
         }
         private void C()
         {
-            D();
-            CPrima();
+            if (Token.Elemento == "-" || (Token.Elemento == "(") || Token.Elemento == "New" || Token.Elemento == "this" || Token.Tipo == "T_ENTERO" || Token.Tipo == "T_DOUBLE" || Token.Tipo == "T_BOOLEAN" || Token.Tipo == "T_CADENA" || Token.Tipo == "T_null")
+            {
+                D();
+                CPrima();
+            }
+            else
+            {
+                ErrorSintaxis("Se esperaba una expresion");
+            }
+
         }
 
         private void CPrima()
@@ -381,13 +465,9 @@ namespace mini_java_compiler
         }
         private void D()
         {
-            if (Token.Tipo == "T_ID"   )
+            if (Token.Elemento == "-")
             {
-
-            }
-            else if (Token.Elemento == "-")
-            {
-                Consumir(new ElToken("-","T_OPERADOR"));
+                Consumir(new ElToken("-", "T_OPERADOR"));
                 Expr();
             }
             else if (Token.Elemento == "(")
@@ -404,15 +484,49 @@ namespace mini_java_compiler
             {
                 Consumir("T_this");
             }
+            else if (Token.Tipo == "T_ENTERO" || Token.Tipo == "T_DOUBLE" || Token.Tipo == "T_BOOLEAN" || Token.Tipo == "T_CADENA" || Token.Tipo == "T_null")
+            {
+                Constant();
+            }
+            else if (Token.Elemento == "-" || (Token.Elemento == "(") || Token.Elemento == "New" || Token.Elemento == "this" || Token.Tipo == "T_ENTERO" || Token.Tipo == "T_DOUBLE" || Token.Tipo == "T_BOOLEAN" || Token.Tipo == "T_CADENA" || Token.Tipo == "T_null")
+            {
+                ExprViene();
+            }
+            else if (Token.Elemento == "-" || (Token.Elemento == "(") || Token.Elemento == "New" || Token.Elemento == "this" || Token.Tipo == "T_ENTERO" || Token.Tipo == "T_DOUBLE" || Token.Tipo == "T_BOOLEAN" || Token.Tipo == "T_CADENA" || Token.Tipo == "T_null" || Token.Tipo == "T_ID" || (Token.Tipo == "T_OPERADOR" && Token.Elemento == "[") || Token.Tipo == "T_OPERADOR" && Token.Elemento == "." || (Token.Tipo == "T_OPERADOR" && Token.Elemento == "="))
+            {
+                LValue();
+                P();
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        public void P()
+        {
+            if (Token.Tipo == "T_OPERADOR" && Token.Elemento == "=")
+            {
+                Consumir(new ElToken("=", "T_OPERADOR"));
+                Expr();
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void ExprViene()
         {
-            if (true)
+            if (Token.Elemento == "-" || (Token.Elemento == "(") || Token.Elemento == "New" || Token.Elemento == "this" || Token.Tipo == "T_ENTERO" || Token.Tipo == "T_DOUBLE" || Token.Tipo == "T_BOOLEAN" || Token.Tipo == "T_CADENA" || Token.Tipo == "T_null")
             {
                 Expr();
             }
-            
+            else
+            {
+                return;
+            }
+
         }
 
         private void LValue()
@@ -421,41 +535,63 @@ namespace mini_java_compiler
             {
                 Consumir("T_ID");
             }
-            else if (Token.Tipo.Equals("")) //Ver cuales terminales son para Expr
+            else if (Token.Elemento == "-" || (Token.Elemento == "(") || Token.Elemento == "New" || Token.Elemento == "this" || Token.Tipo == "T_ENTERO" || Token.Tipo == "T_DOUBLE" || Token.Tipo == "T_BOOLEAN" || Token.Tipo == "T_CADENA" || Token.Tipo == "T_null") //Ver cuales terminales son para Expr
             {
-                
-            }
-            else if (true)
-            {
-
+                Expr();
+                Q();
             }
             else
             {
-
+                return;
             }
         }
+
+        private void Q()
+        {
+            if (Token.Tipo == "T_OPERADOR" && Token.Elemento == ".")
+            {
+                Consumir(new ElToken(".", "T_OPERADOR"));
+                Consumir("T_ID");
+            }
+            else if (Token.Tipo == "T_OPERADOR" && Token.Elemento == "[]")
+            {
+                Consumir(new ElToken("[]", "T_OPERADOR"));
+            }
+            else if (Token.Tipo == "T_OPERADOR" && Token.Elemento == "[")
+            {
+
+                Consumir(new ElToken("[", "T_OPERADOR"));
+                Expr();
+                Consumir(new ElToken("]", "T_OPERADOR"));
+            }
+            else
+            {
+                return;
+            }
+        }
+
         private void Constant()
         {
             if (Token.Tipo == "T_ENTERO")
             {
                 Consumir("T_ENTERO");
-            } 
+            }
             else if (Token.Tipo == "T_DOUBLE")
             {
                 Consumir("T_DOUBLE");
-            } 
-            else if (Token .Tipo== "T_BOOLEAN")
+            }
+            else if (Token.Tipo == "T_BOOLEAN")
             {
                 Consumir("T_BOOLEAN");
             }
             else if (Token.Tipo == "T_CADENA")
             {
                 Consumir("T_CADENA");
-            } 
+            }
             else if (Token.Tipo == "T_null")
             {
                 Consumir("null");
-            } 
+            }
             else
             {
                 ErrorSintaxis("T_ENTERO, T_DOUBLE, T_BOOLEAN, T_CADENA, T_null");
@@ -489,9 +625,13 @@ namespace mini_java_compiler
         private void SiguienteToken()
         {
             contador++;
-            if (contador<ListaTokens.Count)
+            if (contador < ListaTokens.Count)
             {
                 Token = ListaTokens[contador];
+            }
+            else
+            {
+                estaVaciaListaTokens = true;
             }
             return;
         }
@@ -499,11 +639,13 @@ namespace mini_java_compiler
         private void ErrorSintaxis(ElToken esperado)
         {
             Builder.Append("ERROR, SE ESPERABA: ").Append(esperado.Elemento);
+            return;
         }
 
         private void ErrorSintaxis(string esperado)
         {
             Builder.Append("ERROR, SE ESPERABA: ").Append(esperado);
+            return;
         }
     }
 }

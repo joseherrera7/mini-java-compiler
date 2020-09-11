@@ -1,5 +1,6 @@
 Program ::= Decl
-Decl ::= VariableDecl | FunctionDecl | Decl
+Decl ::= VariableDecl Decl' | FunctionDecl Decl' 
+Decl' ::= Decl Decl' | epsilon
 VariableDecl ::= Variable ;
 Variable ::= Type ident
 //	Type ::= int Z | double Z | bool Z | string Z | ident Z
@@ -24,7 +25,9 @@ B ::= CB'
 B' ::= +C B' | -C B' | epsilon
 C ::= DC'
 C' ::= *D C' | /D C' | %D C' | epsilon
-D ::= LValue = Expr | Constant | LValue | this | ExprViene | New(ident) | (Expr) | - Expr
+D ::= Constant | LValue P | this | ExprViene | New(ident) | (Expr) | - Expr
+P::= = Expr | epsilon
 ExprViene ::= Expr | epsilon
-LValue ::= ident | Expr.ident | Expr [Expr]
+LValue ::= ident | Expr Q
+Q ::= .ident | [Expr]
 Constant ::= intConstant | doubleConstant | boolConstant | stringConstant | null
