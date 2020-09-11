@@ -115,6 +115,7 @@ namespace mini_java_compiler
         private void btnASDR_Click(object sender, EventArgs e)
         {
             prs.Empezar(rdr.GetListaTokens());
+            MessageBox.Show("Se asigno la lista de tokens a metodo empezar.");
 
         }
     }
