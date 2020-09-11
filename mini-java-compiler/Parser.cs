@@ -130,24 +130,42 @@ namespace mini_java_compiler
 
         private void StmtIntermedia()
         {
-            if (Token.Tipo)
+            if (Token.Tipo.Equals("T_Stmt"))
             {
-                
+                Stmt();
+                StmtIntermedia();
             }
             else
             {
-
+                return;
             }
         }
 
         private void Formals()
         {
-
+            if (Token.Tipo.Equals("T_Variable"))
+            {
+                Variable();
+                VariableIntermedia();
+                Consumir(new ElToken(",", "T_OPERADOR"));
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void VariableIntermedia()
         {
-
+            if (Token.Tipo.Equals("T_Variable"))
+            {
+                Variable();
+                VariableIntermedia();
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void Stmt()
@@ -213,11 +231,25 @@ namespace mini_java_compiler
         }
         private void Expr()
         {
-
+            X();
+            ExprPrima();
         }
         private void ExprPrima()
         {
-
+            if(Token.Tipo.Equals("T_&&") && Token.Tipo.Equals("T_Operador"))
+            {
+                X();
+                Expr();
+            }
+            else if(Token.Tipo.Equals("T_||") && Token.Tipo.Equals("T_Operador"))
+            {
+                X();
+                Expr();
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void X()
