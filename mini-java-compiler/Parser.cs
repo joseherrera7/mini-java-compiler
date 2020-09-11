@@ -260,9 +260,23 @@ namespace mini_java_compiler
         private void XPrima()
         {
             if (true)
-            {
+                if (Token.Elemento.Equals("=="))
+                {
 
-            }
+                    Consumir(new ElToken("==", "T_OPERADOR"));
+                    A();
+                    XPrima();
+                }
+                else if (Token.Elemento.Equals("!="))
+                {
+                    Consumir(new ElToken("!=", "T_OPERADOR"));
+                    A();
+                    XPrima();
+                }
+                else
+                {
+                    return;
+                }
         }
 
         private void A()
@@ -272,7 +286,34 @@ namespace mini_java_compiler
         }
         private void APrima()
         {
-
+            if (Token.Elemento.Equals("<"))
+            {
+                Consumir(new ElToken("<", "T_OPERADOR"));
+                B();
+                APrima();
+            }
+            else if (Token.Elemento.Equals(">"))
+            {
+                Consumir(new ElToken(">", "T_OPERADOR"));
+                B();
+                APrima();
+            }
+            else if (Token.Elemento.Equals(">="))
+            {
+                Consumir(new ElToken(">=", "T_OPERADOR"));
+                B();
+                APrima();
+            }
+            else if (Token.Elemento.Equals("<="))
+            {
+                Consumir(new ElToken("<=", "T_OPERADOR"));
+                B();
+                APrima();
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void B()
@@ -283,7 +324,22 @@ namespace mini_java_compiler
 
         private void BPrima()
         {
-
+            if (Token.Elemento.Equals("+"))
+            {
+                Consumir(new ElToken("+", "T_OPERADOR"));
+                C();
+                BPrima();
+            }
+            else if (Token.Elemento.Equals("-"))
+            {
+                Consumir(new ElToken("-", "T_OPERADOR"));
+                C();
+                BPrima();
+            }
+            else
+            {
+                return;
+            }
         }
         private void C()
         {
@@ -293,7 +349,28 @@ namespace mini_java_compiler
 
         private void CPrima()
         {
-
+            if (Token.Elemento.Equals("*"))
+            {
+                Consumir(new ElToken("*", "T_OPERADOR"));
+                D();
+                CPrima();
+            }
+            else if (Token.Elemento.Equals("/"))
+            {
+                Consumir(new ElToken("/", "T_OPERADOR"));
+                D();
+                CPrima();
+            }
+            else if (Token.Elemento.Equals("%"))
+            {
+                Consumir(new ElToken("%", "T_OPERADOR"));
+                D();
+                CPrima();
+            }
+            else
+            {
+                return;
+            }
         }
         private void D()
         {
