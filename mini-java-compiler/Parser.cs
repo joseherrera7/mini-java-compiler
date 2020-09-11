@@ -33,17 +33,18 @@ namespace mini_java_compiler
 
         private void Decl()
         {
-            /*if (Token == "")  // vaer los tterminales de viariableDecl
-
-            }
-            else if (true)
+            if (Token.Tipo == "T_int" || Token.Tipo == "T_double" || Token.Tipo == "T_bool" || Token.Tipo == "T_string" || Token.Tipo == "T_ID")  // vaer los tterminales de viariableDecl
             {
-
+                VariableDecl();
             }
-            else if (true)
+            else if (Token.Tipo == "T_int" || Token.Tipo == "T_double" || Token.Tipo == "T_bool" || Token.Tipo == "T_string" || Token.Tipo == "T_ID" || Token.Tipo == "T_void")
             {
-
-            }*/
+                FunctionDecl();
+            }
+            else 
+            {
+                Decl();
+            }
         }
 
         private void VariableDecl()
