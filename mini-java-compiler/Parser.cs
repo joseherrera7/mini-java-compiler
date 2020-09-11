@@ -130,7 +130,7 @@ namespace mini_java_compiler
 
         private void StmtIntermedia()
         {
-            if (Token.Tipo.Equals(Token.Tipo.Equals("T_if") || Token.Tipo.Equals("T_else") || Token.Tipo.Equals("T_Print") || Token.Tipo.Equals("T_if") || Token.Tipo.Equals("T_X")))
+            if (Token.Tipo.Equals(Token.Tipo.Equals("T_if") || Token.Tipo.Equals("T_Print") || Token.Tipo.Equals("T_X") || Token.Tipo.Equals("T_A") || Token.Tipo.Equals("T_B") || Token.Tipo.Equals("T_C") || Token.Tipo.Equals("T_D")))
             {
                 Stmt();
                 StmtIntermedia();
