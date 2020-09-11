@@ -8,15 +8,21 @@ namespace mini_java_compiler
 {
     class Parser
     {
-        ElToken Token;
+        List<ElToken> ListaTokens;
         StringBuilder builder = new StringBuilder();
+        ElToken Token;
 
         public StringBuilder Builder { get => builder; set => builder = value; }
 
-        public void Empezar(ElToken token)
+        public void Empezar(List<ElToken> Listatoken)
         {
-            Token = token;
-            Program();
+            ListaTokens = Listatoken;
+            
+            foreach (var token in ListaTokens)
+            {
+                Token = token;
+                Program();
+            }
         }
         private void Program()
         {
@@ -44,17 +50,57 @@ namespace mini_java_compiler
 
         private void Type()
         {
-
+            if (Token.Tipo.Equals("T_int"))
+            {
+                Consumir("T_int");
+                Z();
+            }
+            else if (Token.Tipo.Equals("T_bool"))
+            {
+                Consumir("T_bool");
+                Z();
+            }
+            else if (Token.Tipo.Equals("T_string"))
+            {
+                Consumir("T_string");
+                Z();
+            }
+            else if (Token.Tipo.Equals("T_double"))
+            {
+                Consumir("T_double");
+                Z();
+            }
+            else if (Token.Tipo.Equals("T_ID"))
+            {
+                Consumir("T_ID");
+                Z();
+            }
+            else
+            {
+                ErrorSintaxis("T_int, T_bool, T_string, T_double, T_ID");
+            }
         }
 
         private void Z()
         {
-
+            if (Token.Elemento.Equals("[]") && Token.Tipo.Equals("T_Operador"))
+            {
+                Consumir("T_OPERADOR");
+                Z();
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void FunctionDecl()
         {
+            Type();
+            if (true)
+            {
 
+            }
         }
 
         private void K()
@@ -151,7 +197,22 @@ namespace mini_java_compiler
         }
         private void LValue()
         {
+            if (Token.Tipo.Equals("T_ID"))
+            {
+                Consumir("T_ID");
+            }
+            else if (Token.Tipo.Equals("")) //Ver cuales terminales son para Expr
+            {
+                
+            }
+            else if (true)
+            {
 
+            }
+            else
+            {
+
+            }
         }
         private void Constant()
         {

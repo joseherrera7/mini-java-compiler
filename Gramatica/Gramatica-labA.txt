@@ -2,7 +2,7 @@ Program ::= Decl
 Decl ::= VariableDecl | FunctionDecl | Decl
 VariableDecl ::= Variable ;
 Variable ::= Type ident
-Type ::= int Z | double Z | bool Z | string Z | ident Z
+//	Type ::= int Z | double Z | bool Z | string Z | ident Z
 Z ::= [] Z | epsilon
 FunctionDecl ::= Type K |  void K
 K ::= ident ( Formals ) StmtIntermedia
@@ -25,5 +25,5 @@ B' ::= +C B' | -C B' | epsilon
 C ::= DC'
 C' ::= *D C' | /D C' | %D C' | epsilon
 D ::= LValue = Expr | Constant | LValue | this | ExprViene | New(ident) | (Expr) | - Expr
-LValue ::= ident | Expr.ident | Expr [Expr]
-Constant ::= intConstant | doubleConstant | boolConstant | stringConstant | null
+/	LValue ::= ident | Expr.ident | Expr [Expr]
+//	Constant ::= intConstant | doubleConstant | boolConstant | stringConstant | null
