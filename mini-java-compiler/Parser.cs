@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,18 +13,16 @@ namespace mini_java_compiler
         List<ElToken> ListaTokens;
         StringBuilder builder = new StringBuilder();
         ElToken Token;
+        int contador = 0;
 
         public StringBuilder Builder { get => builder; set => builder = value; }
 
         public void Empezar(List<ElToken> Listatoken)
         {
             ListaTokens = Listatoken;
+            Token = ListaTokens[contador];
+            Program();
             
-            foreach (var token in ListaTokens)
-            {
-                Token = token;
-                Program();
-            }
         }
 
         //AQUI COMIENZA LA GRAMATICA
@@ -122,9 +122,16 @@ namespace mini_java_compiler
         private void K()
         {
             Consumir("T_ID");
-            Consumir(new ElToken("(","T_OPERADOR"));
-            Formals();
-            Consumir("T_OPERADOR");
+            if (Token.Elemento.Equals("()"))
+            {
+                Consumir(new ElToken("()", "T_OPERADOR"));
+            } 
+            else {
+                Consumir(new ElToken("(", "T_OPERADOR"));
+                Formals();
+                Consumir(new ElToken(")", "T_OPERADOR"));
+            }
+            
             StmtIntermedia();
         }
 
@@ -444,7 +451,7 @@ namespace mini_java_compiler
 
         private void Consumir(ElToken esperado)
         {
-            if (Token == esperado)
+            if (Token.Elemento == esperado.Elemento && Token.Tipo == esperado.Tipo)
             {
                 SiguienteToken();
             }
@@ -468,6 +475,11 @@ namespace mini_java_compiler
 
         private void SiguienteToken()
         {
+            contador++;
+            if (contador<ListaTokens.Count)
+            {
+                Token = ListaTokens[contador];
+            }
             return;
         }
 
