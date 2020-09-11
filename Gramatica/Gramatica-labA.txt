@@ -14,7 +14,7 @@ IfStmt ::= if ( Expr ) Stmt ElseViene
 ElseViene ::= else Stmt | epsilon
 PrintStmt ::= Print ( Expr ExprIntermedia , ) ;
 ExprIntermedia ::= Expr ExprIntermedia | epsilon
-Expr ::= | Expr'
+Expr ::= X Expr'
 Expr' ::= && X Expr | || X Expr | epsilon
 X ::= AX'
 X' ::= ==A X' | !=A X' | epsilon
