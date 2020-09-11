@@ -25,5 +25,6 @@ B' ::= +C B' | -C B' | epsilon
 C ::= DC'
 C' ::= *D C' | /D C' | %D C' | epsilon
 D ::= LValue = Expr | Constant | LValue | this | ExprViene | New(ident) | (Expr) | - Expr
-/	LValue ::= ident | Expr.ident | Expr [Expr]
-//	Constant ::= intConstant | doubleConstant | boolConstant | stringConstant | null
+ExprViene ::= Expr | epsilon
+LValue ::= ident | Expr.ident | Expr [Expr]
+Constant ::= intConstant | doubleConstant | boolConstant | stringConstant | null

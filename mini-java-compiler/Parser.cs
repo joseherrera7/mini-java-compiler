@@ -137,7 +137,7 @@ namespace mini_java_compiler
 
         private void StmtIntermedia()
         {
-            if (Token.Tipo.Equals(Token.Tipo.Equals("T_if") || Token.Tipo.Equals("T_else") || Token.Tipo.Equals("T_Print") || Token.Tipo.Equals("T_if") || Token.Tipo.Equals("T_X")))
+            if (Token.Tipo.Equals(Token.Tipo.Equals("T_if") || Token.Tipo.Equals("T_Print") || Token.Tipo.Equals("T_X")))
             {
                 Stmt();
                 StmtIntermedia();
@@ -387,21 +387,34 @@ namespace mini_java_compiler
             }
             else if (Token.Elemento == "-")
             {
-
+                Consumir(new ElToken("-","T_OPERADOR"));
+                Expr();
             }
             else if (Token.Elemento == "(")
             {
-
+                Consumir(new ElToken("(", "T_OPERADOR"));
+                Expr();
             }
             else if (Token.Elemento == "New")
             {
-
+                Consumir("T_New");
+                Expr();
             }
             else if (Token.Elemento == "this")
             {
-
+                Consumir("T_this");
             }
         }
+
+        private void ExprViene()
+        {
+            if (true)
+            {
+                Expr();
+            }
+            
+        }
+
         private void LValue()
         {
             if (Token.Tipo.Equals("T_ID"))
