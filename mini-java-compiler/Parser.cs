@@ -297,7 +297,23 @@ namespace mini_java_compiler
         }
         private void D()
         {
-            if (true)
+            if (Token.Tipo == "T_ID"   )
+            {
+
+            }
+            else if (Token.Elemento == "-")
+            {
+
+            }
+            else if (Token.Elemento == "(")
+            {
+
+            }
+            else if (Token.Elemento == "New")
+            {
+
+            }
+            else if (Token.Elemento == "this")
             {
 
             }
