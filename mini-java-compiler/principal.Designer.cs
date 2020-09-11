@@ -43,6 +43,7 @@
             this.txtErrores = new System.Windows.Forms.RichTextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.btnASDR = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnLoadFile
@@ -220,6 +221,23 @@
             this.label9.TabIndex = 14;
             this.label9.Text = "ERRORES EN EL ARCHIVO";
             // 
+            // btnASDR
+            // 
+            this.btnASDR.AllowDrop = true;
+            this.btnASDR.AutoEllipsis = true;
+            this.btnASDR.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.btnASDR.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnASDR.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnASDR.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnASDR.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnASDR.Location = new System.Drawing.Point(685, 441);
+            this.btnASDR.Name = "btnASDR";
+            this.btnASDR.Size = new System.Drawing.Size(124, 38);
+            this.btnASDR.TabIndex = 15;
+            this.btnASDR.Text = "ASDR";
+            this.btnASDR.UseVisualStyleBackColor = false;
+            this.btnASDR.Click += new System.EventHandler(this.btnASDR_Click);
+            // 
             // Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -227,6 +245,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1340, 661);
+            this.Controls.Add(this.btnASDR);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.txtErrores);
@@ -265,6 +284,7 @@
         private System.Windows.Forms.RichTextBox txtErrores;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button btnASDR;
     }
 }
 

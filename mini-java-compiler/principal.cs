@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Media;
@@ -10,6 +11,7 @@ namespace mini_java_compiler
     {
         private string lineas = string.Empty;
         private Reader rdr = new Reader();
+        private Parser prs = new Parser();
         public Principal()
         {
             InitializeComponent();
@@ -107,6 +109,12 @@ namespace mini_java_compiler
 
         private void txtErrores_TextChanged(object sender, EventArgs e)
         {
+
+        }
+
+        private void btnASDR_Click(object sender, EventArgs e)
+        {
+            prs.Empezar(rdr.GetListaTokens());
 
         }
     }
