@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Media;
 using System.Windows.Forms;
 
@@ -11,6 +10,7 @@ namespace mini_java_compiler
     {
         private string lineas = string.Empty;
         private Reader rdr = new Reader();
+        private Parser prs = new Parser();
         public Principal()
         {
             InitializeComponent();
@@ -18,8 +18,7 @@ namespace mini_java_compiler
 
         private void btnLoadFile_Click(object sender, EventArgs e)
         {
-            SoundPlayer audio5 = new SoundPlayer(mini_java_compiler.Properties.Resources.Abrir);
-            audio5.Play();
+            
             try
             {
                 using (OpenFileDialog openFileDialog = new OpenFileDialog())
@@ -44,18 +43,17 @@ namespace mini_java_compiler
                                 fileContent = reader.ReadLine();
                                 rdr.ReadProgram(fileContent, lineCounter);
                             }
-                            
+
                             reader.Close();
                         }
                     }
                 }
-                SoundPlayer audio3 = new SoundPlayer(mini_java_compiler.Properties.Resources.Aceptado);
-                audio3.Play();
+                
                 MessageBox.Show("¡Se leyó el archivo correctamente! Proceda a crear el archivo de salida.");
                 estado.Text = "Estado: Archivo Cargado";
                 estado.ForeColor = Color.Green;
                 string lineasError = rdr.Errores;
-                
+
                 lineas = rdr.Writer;
                 if (rdr.getComentarioAbierto())
                 {
@@ -66,8 +64,7 @@ namespace mini_java_compiler
             }
             catch
             {
-                SoundPlayer audio4 = new SoundPlayer(mini_java_compiler.Properties.Resources.Error2);
-                audio4.Play();
+               
                 MessageBox.Show("No se pudo leer el archivo, por favor revisar que su archivo de entrada sea válido o que el archivo de entrada no esté corrupto.");
                 estado.ForeColor = Color.Red;
                 estado.Text = "Estado: Error";
@@ -82,7 +79,7 @@ namespace mini_java_compiler
                 string ruta = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Resultado";
                 if (!Directory.Exists(ruta))
                     Directory.CreateDirectory(ruta);
-                
+
                 using (StreamWriter outputFile = new StreamWriter(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Resultado\\result.out"))
                 {
 
@@ -90,16 +87,14 @@ namespace mini_java_compiler
                     outputFile.Close();
 
                 }
-                SoundPlayer audio1 = new SoundPlayer(mini_java_compiler.Properties.Resources.Creado);
-                audio1.Play();
+                
                 MessageBox.Show("¡El archivo de creó exitosamente! Podrá encontrarlo en la carpeta Resultado ubicada en el Escritorio de su computadora.");
                 creado.Text = "Estado: Archivo Creado";
                 creado.ForeColor = Color.Green;
             }
             catch
             {
-                SoundPlayer audio2 = new SoundPlayer(mini_java_compiler.Properties.Resources.Error2);
-                audio2.Play();
+                
                 MessageBox.Show("No se pudo crear el archivo, por favor revisar que su archivo de entrada sea válido o que el archivo de entrada no esté corrupto.");
                 creado.ForeColor = Color.Red;
                 creado.Text = "Estado: Error";
@@ -108,7 +103,18 @@ namespace mini_java_compiler
 
         private void txtErrores_TextChanged(object sender, EventArgs e)
         {
-            
+
+        }
+
+        private void btnASDR_Click(object sender, EventArgs e)
+        {
+            prs.Empezar(rdr.GetListaTokens());
+            MessageBox.Show("Se realizó el proceso correctamente.");
+
+            string lineasError = prs.Error;
+            string lineasError2 = prs.Error2;
+            rtxASDR.Text = lineasError;
+            rtxASDR.Text = lineasError + lineasError2;
         }
     }
 }

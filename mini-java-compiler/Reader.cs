@@ -7,6 +7,12 @@ namespace mini_java_compiler
 {
     class Reader
     {
+        List<ElToken> ListaTokens = new List<ElToken>();
+        public List<ElToken> GetListaTokens()
+        {
+            return ListaTokens;
+        }
+
         //INCLUÍR MÁS OPERADORES SI ME HIZO FALTA ALGUNO
         private string[] operadores = { "+","-","*", "/", "%", "<", "<=", ">", ">=", "=", "==", "!=", "&&", "||", "!", ";", ",", ".", "[", "]",
             "(", ")", "{", "}",
@@ -18,13 +24,14 @@ namespace mini_java_compiler
         public bool esMultilinea = false;
         private bool cadenaAbrir = false;
         private string errores = String.Empty;
+        
 
         private Dictionary<string, string> tokens = new Dictionary<string, string>();
 
         private string[] reserved = { "void", "int", "double", "boolean",
                 "string", "class", "const", "interface", "null", "this",
                 "extends", "implements", "for", "while", "if", "else",
-                "return", "break", "New", "System", "out", "println" };
+                "return", "break", "New", "System", "out", "println", "print" };
 
         /// <summary>
         /// Read Line per line the file, and this calls another methods to confirm
@@ -439,8 +446,9 @@ namespace mini_java_compiler
         /// Mete los tokens al diccionario de tokens
         /// </summary>
         /// <param name="buffer"></param>
-        private void AddTokens(string buffer, int columnStart, int columnEnd, int lineNumber)
+        public void AddTokens(string buffer, int columnStart, int columnEnd, int lineNumber)
         {
+            ElToken token = new ElToken();
             if (!esMultilinea)
             {
                 buffer = buffer.Trim();
@@ -454,6 +462,9 @@ namespace mini_java_compiler
                         }
                         MakeWriter(buffer, columnStart, columnEnd, "T_ERROR", lineNumber);
                         errores += "*** ERROR: No se reconoció " + buffer + " en linea: " + lineNumber + " \n";
+                        token.Elemento = buffer;
+                        token.Tipo = "T_ERROR";
+                        ListaTokens.Add(token);
                         break;
                     case 1:
                         if (!tokens.ContainsKey(buffer))
@@ -461,6 +472,9 @@ namespace mini_java_compiler
                             tokens.Add(buffer, $"T_{buffer}");
                         }
                         MakeWriter(buffer, columnStart, columnEnd, $"T_{buffer}", lineNumber);
+                        token.Elemento = buffer;
+                        token.Tipo = $"T_{buffer}";
+                        ListaTokens.Add(token);
                         break;
                     case 2:
                         if (buffer.Length < 32)
@@ -469,8 +483,10 @@ namespace mini_java_compiler
                             {
                                 tokens.Add(buffer, "T_ID");
                             }
-
                             MakeWriter(buffer, columnStart, columnEnd, "T_ID", lineNumber);
+                            token.Elemento = buffer;
+                            token.Tipo = "T_ID";
+                            ListaTokens.Add(token);
                             break;
                         }
                         else
@@ -482,6 +498,9 @@ namespace mini_java_compiler
                             }
                             errores += "*** Error: id muy largo, se trunco a 31 caracteres, ID: " + buffer + "   ***    en linea: " + lineNumber;
                             MakeWriter(buffer, columnStart, columnEnd, "T_ID", lineNumber);
+                            token.Elemento = buffer;
+                            token.Tipo = "T_ID";
+                            ListaTokens.Add(token);
                             break;
                         }
                     case 3:
@@ -489,16 +508,20 @@ namespace mini_java_compiler
                         {
                             tokens.Add(buffer, "T_BOOLEAN");
                         }
-
+                        token.Elemento = buffer;
+                        token.Tipo = "T_BOOLEAN";
                         MakeWriter(buffer, columnStart, columnEnd, "T_BOOLEAN", lineNumber);
+                        ListaTokens.Add(token);
                         break;
                     case 4:
                         if (!tokens.ContainsKey(buffer))
                         {
                             tokens.Add(buffer, "T_ENTERO");
                         }
-
                         MakeWriter(buffer, columnStart, columnEnd, "T_ENTERO", lineNumber);
+                        token.Elemento = buffer;
+                        token.Tipo = "T_ENTERO";
+                        ListaTokens.Add(token);
                         break;
                     case 5:
                         if (!tokens.ContainsKey(buffer))
@@ -506,14 +529,19 @@ namespace mini_java_compiler
                             tokens.Add(buffer, "T_DOUBLE");
                         }
                         MakeWriter(buffer, columnStart, columnEnd, "T_DOUBLE", lineNumber);
+                        token.Elemento = buffer;
+                        token.Tipo = "T_DOUBLE";
+                        ListaTokens.Add(token);
                         break;
                     case 6:
                         if (!tokens.ContainsKey(buffer))
                         {
                             tokens.Add(buffer, "T_CADENA");
                         }
-
                         MakeWriter(buffer, columnStart, columnEnd, "T_CADENA", lineNumber);
+                        token.Elemento = buffer;
+                        token.Tipo = "T_CADENA";
+                        ListaTokens.Add(token);
                         break;
                 }
             }
@@ -524,6 +552,7 @@ namespace mini_java_compiler
         /// <param name="buffer"></param>
         private void AddOperator(string buffer, int columnStart, int columnEnd, int lineNumber)
         {
+            ElToken token = new ElToken();
             //code to add operator
             if (!esMultilinea)
             {
@@ -532,6 +561,9 @@ namespace mini_java_compiler
                     tokens.Add(buffer, "T_OPERADOR");
                 }
                 MakeWriter(buffer, columnStart, columnEnd, "T_OPERADOR", lineNumber);
+                token.Elemento = buffer;
+                token.Tipo = "T_OPERADOR";
+                ListaTokens.Add(token);
             }
         }
 
