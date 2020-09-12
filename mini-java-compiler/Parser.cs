@@ -644,13 +644,13 @@ namespace mini_java_compiler
         private string errorG = String.Empty;
         public void ErrorSintaxis(ElToken esperado)
         {
-            errorONE = Convert.ToString(Builder.Append("ERROR, SE ESPERABA: ").Append(esperado.Elemento));
+            errorONE = Convert.ToString(Builder.Append("\n ERROR, SE ESPERABA: ").Append(esperado.Elemento));
             return;
         }
 
         public void ErrorSintaxis(string esperado)
         {
-            errorTWO = Convert.ToString(Builder.Append("ERROR, SE ESPERABA: ").Append(esperado));
+            errorTWO = Convert.ToString(Builder.Append("\n ERROR, SE ESPERABA: ").Append(esperado));
             return;
         }
 
