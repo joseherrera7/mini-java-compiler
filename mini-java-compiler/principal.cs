@@ -114,8 +114,12 @@ namespace mini_java_compiler
         private void btnASDR_Click(object sender, EventArgs e)
         {
             prs.Empezar(rdr.GetListaTokens());
-            MessageBox.Show("Se asigno la lista de tokens a metodo empezar.");
+            MessageBox.Show("Se realizó el proceso correctamente.");
 
+            string lineasError = prs.Error;
+            string lineasError2 = prs.Error2;
+            rtxASDR.Text = lineasError;
+            rtxASDR.Text = lineasError + lineasError2;
         }
     }
 }
