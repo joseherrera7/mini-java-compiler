@@ -24,6 +24,7 @@ namespace mini_java_compiler
         public bool esMultilinea = false;
         private bool cadenaAbrir = false;
         private string errores = String.Empty;
+        
 
         private Dictionary<string, string> tokens = new Dictionary<string, string>();
 
@@ -445,7 +446,7 @@ namespace mini_java_compiler
         /// Mete los tokens al diccionario de tokens
         /// </summary>
         /// <param name="buffer"></param>
-        private void AddTokens(string buffer, int columnStart, int columnEnd, int lineNumber)
+        public void AddTokens(string buffer, int columnStart, int columnEnd, int lineNumber)
         {
             ElToken token = new ElToken();
             if (!esMultilinea)

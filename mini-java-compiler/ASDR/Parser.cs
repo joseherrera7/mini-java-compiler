@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace mini_java_compiler
@@ -186,6 +187,8 @@ namespace mini_java_compiler
                 return;
             }
         }
+
+
 
         private void VariableIntermedia()
         {
@@ -636,16 +639,22 @@ namespace mini_java_compiler
             return;
         }
 
-        private void ErrorSintaxis(ElToken esperado)
+        private string errorONE = String.Empty;
+        private string errorTWO = String.Empty;
+        private string errorG = String.Empty;
+        public void ErrorSintaxis(ElToken esperado)
         {
-            Builder.Append("ERROR, SE ESPERABA: ").Append(esperado.Elemento);
+            errorONE = Convert.ToString(Builder.Append("\n ERROR, SE ESPERABA: ").Append(esperado.Elemento));
             return;
         }
 
-        private void ErrorSintaxis(string esperado)
+        public void ErrorSintaxis(string esperado)
         {
-            Builder.Append("ERROR, SE ESPERABA: ").Append(esperado);
+            errorTWO = Convert.ToString(Builder.Append("\n ERROR, SE ESPERABA: ").Append(esperado));
             return;
         }
+
+        public string Error { get => errorONE; set => errorONE = value; }
+        public string Error2 { get => errorTWO; set => errorTWO = value; }
     }
 }
