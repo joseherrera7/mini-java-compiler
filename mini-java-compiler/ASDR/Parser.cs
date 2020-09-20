@@ -156,7 +156,7 @@ namespace mini_java_compiler
             {
                 ErrorSintaxis("T_ID, (), (, )");
             }
-            
+
         }
 
         private void StmtIntermedia()
@@ -170,7 +170,7 @@ namespace mini_java_compiler
             {
                 return;
             }
-            
+
         }
 
         private void Formals()
@@ -210,7 +210,7 @@ namespace mini_java_compiler
             {
                 PrintStmt();
             }
-            else if (Token.Elemento == "-" || (Token.Elemento == "(") || Token.Elemento == "New" || Token.Elemento == "this" || Token.Tipo == "T_ENTERO" || Token.Tipo == "T_DOUBLE" || Token.Tipo == "T_BOOLEAN" || Token.Tipo == "T_CADENA" || Token.Tipo == "T_null" || Token.Tipo ==("T_ID"))
+            else if (Token.Elemento == "-" || (Token.Elemento == "(") || Token.Elemento == "New" || Token.Elemento == "this" || Token.Tipo == "T_ENTERO" || Token.Tipo == "T_DOUBLE" || Token.Tipo == "T_BOOLEAN" || Token.Tipo == "T_CADENA" || Token.Tipo == "T_null" || Token.Tipo == ("T_ID"))
             {
                 Expr();
             }
@@ -235,7 +235,7 @@ namespace mini_java_compiler
             {
                 ErrorSintaxis("T_if");
             }
-            
+
         }
         private void ElseViene()
         {
@@ -291,7 +291,7 @@ namespace mini_java_compiler
             {
                 ErrorSintaxis("Expresiones");
             }
-          
+
         }
         private void ExprPrima()
         {
@@ -322,7 +322,7 @@ namespace mini_java_compiler
             {
                 ErrorSintaxis("Se esperaba una expresion");
             }
-            
+
         }
         private void XPrima()
         {
@@ -357,7 +357,7 @@ namespace mini_java_compiler
             {
                 ErrorSintaxis("Se esperaba una expresion");
             }
-          
+
         }
         private void APrima()
         {
@@ -402,7 +402,7 @@ namespace mini_java_compiler
             {
                 ErrorSintaxis("Se esperaba una expresion");
             }
-           
+
         }
 
         private void BPrima()
