@@ -14,9 +14,10 @@ namespace mini_java_compiler
         }
 
         //INCLUÍR MÁS OPERADORES SI ME HIZO FALTA ALGUNO
-        private string[] operadores = { "+","-","*", "/", "%", "<", "<=", ">", ">=", "=", "==", "!=", "&&", "||", "!", ";", ",", ".", "[", "]",
-            "(", ")", "{", "}",
-    "[]", "()", "{}" };
+        private string[] operadores = { "+","-","*", "/", "%", "<", "<=", ">", ">=",
+                                        "=", "==", "!=", "&&", "||", "!", ";", ",", ".", "[", "]",
+                                        "(", ")", "{", "}",
+                                        "[]", "()", "{}" };
         private int columnCounter = 0;
         //GUARDA EL ERROR
         public int ERROR = 0;
@@ -29,7 +30,7 @@ namespace mini_java_compiler
         private Dictionary<string, string> tokens = new Dictionary<string, string>();
 
         private string[] reserved = { "void", "int", "double", "boolean",
-                "string", "class", "const", "interface", "null", "this",
+                "string", "class", "static", "interface", "null", "this",
                 "extends", "implements", "for", "while", "if", "else",
                 "return", "break", "New", "System", "out", "println", "print" };
 

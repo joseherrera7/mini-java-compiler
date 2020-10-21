@@ -33,6 +33,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CalithaLib">
+      <HintPath>..\..\..\..\Downloads\GoldParserEngine_v1.13_bin\CalithaLib.dll</HintPath>
+    </Reference>
+    <Reference Include="GoldParserEngine">
+      <HintPath>..\..\..\..\Downloads\GoldParserEngine_v1.13_bin\GoldParserEngine.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Analizador-Sintactico.cs" />
     <Compile Include="ElToken.cs" />
     <Compile Include="ASDR\Parser.cs" />
     <Compile Include="Parse\Calculos.cs" />
