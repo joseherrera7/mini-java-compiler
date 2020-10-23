@@ -52,12 +52,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Analizador-Sintactico.cs" />
+    <Compile Include="AnalizadorSintacito2.0.cs" />
     <Compile Include="ElToken.cs" />
     <Compile Include="ASDR\Parser.cs" />
-    <Compile Include="Parse\Calculos.cs" />
-    <Compile Include="Parse\Gramatica.cs" />
-    <Compile Include="Parse\RecursosGramatica.cs" />
     <Compile Include="Principal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,6 +92,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\" />
+    <Folder Include="Parse\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Music\High Spirits.wav" />

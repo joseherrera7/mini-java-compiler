@@ -1,4 +1,9 @@
 ident = (Identifier)  
+intConstant = {Digit}+[ABCDEF]
+boolConstant = 'true' | 'false'
+doubleConstant = {Digit}+'.'{Digit}+
+stringConstant = {Printable}
+               
 
 "Start Symbol" = <Program>
 <Program> ::= <Decl><DeclPrima>
@@ -58,7 +63,7 @@ ident = (Identifier)
 <Expr> ::= <Constant> 
 <Expr> ::= <LValue> 
 <Expr> ::= this 
-<Expr> ::= '(' <Expr> ')' 
+<Expr> ::= '(' <Expr> ')'  
 <Expr> ::= <Expr> '+' <Expr> 
 <Expr> ::= <Expr> '/' <Expr> 
 <Expr> ::= <Expr> '%' <Expr> 

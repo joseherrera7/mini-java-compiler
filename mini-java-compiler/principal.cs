@@ -11,9 +11,11 @@ namespace mini_java_compiler
         private string lineas = string.Empty;
         private Reader rdr = new Reader();
         private Parser prs = new Parser();
+        private AnalizadorSintactico analizador;
         public Principal()
         {
             InitializeComponent();
+            analizador = new AnalizadorSintactico("C:\\Users\\jcher\\source\\repos\\mini-java-compiler\\Gramatica\\Proyecto02.cgt");
         }
 
         private void btnLoadFile_Click(object sender, EventArgs e)
@@ -27,6 +29,7 @@ namespace mini_java_compiler
                     openFileDialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
                     openFileDialog.FilterIndex = 2;
                     openFileDialog.RestoreDirectory = true;
+                    
 
                     if (openFileDialog.ShowDialog() == DialogResult.OK)
                     {
@@ -35,6 +38,7 @@ namespace mini_java_compiler
 
                         using (StreamReader reader = new StreamReader(fileStream))
                         {
+                            var archivo = reader.ReadToEnd();
                             var fileContent = string.Empty;
                             int lineCounter = 0;
                             while (!reader.EndOfStream)
@@ -43,6 +47,8 @@ namespace mini_java_compiler
                                 fileContent = reader.ReadLine();
                                 rdr.ReadProgram(fileContent, lineCounter);
                             }
+                            
+                            analizador.Parse(archivo);
 
                             reader.Close();
                         }
@@ -108,13 +114,15 @@ namespace mini_java_compiler
 
         private void btnASDR_Click(object sender, EventArgs e)
         {
-            prs.Empezar(rdr.GetListaTokens());
+            /*prs.Empezar(rdr.GetListaTokens());
             MessageBox.Show("Se realizó el proceso correctamente.");
 
             string lineasError = prs.Error;
             string lineasError2 = prs.Error2;
             rtxASDR.Text = lineasError;
-            rtxASDR.Text = lineasError + lineasError2;
+            rtxASDR.Text = lineasError + lineasError2;*/
+
+            
         }
     }
 }
