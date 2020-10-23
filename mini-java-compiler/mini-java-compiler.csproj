@@ -69,6 +69,7 @@
     <Compile Include="Parse\dfa\DFA.cs" />
     <Compile Include="Parse\dfa\State.cs" />
     <Compile Include="Parse\dfa\Transition.cs" />
+    <Compile Include="Parse\LALRParser.cs" />
     <Compile Include="Parse\lalr\AcceptAction.cs" />
     <Compile Include="Parse\lalr\Action.cs" />
     <Compile Include="Parse\lalr\ActionFactory.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="Parse\lalr\ReduceAction.cs" />
     <Compile Include="Parse\lalr\ShiftAction.cs" />
     <Compile Include="Parse\lalr\State.cs" />
+    <Compile Include="Parse\StringTokenizer.cs" />
     <Compile Include="Parse\structure\CGTStructure.cs" />
     <Compile Include="Parse\structure\CGTStructureException.cs" />
     <Compile Include="Parse\structure\Entry.cs" />
