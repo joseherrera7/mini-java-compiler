@@ -1,7 +1,9 @@
 using System;
 using System.Runtime.Serialization;
+using mini_java_compiler.Parse.content;
+using mini_java_compiler.Parse.structure;
 
-namespace com.calitha.goldparser.content
+namespace mini_java_compiler.Parse.content
 {
 
 	/// <summary>

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Specialized;
 using com.calitha.commons;
 
-namespace com.calitha.goldparser.dfa
+namespace mini_java_compiler.Parse.dfa
 {
 	/// <summary>
 	/// A transition (edge) between DFA states. The source and target state can be the same.

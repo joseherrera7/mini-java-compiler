@@ -1,6 +1,6 @@
 using System;
 
-namespace com.calitha.goldparser.dfa
+namespace mini_java_compiler.Parse.dfa
 {
 	/// <summary>
 	/// The interface for the Deterministic Finite Automata

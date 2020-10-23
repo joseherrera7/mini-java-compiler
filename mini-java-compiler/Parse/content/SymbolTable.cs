@@ -1,8 +1,9 @@
 using System;
 using System.Collections;
-using com.calitha.goldparser.structure;
+using mini_java_compiler.Parse.content;
+using mini_java_compiler.Parse.structure;
 
-namespace com.calitha.goldparser.content
+namespace mini_java_compiler.Parse.content
 {
 	/// <summary>
 	/// The SymbolTable contains a list of symbol records.

@@ -1,7 +1,8 @@
 using System;
-using com.calitha.goldparser.structure;
+using mini_java_compiler.Parse.content;
+using mini_java_compiler.Parse.structure;
 
-namespace com.calitha.goldparser.content
+namespace mini_java_compiler.Parse.content
 {
 	/// <summary>
 	/// The DFAStateRecord is a record that defines a DFA state.

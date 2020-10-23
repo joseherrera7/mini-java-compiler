@@ -1,8 +1,9 @@
 using System;
 using com.calitha.commons;
-using com.calitha.goldparser.structure;
+using mini_java_compiler.Parse.content;
+using mini_java_compiler.Parse.structure;
 
-namespace com.calitha.goldparser.structure
+namespace mini_java_compiler.Parse.structure
 {
 	/// <summary>
 	/// The EntryFactory can create the correct Entry object by looking at the

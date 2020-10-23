@@ -1,8 +1,9 @@
 using System;
 using com.calitha.commons;
-using com.calitha.goldparser.structure;
+using mini_java_compiler.Parse.content;
+using mini_java_compiler.Parse.structure;
 
-namespace com.calitha.goldparser.content
+namespace mini_java_compiler.Parse.content
 {
 	/// <summary>
 	/// The RuleRecord is a record the defines a rule to reduce tokens.

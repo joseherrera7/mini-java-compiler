@@ -2,9 +2,10 @@ using System;
 using System.Text;
 using System.Collections;
 using com.calitha.commons;
-using com.calitha.goldparser.content;
+using mini_java_compiler.Parse.content;
+using mini_java_compiler.Parse.structure;
 
-namespace com.calitha.goldparser.structure
+namespace mini_java_compiler.Parse.structure
 {
 	/// <summary>
 	/// EntryCollection is a type-safe list of Entry items.

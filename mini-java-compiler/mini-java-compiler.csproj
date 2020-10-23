@@ -33,12 +33,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CalithaLib">
-      <HintPath>..\..\..\..\Downloads\GoldParserEngine_v1.13_bin\CalithaLib.dll</HintPath>
-    </Reference>
-    <Reference Include="GoldParserEngine">
-      <HintPath>..\..\..\..\Downloads\GoldParserEngine_v1.13_bin\GoldParserEngine.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -55,6 +49,38 @@
     <Compile Include="AnalizadorSintacito2.0.cs" />
     <Compile Include="ElToken.cs" />
     <Compile Include="ASDR\Parser.cs" />
+    <Compile Include="Parse\content\ActionSubRecord.cs" />
+    <Compile Include="Parse\content\CGTContent.cs" />
+    <Compile Include="Parse\content\CGTContentException.cs" />
+    <Compile Include="Parse\content\CharacterSetRecord.cs" />
+    <Compile Include="Parse\content\CharacterSetTable.cs" />
+    <Compile Include="Parse\content\DFAStateRecord.cs" />
+    <Compile Include="Parse\content\DFAStateTable.cs" />
+    <Compile Include="Parse\content\EdgeSubRecord.cs" />
+    <Compile Include="Parse\content\InitialStatesRecord.cs" />
+    <Compile Include="Parse\content\LALRStateRecord.cs" />
+    <Compile Include="Parse\content\LALRStateTable.cs" />
+    <Compile Include="Parse\content\Parameters.cs" />
+    <Compile Include="Parse\content\RuleRecord.cs" />
+    <Compile Include="Parse\content\RuleTable.cs" />
+    <Compile Include="Parse\content\SymbolRecord.cs" />
+    <Compile Include="Parse\content\SymbolTable.cs" />
+    <Compile Include="Parse\content\TableCounts.cs" />
+    <Compile Include="Parse\dfa\DFA.cs" />
+    <Compile Include="Parse\dfa\State.cs" />
+    <Compile Include="Parse\dfa\Transition.cs" />
+    <Compile Include="Parse\lalr\AcceptAction.cs" />
+    <Compile Include="Parse\lalr\Action.cs" />
+    <Compile Include="Parse\lalr\ActionFactory.cs" />
+    <Compile Include="Parse\lalr\GotoAction.cs" />
+    <Compile Include="Parse\lalr\ReduceAction.cs" />
+    <Compile Include="Parse\lalr\ShiftAction.cs" />
+    <Compile Include="Parse\lalr\State.cs" />
+    <Compile Include="Parse\structure\CGTStructure.cs" />
+    <Compile Include="Parse\structure\CGTStructureException.cs" />
+    <Compile Include="Parse\structure\Entry.cs" />
+    <Compile Include="Parse\structure\EntryFactory.cs" />
+    <Compile Include="Parse\structure\Record.cs" />
     <Compile Include="Principal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,6 +90,16 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reader.cs" />
+    <Compile Include="Utilidades\AbstractSet.cs" />
+    <Compile Include="Utilidades\ArraySet.cs" />
+    <Compile Include="Utilidades\BinaryReader.cs" />
+    <Compile Include="Utilidades\FileUtil.cs" />
+    <Compile Include="Utilidades\HashSet.cs" />
+    <Compile Include="Utilidades\IntegerList.cs" />
+    <Compile Include="Utilidades\ISet.cs" />
+    <Compile Include="Utilidades\ResourceUtil.cs" />
+    <Compile Include="Utilidades\StringUtil.cs" />
+    <Compile Include="Utilidades\Util.cs" />
     <EmbeddedResource Include="Principal.resx">
       <DependentUpon>Principal.cs</DependentUpon>
     </EmbeddedResource>
@@ -92,7 +128,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\" />
-    <Folder Include="Parse\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Music\High Spirits.wav" />

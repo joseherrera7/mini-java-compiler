@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using com.calitha.commons;
 
-namespace com.calitha.goldparser.dfa
+namespace mini_java_compiler.Parse.dfa
 {
 	/// <summary>
 	/// DFA State.
