@@ -77,6 +77,9 @@
     <Compile Include="Parse\lalr\ReduceAction.cs" />
     <Compile Include="Parse\lalr\ShiftAction.cs" />
     <Compile Include="Parse\lalr\State.cs" />
+    <Compile Include="Parse\Location.cs" />
+    <Compile Include="Parse\ParserEvents.cs" />
+    <Compile Include="Parse\StateStack.cs" />
     <Compile Include="Parse\StringTokenizer.cs" />
     <Compile Include="Parse\structure\CGTStructure.cs" />
     <Compile Include="Parse\structure\CGTStructureException.cs" />
