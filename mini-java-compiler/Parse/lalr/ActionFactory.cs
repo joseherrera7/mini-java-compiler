@@ -1,7 +1,7 @@
 using System;
-using com.calitha.goldparser.content;
+using mini_java_compiler.Parse.content;
 
-namespace com.calitha.goldparser.lalr
+namespace mini_java_compiler.Parse.lalr
 {
 	/// <summary>
 	/// Factory class for creating Action objects..

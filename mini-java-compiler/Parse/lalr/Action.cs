@@ -1,9 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Specialized;
-using com.calitha.goldparser;
+using mini_java_compiler.Parse;
 
-namespace com.calitha.goldparser.lalr
+namespace mini_java_compiler.Parse.lalr
 {
 
 	/// <summary>

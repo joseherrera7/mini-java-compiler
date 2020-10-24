@@ -79,6 +79,9 @@
     <Compile Include="Parse\lalr\State.cs" />
     <Compile Include="Parse\Location.cs" />
     <Compile Include="Parse\ParserEvents.cs" />
+    <Compile Include="Parse\ParserException.cs" />
+    <Compile Include="Parse\Reader.cs" />
+    <Compile Include="Parse\Rule.cs" />
     <Compile Include="Parse\StateStack.cs" />
     <Compile Include="Parse\StringTokenizer.cs" />
     <Compile Include="Parse\structure\CGTStructure.cs" />

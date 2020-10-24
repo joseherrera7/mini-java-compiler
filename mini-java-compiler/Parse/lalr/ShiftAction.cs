@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 
-namespace com.calitha.goldparser.lalr
+namespace mini_java_compiler.Parse.lalr
 {
 
 	/// <summary>
