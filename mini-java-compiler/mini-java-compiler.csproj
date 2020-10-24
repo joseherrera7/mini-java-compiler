@@ -89,6 +89,10 @@
     <Compile Include="Parse\structure\Entry.cs" />
     <Compile Include="Parse\structure\EntryFactory.cs" />
     <Compile Include="Parse\structure\Record.cs" />
+    <Compile Include="Parse\Symbol.cs" />
+    <Compile Include="Parse\SymbolFactory.cs" />
+    <Compile Include="Parse\Token.cs" />
+    <Compile Include="Parse\TokenStack.cs" />
     <Compile Include="Principal.cs">
       <SubType>Form</SubType>
     </Compile>

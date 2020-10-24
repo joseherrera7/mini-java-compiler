@@ -3,7 +3,7 @@ using System.IO;
 using System.Text;
 using System.Collections;
 using System.Resources;
-using mini_java_compiler.commons;
+using mini_java_compiler.Parse;
 using mini_java_compiler.Parse.content;
 using mini_java_compiler.Parse.structure;
 using mini_java_compiler.Parse.lalr;
