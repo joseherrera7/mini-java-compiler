@@ -1,9 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.Runtime.Serialization;
-using com.calitha.goldparser.lalr;
-using com.calitha.commons;
-using com.calitha.goldparser;
+using mini_java_compiler.Parse.lalr;
+using mini_java_compiler.Utilidades;
+using mini_java_compiler.Parse;
 
 namespace mini_java_compiler
 {
