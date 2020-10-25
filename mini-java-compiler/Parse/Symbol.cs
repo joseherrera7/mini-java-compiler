@@ -1,7 +1,7 @@
 using System;
 using System.Text;
 using System.Collections;
-using mini_java_compiler.Parse;
+using mini_java_compiler.Utilidades;
 
 namespace mini_java_compiler.Parse
 {

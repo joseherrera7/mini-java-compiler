@@ -3,7 +3,7 @@ using System.IO;
 using System.Text;
 using System.Collections;
 using System.Resources;
-using mini_java_compiler.Parse;
+using mini_java_compiler.Utilidades;
 using mini_java_compiler.Parse.content;
 using mini_java_compiler.Parse.structure;
 using mini_java_compiler.Parse.lalr;
@@ -205,7 +205,7 @@ namespace mini_java_compiler.Parse
 				State state = states[record.Index];
 				foreach (ActionSubRecord subRecord in record.ActionSubRecords)
 				{
-					Action action =
+                    lalr.Action action =
 						ActionFactory.CreateAction(subRecord,
 						                           states,
 						                           symbols,
