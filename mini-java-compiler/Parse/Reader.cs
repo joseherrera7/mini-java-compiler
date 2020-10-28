@@ -115,10 +115,10 @@ namespace mini_java_compiler.Parse
 		/// Creates a new LALR parser.
 		/// </summary>
 		/// <returns></returns>
-		public LALRParser CreateNewParser()
+		public LR1Parser CreateNewParser()
 		{
 			State startState = parserStates[content.InitialStates.LALR];
-			return new LALRParser(CreateNewTokenizer(),
+			return new LR1Parser(CreateNewTokenizer(),
 			                      parserStates,
 			                      startState,
 			                      Symbols);

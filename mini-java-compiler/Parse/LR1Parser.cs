@@ -7,9 +7,9 @@ namespace mini_java_compiler.Parse
 {
 
 	/// <summary>
-	/// The LALR Parser is used to parse a source string into tokens and rules.
+	/// The LR1 Parser is used to parse a source string into tokens and rules.
 	/// </summary>
-	public class LALRParser
+	public class LR1Parser
 	{
 
 		public enum StoreTokensMode {Always, NoUserObject, Never}
@@ -27,12 +27,12 @@ namespace mini_java_compiler.Parse
 		private SymbolCollection symbols;
 
 		/// <summary>
-		/// Creates a new LALR parser.
+		/// Creates a new LR1 parser.
 		/// </summary>
 		/// <param name="tokenizer">A tokenizer.</param>
-		/// <param name="states">The LALR states.</param>
+		/// <param name="states">The LR1 states.</param>
 		/// <param name="startState">The starting state.</param>
-		public LALRParser(IStringTokenizer tokenizer,
+		public LR1Parser(IStringTokenizer tokenizer,
 			StateCollection states,
 			State startState,
 			SymbolCollection symbols)
@@ -398,14 +398,14 @@ namespace mini_java_compiler.Parse
 
         public SymbolCollection Symbols {get{return symbols;}}
 
-		public delegate void TokenReadHandler(LALRParser parser, TokenReadEventArgs args);
-		public delegate void ShiftHandler(LALRParser parser, ShiftEventArgs args);
-		public delegate	void ReduceHandler(LALRParser parser, ReduceEventArgs args);
-		public delegate	void GotoHandler(LALRParser parser, GotoEventArgs args);
-		public delegate void AcceptHandler(LALRParser parser, AcceptEventArgs args);
-		public delegate void TokenErrorHandler(LALRParser parser, TokenErrorEventArgs args);
-		public delegate void ParseErrorHandler(LALRParser parser, ParseErrorEventArgs args);
-		public delegate void CommentReadHandler(LALRParser parser, CommentReadEventArgs args);
+		public delegate void TokenReadHandler(LR1Parser parser, TokenReadEventArgs args);
+		public delegate void ShiftHandler(LR1Parser parser, ShiftEventArgs args);
+		public delegate	void ReduceHandler(LR1Parser parser, ReduceEventArgs args);
+		public delegate	void GotoHandler(LR1Parser parser, GotoEventArgs args);
+		public delegate void AcceptHandler(LR1Parser parser, AcceptEventArgs args);
+		public delegate void TokenErrorHandler(LR1Parser parser, TokenErrorEventArgs args);
+		public delegate void ParseErrorHandler(LR1Parser parser, ParseErrorEventArgs args);
+		public delegate void CommentReadHandler(LR1Parser parser, CommentReadEventArgs args);
 
 		/// <summary>
 		/// This event will be called if a token has been read which will be parsed by

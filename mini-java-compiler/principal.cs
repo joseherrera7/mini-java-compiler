@@ -29,7 +29,7 @@ namespace mini_java_compiler
                     openFileDialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
                     openFileDialog.FilterIndex = 2;
                     openFileDialog.RestoreDirectory = true;
-                    
+                    string archivo = String.Empty;
 
                     if (openFileDialog.ShowDialog() == DialogResult.OK)
                     {
@@ -38,21 +38,26 @@ namespace mini_java_compiler
 
                         using (StreamReader reader = new StreamReader(fileStream))
                         {
-                            var archivo = reader.ReadToEnd();
+                            
                             var fileContent = string.Empty;
                             int lineCounter = 0;
                             while (!reader.EndOfStream)
                             {
                                 lineCounter++;
                                 fileContent = reader.ReadLine();
+                                archivo += fileContent;
                                 rdr.ReadProgram(fileContent, lineCounter);
                             }
                             
-                            analizador.Parse(archivo);
 
                             reader.Close();
                         }
+                        
+                          
+                            analizador.Parse(archivo);
+                        
                     }
+                    
                 }
                 
                 MessageBox.Show("¡Se leyó el archivo correctamente! Proceda a crear el archivo de salida.");

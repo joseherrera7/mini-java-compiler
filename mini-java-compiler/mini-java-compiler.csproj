@@ -46,9 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AnalizadorSintacito2.0.cs" />
     <Compile Include="ElToken.cs" />
     <Compile Include="ASDR\Parser.cs" />
+    <Compile Include="Gramatica-Proyecto02.cs" />
     <Compile Include="Parse\content\ActionSubRecord.cs" />
     <Compile Include="Parse\content\CGTContent.cs" />
     <Compile Include="Parse\content\CGTContentException.cs" />
@@ -69,7 +69,7 @@
     <Compile Include="Parse\dfa\DFA.cs" />
     <Compile Include="Parse\dfa\State.cs" />
     <Compile Include="Parse\dfa\Transition.cs" />
-    <Compile Include="Parse\LALRParser.cs" />
+    <Compile Include="Parse\LR1Parser.cs" />
     <Compile Include="Parse\lalr\AcceptAction.cs" />
     <Compile Include="Parse\lalr\Action.cs" />
     <Compile Include="Parse\lalr\ActionFactory.cs" />

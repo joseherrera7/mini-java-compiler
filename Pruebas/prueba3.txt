@@ -37,7 +37,7 @@ public class Employee {
 		this.lastName = lastName;
 	}
 
-	public String getDescription() {
+	public  getDescription() String {
 		return description;
 	}
 
@@ -45,12 +45,4 @@ public class Employee {
 		this.description = description;
 	}
 
-	public String toString() {
-		return "Employee{" +
-			"id=" + id +
-			", firstName='" + firstName + '\'' +
-			", lastName='" + lastName + '\'' +
-			", description='" + description + '\'' +
-			'}';
-	}
 }

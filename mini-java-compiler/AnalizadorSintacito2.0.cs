@@ -4,6 +4,7 @@ using System.Runtime.Serialization;
 using mini_java_compiler.Parse.lalr;
 using mini_java_compiler.Utilidades;
 using mini_java_compiler.Parse;
+using System.Windows.Forms;
 
 namespace mini_java_compiler
 {
@@ -666,7 +667,7 @@ namespace mini_java_compiler
 
     public class AnalizadorSintactico
     {
-        private LALRParser parser;
+        private LR1Parser parser;
 
         public AnalizadorSintactico(string filename)
         {
@@ -699,10 +700,10 @@ namespace mini_java_compiler
             CGTReader reader = new CGTReader(stream);
             parser = reader.CreateNewParser();
             parser.TrimReductions = false;
-            parser.StoreTokens = LALRParser.StoreTokensMode.NoUserObject;
+            parser.StoreTokens = LR1Parser.StoreTokensMode.NoUserObject;
 
-            parser.OnTokenError += new LALRParser.TokenErrorHandler(TokenErrorEvent);
-            parser.OnParseError += new LALRParser.ParseErrorHandler(ParseErrorEvent);
+            parser.OnTokenError += new LR1Parser.TokenErrorHandler(TokenErrorEvent);
+            parser.OnParseError += new LR1Parser.ParseErrorHandler(ParseErrorEvent);
         }
 
         public void Parse(string source)
@@ -712,6 +713,10 @@ namespace mini_java_compiler
             {
                 Object obj = CreateObject(token);
                 //todo: Use your object any way you like
+                if (obj != null)
+                {
+                    MessageBox.Show("El archivo ha sido leido con éxito");
+                }
             }
         }
 
@@ -3784,16 +3789,17 @@ namespace mini_java_compiler
             throw new RuleException("Unknown rule");
         }
 
-        private void TokenErrorEvent(LALRParser parser, TokenErrorEventArgs args)
+        private void TokenErrorEvent(LR1Parser parser, TokenErrorEventArgs args)
         {
             string message = "Token error with input: '"+args.Token.ToString()+"'";
             //todo: Report message to UI?
         }
 
-        private void ParseErrorEvent(LALRParser parser, ParseErrorEventArgs args)
+        private void ParseErrorEvent(LR1Parser parser, ParseErrorEventArgs args)
         {
-            string message = "Parse error caused by token: '"+args.UnexpectedToken.ToString()+"'";
+            string message = "Error no se pudo parsear el token: '"+args.UnexpectedToken.ToString()+"'" + "Se esperaba: "+ args.ExpectedTokens.ToString();
             //todo: Report message to UI?
+            MessageBox.Show(message);
         }
 
     }
