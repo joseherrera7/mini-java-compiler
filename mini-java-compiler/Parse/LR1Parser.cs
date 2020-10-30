@@ -5,10 +5,6 @@ using mini_java_compiler.Parse.lalr;
 
 namespace mini_java_compiler.Parse
 {
-
-	/// <summary>
-	/// The LR1 Parser is used to parse a source string into tokens and rules.
-	/// </summary>
 	public class LR1Parser
 	{
 
@@ -26,12 +22,6 @@ namespace mini_java_compiler.Parse
 		private StoreTokensMode storeTokens;
 		private SymbolCollection symbols;
 
-		/// <summary>
-		/// Creates a new LR1 parser.
-		/// </summary>
-		/// <param name="tokenizer">A tokenizer.</param>
-		/// <param name="states">The LR1 states.</param>
-		/// <param name="startState">The starting state.</param>
 		public LR1Parser(IStringTokenizer tokenizer,
 			StateCollection states,
 			State startState,
@@ -54,12 +44,6 @@ namespace mini_java_compiler.Parse
 			accepted = false;
 		}
 
-		/// <summary>
-		/// Parse the input with tokens and rules.
-		/// </summary>
-		/// <param name="input">The source input</param>
-		/// <returns>The nonterminal token that the input has been reduced to.
-		/// Null if the parse has failed.</returns>
 		public NonterminalToken Parse(String input)
 		{
 			Reset();
@@ -91,7 +75,6 @@ namespace mini_java_compiler.Parse
 			int reduceLength = action.Rule.Rhs.Length;
 
 			State currentState;
-			// Do not reduce if the rule is single nonterminal and TrimReductions is on
 			bool skipReduce = ((TrimReductions) &&
 				(reduceLength == 1) && ( action.Rule.Rhs[0] is SymbolNonterminal));
 			if (skipReduce)
@@ -130,7 +113,7 @@ namespace mini_java_compiler.Parse
 			}
 			else
 			{
-				throw new ParserException("Invalid action table in state");
+				throw new ParserException("Tabla de acciones inválida en el estado");
 			}
 		}
 
@@ -370,26 +353,12 @@ namespace mini_java_compiler.Parse
 				return false;
 		}
 
-		/// <summary>
-		/// Trim Reductions.
-		/// When true there will be no reductions for single nonterminal rules,
-		/// and no events for this will be generated.
-		/// </summary>
 		public bool TrimReductions
 		{
 			get {return trimReductions;} 
 			set {this.trimReductions = value;}
 		}
 
-		/// <summary>
-		/// This property determines if reduced tokens should be stored
-		/// in a reduced token after the reduce event has occured.
-		/// There are three possible values:
-		/// Always means that the tokens should always be kept,
-		/// NoUserObject (default) means that the tokens should only be kept if there
-		/// was no user object assigned in the reduced token,
-		/// Never means that the tokens are no longer available after the reduce event.
-		/// </summary>
 		public StoreTokensMode StoreTokens
 		{
 			get {return storeTokens;}
@@ -407,46 +376,20 @@ namespace mini_java_compiler.Parse
 		public delegate void ParseErrorHandler(LR1Parser parser, ParseErrorEventArgs args);
 		public delegate void CommentReadHandler(LR1Parser parser, CommentReadEventArgs args);
 
-		/// <summary>
-		/// This event will be called if a token has been read which will be parsed by
-		/// the LALR parser.
-		/// </summary>
  		public event TokenReadHandler OnTokenRead;
 
-		/// <summary>
-		/// This event will be called when a token is shifted onto the stack.
-		/// </summary>
 		public event ShiftHandler OnShift;
 
-		/// <summary>
-		/// This event will be called when tokens are reduced.
-		/// </summary>
 		public event ReduceHandler OnReduce;
 
-		/// <summary>
-		/// This event will be called when a goto occurs (after a reduction).
-		/// </summary>
 		public event GotoHandler OnGoto;
 
-		/// <summary>
-		/// This event will be called if the parser is finished and the input has been
-		/// accepted.
-		/// </summary>
 		public event AcceptHandler OnAccept;
 
-		/// <summary>
-		/// This event will be called when the tokenizer cannot recognize the input.
-		/// </summary>
 		public event TokenErrorHandler OnTokenError;
 
-		/// <summary>
-		/// This event will be called when the parser has a token it cannot parse.
-		/// </summary>
 		public event ParseErrorHandler OnParseError;
 
-		/// <summary>
-		/// This event will be called when a comment section has been read.
-		/// </summary>
 		public event CommentReadHandler OnCommentRead;
 
 	}

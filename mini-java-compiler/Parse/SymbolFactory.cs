@@ -3,22 +3,12 @@ using mini_java_compiler.Parse.content;
 
 namespace mini_java_compiler.Parse
 {
-	/// <summary>
-	/// The SymbolFactory is for creating a symbol identified by a record in
-	/// the fil content.
-	/// </summary>
 	public sealed class SymbolFactory
 	{
 		private SymbolFactory()
 		{
 		}
 
-		/// <summary>
-		/// Creates a new symbol or gives a reference to a symbol that is
-		/// determined by the type of the symbol record in the file content.
-		/// </summary>
-		/// <param name="symbolRecord"></param>
-		/// <returns></returns>
 		static public Symbol CreateSymbol(SymbolRecord symbolRecord)
 		{
 			Symbol symbol;
@@ -49,7 +39,6 @@ namespace mini_java_compiler.Parse
 					symbol = SymbolCollection.ERROR;
 					break;
 				default:
-					// this sort of symbol should never be here
 					symbol = new SymbolError(-1);
 					break;
 			}

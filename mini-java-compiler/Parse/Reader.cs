@@ -13,10 +13,6 @@ using System.Runtime.Serialization;
 namespace mini_java_compiler.Parse
 {
 	
-	/// <summary>
-	/// The CGTReader is for reading a Compiled Grammar Table file and parsing it so that
-	/// a tokenizer and parser is created.
-	/// </summary>
 	public class CGTReader
 	{
 		private Stream stream;
@@ -27,23 +23,11 @@ namespace mini_java_compiler.Parse
 		private SymbolCollection symbols;
 		private RuleCollection rules;
 
-		/// <summary>
-		/// Creates a new reader that will read a Compiler Grammar Table
-		/// during creation. The reader can then create parsers or tokenizers
-		/// of this CGT.
-		/// </summary>
-		/// <param name="stream">A stream that contains the CGT.</param>
 		public CGTReader(Stream stream)
 		{
 			ReadFile(stream);
 		}
 
-		/// <summary>
-		/// Creates a new reader that will read a Compiler Grammar Table
-		/// during creation. The reader can then create parsers or tokenizers
-		/// of this CGT.
-		/// </summary>
-		/// <param name="filename">File that contains the CGT</param>
 		public CGTReader(String filename)
 		{
 			ReadFile(new FileStream(filename,FileMode.Open,FileAccess.Read));
@@ -60,11 +44,6 @@ namespace mini_java_compiler.Parse
 			rules = null;
 		}
 
-		/// <summary>
-		/// Reads a CGT and creates all the objects needed to create
-		/// a tokenizer and parser at a later time.
-		/// </summary>
-		/// <param name="stream">The CGT stream.</param>
 		private void ReadFile(Stream stream)
 		{
 			try
@@ -76,12 +55,12 @@ namespace mini_java_compiler.Parse
 				try
 				{
 					header = reader.ReadUnicodeString();
-					if (! header.StartsWith("GOLD"))
-						throw new CGTStructureException("File header is invalid");
+					if (! header.StartsWith("Mini Compilador Java"))
+						throw new CGTStructureException("El encabezado del archivo es inválido");
 				}
 				catch (EndOfStreamException e)
 				{
-					throw new CGTStructureException("File header is invalid",e);
+					throw new CGTStructureException("El encabezado del archivo es inválido", e);
 				}
 				RecordCollection records = new RecordCollection();
 				while (!(stream.Position == stream.Length))
@@ -99,22 +78,12 @@ namespace mini_java_compiler.Parse
 			}
 		}
 
-		/// <summary>
-		/// Creates a new tokenizer. Useful if for some reason
-		/// you don't want a full LALR parser, but are just interested in a tokenizer.
-		/// </summary>
-		/// <returns></returns>
 		public StringTokenizer CreateNewTokenizer()
 		{
 			DFA.State startState = dfaStates[content.InitialStates.DFA];
 			DFA.DFA dfa = new DFA.DFA(dfaStates,startState);
 			return new StringTokenizer(dfa);
 		}
-
-		/// <summary>
-		/// Creates a new LALR parser.
-		/// </summary>
-		/// <returns></returns>
 		public LR1Parser CreateNewParser()
 		{
 			State startState = parserStates[content.InitialStates.LALR];
@@ -147,7 +116,6 @@ namespace mini_java_compiler.Parse
 					Symbol symbol = symbols[stateRecord.AcceptIndex];
 
 					state = new DFA.EndState(stateRecord.Index,(SymbolTerminal)symbol);
-					//todo: type checking (exception?)
 				}
 				else
 				{
@@ -176,7 +144,6 @@ namespace mini_java_compiler.Parse
 			foreach (RuleRecord ruleRecord in content.RuleTable)
 			{
 				SymbolNonterminal lhs = symbols[ruleRecord.Nonterminal] as SymbolNonterminal;
-				//todo: exception handling?
 				Symbol[] rhs = new Symbol[ruleRecord.Symbols.Count];
 				for (int i = 0; i< rhs.Length; i++)
 				{
@@ -221,7 +188,7 @@ namespace mini_java_compiler.Parse
 		{
 			Record record = new Record();
             byte entriesHeader = reader.ReadByte();
-            if (entriesHeader != 77) // 'M'
+            if (entriesHeader != 77)
             {
 				throw new CGTStructureException("Invalid entries header at byte "+(stream.Position-1));
             }
@@ -244,15 +211,7 @@ namespace mini_java_compiler.Parse
 		
 		private CGTStructure Structure {get{return structure;}}
 		private CGTContent Content {get{return content;}}
-
-		/// <summary>
-		/// The symbols that are used in the loaded grammar.
-		/// </summary>
 		private SymbolCollection Symbols {get{return symbols;}}
-
-		/// <summary>
-		/// The rules that are used in the loaded grammar.
-		/// </summary>
 		public RuleCollection Rules {get{return rules;}}
 
 	}

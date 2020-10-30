@@ -5,9 +5,7 @@ using mini_java_compiler.Utilidades;
 
 namespace mini_java_compiler.Parse
 {
-	/// <summary>
-	/// Abstract symbol implementation.
-	/// </summary>
+
 	public abstract class Symbol
 	{
 		private int id;
@@ -47,9 +45,6 @@ namespace mini_java_compiler.Parse
 		public string Name {get {return name;}}
 	}
 	
-	/// <summary>
-	/// SymbolNonterminal is for symbols that are not directly linked to one token.
-	/// </summary>
 	public class SymbolNonterminal : Symbol
 	{
 		public SymbolNonterminal(int id, string name) : base(id,name)
@@ -62,9 +57,6 @@ namespace mini_java_compiler.Parse
 		}
 	}
 	
-	/// <summary>
-	/// SymbolTerminal is a symbol that is linked to a token.
-	/// </summary>
 	public class SymbolTerminal : Symbol
 	{
 		public SymbolTerminal(int id, string name) : base(id,name)
@@ -72,55 +64,35 @@ namespace mini_java_compiler.Parse
 		}
 	}
 	
-	/// <summary>
-	/// SymbolWhiteSpace is the symbol of white-space tokens.
-	/// </summary>
 	public class SymbolWhiteSpace : SymbolTerminal
 	{
-		public SymbolWhiteSpace(int id) : base(id,"(Whitespace)")
+		public SymbolWhiteSpace(int id) : base(id,"(Espacio en blanco)")
 		{
 		}
 	}
-	
-	/// <summary>
-	/// SymbolEnd is the symbol for the end-of-file token.
-	/// </summary>
+
 	public class SymbolEnd : SymbolTerminal
 	{
 		public SymbolEnd(int id) : base(id,"(EOF)")
 		{}
 	}
-
-	/// <summary>
-	/// SymbolCommentStart is the symbol for the comment start token.
-	/// </summary>
 	public class SymbolCommentStart : SymbolTerminal
 	{
-		public SymbolCommentStart(int id) : base(id,"(Comment Start)")
+		public SymbolCommentStart(int id) : base(id,"(Inicio de Comentario)")
 		{}
 	}
-
-	/// <summary>
-	/// SymbolCommentEnd is the symbol for the comment end token.
-	/// </summary>
 	public class SymbolCommentEnd : SymbolTerminal
 	{
-		public SymbolCommentEnd(int id) : base(id,"(Comment End)")
+		public SymbolCommentEnd(int id) : base(id,"(Fin de comentario)")
 		{}
 	}
 
-	/// <summary>
-	/// SymbolCommentLine is the symbol for the comment line token.
-	/// </summary>
 	public class SymbolCommentLine : SymbolTerminal
 	{
-		public SymbolCommentLine(int id) : base(id,"(Comment Line)")
+		public SymbolCommentLine(int id) : base(id,"(Linea de Comentario)")
 		{}
 	}
 
-	/// <summary>
-	/// SymbolError is the symbol for the error token.
-	/// </summary>
 	public class SymbolError : SymbolTerminal
 	{
 		public SymbolError(int id) : base(id,"(ERROR)")
@@ -128,10 +100,6 @@ namespace mini_java_compiler.Parse
 		}
 	}
 
-	/// <summary>
-	/// Type-safe list for Symbol objects.
-	/// The class contains constant symbol objects for the pre-defined terminal symbols.
-	/// </summary>
 	public class SymbolCollection : IEnumerable
 	{
 		static public SymbolEnd EOF = new SymbolEnd(0);

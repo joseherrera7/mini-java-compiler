@@ -4,10 +4,6 @@ using System.Runtime.Serialization;
 namespace mini_java_compiler.Parse
 {
 
-	/// <summary>
-	/// ParserException is throws when an unexpected situation occurs while parsing.
-	/// For example if the LALR parser is in a state where no actions can be taken.
-	/// </summary>
 	[Serializable()]
 	public class ParserException : System.ApplicationException
 	{

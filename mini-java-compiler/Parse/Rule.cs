@@ -4,9 +4,7 @@ using System.Collections;
 namespace mini_java_compiler.Parse
 {
 
-	/// <summary>
-	/// Type-safe list of Rule objects.
-	/// </summary>
+
 	public class RuleCollection : IEnumerable
 	{
 		private IList list;
@@ -37,23 +35,12 @@ namespace mini_java_compiler.Parse
 		}
 	}
 
-
-	/// <summary>
-	/// The Rule consists of the symbols that can be reduced to another symbol.
-	/// </summary>
 	public class Rule
 	{
 		private int id;
 		private SymbolNonterminal lhs;
 		private Symbol[] rhs;
 
-		/// <summary>
-		/// Creates a new rule.
-		/// </summary>
-		/// <param name="id">Id of this rule.</param>
-		/// <param name="lhs">Left hand side. The other symbols can be reduced to
-		/// this symbol.</param>
-		/// <param name="rhs">The right hand side. The symbols that can be reduced.</param>
 		public Rule(int id, SymbolNonterminal lhs, Symbol[] rhs)
 		{
 			this.id = id;
@@ -61,10 +48,6 @@ namespace mini_java_compiler.Parse
 			this.rhs = rhs;
 		}
 
-		/// <summary>
-		/// String representation of the rule.
-		/// </summary>
-		/// <returns>The string.</returns>
 		public override String ToString()
 		{
 			String str = lhs+" ::= ";
@@ -75,20 +58,8 @@ namespace mini_java_compiler.Parse
 			return str.Substring(0,str.Length-1);
 		}
 
-		/// <summary>
-		/// Id of this rule.
-		/// </summary>
 		public int Id {get{return id;}}
-
-		/// <summary>
-		/// Left hand side. The other symbols can be reduced to
-		/// this symbol.
-		/// </summary>
 		public SymbolNonterminal Lhs {get{return lhs;}}
-
-		/// <summary>
-		/// Right hand side. The symbols that can be reduced.
-		/// </summary>
 		public Symbol[] Rhs {get{return rhs;}}
 	}
 }
