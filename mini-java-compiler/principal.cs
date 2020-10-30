@@ -16,7 +16,7 @@ namespace mini_java_compiler
         public Principal()
         {
             InitializeComponent();
-            analizador = new AnalizadorSintactico(Application.StartupPath + "\\Gramatica\\Proyecto02.cgt");
+            analizador = new AnalizadorSintactico(Application.StartupPath + "\\Gramatica\\Proyecto02.txt");
         }
 
         private void btnLoadFile_Click(object sender, EventArgs e)
