@@ -5,9 +5,6 @@ using mini_java_compiler.Parse.structure;
 
 namespace mini_java_compiler.Parse.content
 {
-	/// <summary>
-	/// The SymbolTable contains a list of symbol records.
-	/// </summary>
 	public class SymbolTable : IEnumerable
 	{
 		private IList list;

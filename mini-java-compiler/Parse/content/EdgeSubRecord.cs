@@ -5,11 +5,6 @@ using mini_java_compiler.Parse.structure;
 
 namespace mini_java_compiler.Parse.content
 {
-
-	/// <summary>
-	/// EdgeSubRecordCollection contains a part of a DFA state record.
-	/// It defines the edges (transactions) between DFA states.
-	/// </summary>
 	public class EdgeSubRecordCollection : IEnumerable
 	{
 		private IList list;
@@ -18,7 +13,7 @@ namespace mini_java_compiler.Parse.content
 		{
 			list = new ArrayList();
 			if ((record.Entries.Count-start) % 3 != 0)
-				throw new CGTContentException("Invalid number of entries for edges in DFA state");
+				throw new CGTContentException("Numero invalido de estados");
 			for (int i=start;i<record.Entries.Count;i=i+3)
 			{
 				EdgeSubRecord edgeRecord = new EdgeSubRecord(record.Entries[i],record.Entries[i+1]);
@@ -33,9 +28,6 @@ namespace mini_java_compiler.Parse.content
 
 	}
 
-	/// <summary>
-	/// The EdgeSubRecord defines an edge (transaction) between DFA states.
-	/// </summary>
 	public class EdgeSubRecord
 	{
 		public EdgeSubRecord(Entry charSetEntry, Entry targetEntry)

@@ -4,9 +4,6 @@ using mini_java_compiler.Parse.structure;
 
 namespace mini_java_compiler.Parse.content
 {
-	/// <summary>
-	/// The DFAStateRecord is a record that defines a DFA state.
-	/// </summary>
 	public class DFAStateRecord
 	{
 		private int index;
@@ -17,14 +14,13 @@ namespace mini_java_compiler.Parse.content
 		public DFAStateRecord(Record record)
 		{
 			if (record.Entries.Count < 5)
-				throw new CGTContentException("Invalid number of entries for DFA state");
+				throw new CGTContentException("Numero invalido de estados");
 			byte header = record.Entries[0].ToByteValue();
 			if (header != 68) //'D'
-				throw new CGTContentException("Invalid DFA state header");
+				throw new CGTContentException("Estado invalido ");
 			this.index = record.Entries[1].ToIntValue();
 			this.acceptState = record.Entries[2].ToBoolValue();
 			this.acceptIndex = record.Entries[3].ToIntValue();
-			//skip empty reserved entry
 			edgeSubRecords = new EdgeSubRecordCollection(record,5);
 		}
 

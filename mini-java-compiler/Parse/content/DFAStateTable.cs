@@ -5,9 +5,6 @@ using mini_java_compiler.Parse.structure;
 
 namespace mini_java_compiler.Parse.content
 {
-	/// <summary>
-	/// The DFAStateTable contains a list of DFA state records.
-	/// </summary>
 	public class DFAStateTable : IEnumerable
 	{
 		private IList list;

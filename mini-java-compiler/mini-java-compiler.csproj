@@ -50,7 +50,6 @@
     <Compile Include="ASDR\Parser.cs" />
     <Compile Include="Gramatica-Proyecto02.cs" />
     <Compile Include="Parse\content\ActionSubRecord.cs" />
-    <Compile Include="Parse\content\CGTContent.cs" />
     <Compile Include="Parse\content\CGTContentException.cs" />
     <Compile Include="Parse\content\CharacterSetRecord.cs" />
     <Compile Include="Parse\content\CharacterSetTable.cs" />
@@ -58,14 +57,13 @@
     <Compile Include="Parse\content\DFAStateTable.cs" />
     <Compile Include="Parse\content\EdgeSubRecord.cs" />
     <Compile Include="Parse\content\InitialStatesRecord.cs" />
-    <Compile Include="Parse\content\LALRStateRecord.cs" />
-    <Compile Include="Parse\content\LALRStateTable.cs" />
+    <Compile Include="Parse\content\LR1StateRecord.cs" />
+    <Compile Include="Parse\content\LR1StateTable.cs" />
     <Compile Include="Parse\content\Parameters.cs" />
     <Compile Include="Parse\content\RuleRecord.cs" />
     <Compile Include="Parse\content\RuleTable.cs" />
     <Compile Include="Parse\content\SymbolRecord.cs" />
     <Compile Include="Parse\content\SymbolTable.cs" />
-    <Compile Include="Parse\content\TableCounts.cs" />
     <Compile Include="Parse\dfa\DFA.cs" />
     <Compile Include="Parse\dfa\State.cs" />
     <Compile Include="Parse\dfa\Transition.cs" />

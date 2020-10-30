@@ -7,9 +7,6 @@ using mini_java_compiler.Parse.structure;
 namespace mini_java_compiler.Parse.structure
 {
 
-	/// <summary>
-	/// RecordCollection is a type-safe list for Record items.
-	/// </summary>
 	public class RecordCollection : IEnumerable
 	{
 		private IList list;
@@ -63,9 +60,6 @@ namespace mini_java_compiler.Parse.structure
 		public int Count { get{return list.Count;} }
 	}
 
-	/// <summary>
-	/// The Record is part of the compiled grammar table that contains one or more entries.
-	/// </summary>
 	public class Record
 	{
 		private EntryCollection entries;

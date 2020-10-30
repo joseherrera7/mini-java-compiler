@@ -5,10 +5,6 @@ using mini_java_compiler.Parse.structure;
 
 namespace mini_java_compiler.Parse.structure
 {
-	/// <summary>
-	/// This exception will be thrown when something is wrong in the cgt structure.
-	/// For example if the entry type is unknown.
-	/// </summary>
 	[Serializable()]
 	public class CGTStructureException : System.IO.IOException
 	{

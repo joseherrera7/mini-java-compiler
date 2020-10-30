@@ -4,39 +4,23 @@ using mini_java_compiler.Utilidades;
 
 namespace mini_java_compiler.Parse.lalr
 {
-	/// <summary>
-	/// State is a LALR state.
-	/// </summary>
+
 	public class State
 	{
 		private int id;
 		private ActionCollection actions;
 
-		/// <summary>
-		/// Creates a new LALR state.
-		/// </summary>
-		/// <param name="id">The id of the state.</param>
 		public State(int id)
 		{
 			this.id = id;
 			actions = new ActionCollection();
 		}
 
-		/// <summary>
-		/// Id of the state.
-		/// </summary>
 		public int Id {get{return id;}}
 
-		/// <summary>
-		/// Actions in this state. An action will be done depending on the
-		/// symbol of the token.
-		/// </summary>
 		public ActionCollection Actions {get{return actions;}}
 	}
 
-	/// <summary>
-	/// Type-safe list of LALR states.
-	/// </summary>
 	public class StateCollection : IEnumerable
 	{
 		

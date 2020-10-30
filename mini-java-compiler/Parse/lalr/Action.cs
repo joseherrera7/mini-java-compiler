@@ -6,9 +6,6 @@ using mini_java_compiler.Parse;
 namespace mini_java_compiler.Parse.lalr
 {
 
-	/// <summary>
-	/// Type-safe list of Action items.
-	/// </summary>
 	public class ActionCollection : IEnumerable
 	{
 		private IDictionary table;
@@ -39,9 +36,7 @@ namespace mini_java_compiler.Parse.lalr
 		}
 	}
 
-	/// <summary>
-	/// Abstract action class. All actions in a LALR must be inherited from this class.
-	/// </summary>
+
 	public abstract class Action
 	{
 		internal Symbol symbol;

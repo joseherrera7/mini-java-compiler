@@ -4,9 +4,6 @@ using mini_java_compiler.Parse.structure;
 
 namespace mini_java_compiler.Parse.content
 {
-	/// <summary>
-	/// The CharacterSetRecord is a record that defines a character set.
-	/// </summary>
 	public class CharacterSetRecord
 	{
 		private int index;
@@ -15,10 +12,10 @@ namespace mini_java_compiler.Parse.content
 		public CharacterSetRecord(Record record)
 		{
 			if (record.Entries.Count != 3)
-				throw new CGTContentException("Invalid number of entries for character set");
+				throw new CGTContentException("Numero invalido de caracteres de entrada");
 			byte header = record.Entries[0].ToByteValue();
 			if (header != 67) //'C'
-				throw new CGTContentException("Invalid character set header");
+				throw new CGTContentException("Caracter invalido");
 			this.index = record.Entries[1].ToIntValue();
 			this.characters = record.Entries[2].ToStringValue();
 		}

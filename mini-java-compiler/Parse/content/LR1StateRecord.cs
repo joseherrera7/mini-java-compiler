@@ -4,23 +4,19 @@ using mini_java_compiler.Parse.structure;
 
 namespace mini_java_compiler.Parse.content
 {
-	/// <summary>
-	/// The LALRStateRecord is a record the defines a LALR state.
-	/// </summary>
-	public class LALRStateRecord
+	public class LR1StateRecord
 	{
 		private int index;
 		private ActionSubRecordCollection actionSubRecords;
 
-		public LALRStateRecord(Record record)
+		public LR1StateRecord(Record record)
 		{
 			if (record.Entries.Count < 3)
-				throw new CGTContentException("Invalid number of entries for LALR state");
+				throw new CGTContentException("Numero invalido");
 			byte header = record.Entries[0].ToByteValue();
 			if (header != 76) //'L'
-				throw new CGTContentException("Invalid LALR state header");
+				throw new CGTContentException("Numero invalido");
 			this.index = record.Entries[1].ToIntValue();
-			//skip empty reserved entry
 			actionSubRecords = new ActionSubRecordCollection(record,3);
 		}
 

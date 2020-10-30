@@ -5,9 +5,6 @@ using mini_java_compiler.Parse.structure;
 
 namespace mini_java_compiler.Parse.content
 {
-	/// <summary>
-	/// The RuleTable contains a list of rules.
-	/// </summary>
 	public class RuleTable : IEnumerable
 	{
 		private IList list;

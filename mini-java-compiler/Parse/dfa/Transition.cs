@@ -5,21 +5,12 @@ using mini_java_compiler.Utilidades;
 
 namespace mini_java_compiler.Parse.dfa
 {
-	/// <summary>
-	/// A transition (edge) between DFA states. The source and target state can be the same.
-	/// </summary>
+
 	public class Transition
 	{
 		private State target;
 		private ISet charset;
 
-		/// <summary>
-		/// Creates a new transition by specifying the target state and the criteria for
-		/// taking a transition to another state. The source state does not need to be
-		/// specified, because the state itself knows its transition.
-		/// </summary>
-		/// <param name="target">The target state.</param>
-		/// <param name="characters">The character set criteria.</param>
 		public Transition(State target, string characters)
 		{
 			this.target = target;
@@ -34,20 +25,12 @@ namespace mini_java_compiler.Parse.dfa
 			}
 		}
 
-		/// <summary>
-		/// The target state.
-		/// </summary>
 		public State Target {get {return target;}}
 
-		/// <summary>
-		/// The criteria for going to the target state.
-		/// </summary>
 		public ISet CharSet {get {return charset;}}
 	}
 	
-	/// <summary>
-	/// A type-safe list of transitions.
-	/// </summary>
+
 	public class TransitionCollection : IEnumerable
 	{	
 		private IList list;

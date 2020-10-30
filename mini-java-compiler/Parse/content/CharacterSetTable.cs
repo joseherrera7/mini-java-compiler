@@ -5,9 +5,6 @@ using mini_java_compiler.Parse.structure;
 
 namespace mini_java_compiler.Parse.content
 {
-	/// <summary>
-	/// CharacterSetTable contains a list of CharacterSet records.
-	/// </summary>
 	public class CharacterSetTable : IEnumerable
 	{
 		private IList list;

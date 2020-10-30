@@ -5,10 +5,6 @@ using mini_java_compiler.Parse.structure;
 
 namespace mini_java_compiler.Parse.structure
 {
-	/// <summary>
-	/// The EntryFactory can create the correct Entry object by looking at the
-	/// entry type byte.
-	/// </summary>
 	public sealed class EntryFactory
 	{
 		private EntryFactory()
@@ -37,7 +33,7 @@ namespace mini_java_compiler.Parse.structure
 					entry = new StringEntry(reader);
 					break;
 				default: //Unknown
-					throw new CGTStructureException("Unknown entry type");
+					throw new CGTStructureException("No se sabe el tipo");
 			}
 			return entry;
 		}

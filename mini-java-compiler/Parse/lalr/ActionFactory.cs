@@ -3,23 +3,13 @@ using mini_java_compiler.Parse.content;
 
 namespace mini_java_compiler.Parse.lalr
 {
-	/// <summary>
-	/// Factory class for creating Action objects..
-	/// </summary>
+
 	public sealed class ActionFactory
 	{
 		private ActionFactory()
 		{
 		}
 
-		/// <summary>
-		/// Creates a new action by specifying the needed information.
-		/// </summary>
-		/// <param name="record">A part of the LALR record from the file content.</param>
-		/// <param name="states">The LALR states.</param>
-		/// <param name="symbols">The symbols.</param>
-		/// <param name="rules">The rules.</param>
-		/// <returns>A new action object.</returns>
 		public static Action CreateAction(ActionSubRecord record,
 			                              StateCollection states,
 			                              SymbolCollection symbols,
@@ -32,7 +22,7 @@ namespace mini_java_compiler.Parse.lalr
 				case 2: action = CreateReduceAction(record,symbols,rules); break;
 				case 3: action = CreateGotoAction(record,symbols,states); break;
 				case 4: action = CreateAcceptAction(record,symbols); break;
-				default: return null; //todo: make exception
+				default: return null; 
 			}
 			return action;
 		}
@@ -44,7 +34,7 @@ namespace mini_java_compiler.Parse.lalr
 		{
 			State state = states[record.Target];
 			SymbolTerminal symbol = symbols[record.SymbolIndex] as SymbolTerminal;
-			//todo: exception symbol type
+			
 			return new ShiftAction(symbol,state);
 		}
 

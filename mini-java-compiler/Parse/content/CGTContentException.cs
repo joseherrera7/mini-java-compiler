@@ -5,11 +5,6 @@ using mini_java_compiler.Parse.structure;
 
 namespace mini_java_compiler.Parse.content
 {
-
-	/// <summary>
-	/// This exception is thrown if something is wrong with the cgt content.
-	/// For example if there are not enough entries in a record.
-	/// </summary>
 	[Serializable()]
 	public class CGTContentException : System.IO.IOException
 	{

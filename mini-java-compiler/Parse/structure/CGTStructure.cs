@@ -6,10 +6,6 @@ using mini_java_compiler.Parse.structure;
 
 namespace mini_java_compiler.Parse.structure
 {
-	/// <summary>
-	/// The CGTStructure contains the header and records that are in the
-	/// compiled grammar table.
-	/// </summary>
 	public class CGTStructure
 	{
 		private string header;

@@ -7,9 +7,6 @@ using mini_java_compiler.Parse.structure;
 
 namespace mini_java_compiler.Parse.structure
 {
-	/// <summary>
-	/// EntryCollection is a type-safe list of Entry items.
-	/// </summary>
 	public class EntryCollection : IEnumerable
 	{
 		private IList list;
@@ -59,17 +56,13 @@ namespace mini_java_compiler.Parse.structure
 		public int Count { get{return list.Count;} }
 	}
 
-	/// <summary>
-	/// Each record in the file structure contains one or more of these Entry objects.
-	/// 
-	/// </summary>
 	abstract public class Entry
 	{
 		public byte ToByteValue()
 		{
 			ByteEntry entry = this as ByteEntry;
 			if (entry == null)
-				throw new CGTContentException("Entry is not a byte");
+				throw new CGTContentException("No es byte");
 			return entry.Value;
 		}
 
@@ -77,7 +70,7 @@ namespace mini_java_compiler.Parse.structure
 		{
 			BooleanEntry entry = this as BooleanEntry;
 			if (entry == null)
-				throw new CGTContentException("Entry is not a boolean");
+				throw new CGTContentException("No es boolean");
 			return entry.Value;
 		}
 
@@ -85,7 +78,7 @@ namespace mini_java_compiler.Parse.structure
 		{
 			IntegerEntry entry = this as IntegerEntry;
 			if (entry == null)
-				throw new CGTContentException("Entry is not an integer");
+				throw new CGTContentException("No es integer");
 			return entry.Value;
 		}
 	
@@ -93,7 +86,7 @@ namespace mini_java_compiler.Parse.structure
 		{
 			StringEntry entry = this as StringEntry;
 			if (entry == null)
-				throw new CGTContentException("Entry is not a string");
+				throw new CGTContentException("No es string");
 			return entry.Value;
 		}
 	}

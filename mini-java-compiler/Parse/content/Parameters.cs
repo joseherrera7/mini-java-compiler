@@ -4,9 +4,6 @@ using mini_java_compiler.Parse.structure;
 
 namespace mini_java_compiler.Parse.content
 {
-	/// <summary>
-	/// The Parameter define miscellaneous parameters of the compiled grammar.
-	/// </summary>
 	public class Parameters
 	{
 		private string name;
@@ -19,10 +16,10 @@ namespace mini_java_compiler.Parse.content
 		public Parameters(Record record)
 		{
 			if (record.Entries.Count != 7)
-				throw new CGTContentException("Invalid number of entries for parameters");
+				throw new CGTContentException("Numero invalido de parametros");
 			byte header = record.Entries[0].ToByteValue();
 			if (header != 80) //'P'
-				throw new CGTContentException("Invalid parameters header");
+				throw new CGTContentException("Numero invalido de parametros");
 			this.name           = record.Entries[1].ToStringValue();
 			this.version        = record.Entries[2].ToStringValue();
 			this.author         = record.Entries[3].ToStringValue();

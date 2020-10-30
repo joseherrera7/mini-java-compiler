@@ -5,9 +5,6 @@ using mini_java_compiler.Parse.structure;
 
 namespace mini_java_compiler.Parse.content
 {
-	/// <summary>
-	/// The RuleRecord is a record the defines a rule to reduce tokens.
-	/// </summary>
 	public class RuleRecord
 	{
 		private int index;
@@ -17,13 +14,12 @@ namespace mini_java_compiler.Parse.content
 		public RuleRecord(Record record)
 		{
 			if (record.Entries.Count < 4)
-				throw new CGTContentException("Invalid number of entries for rule");
+				throw new CGTContentException("Numero invalido de reglas");
 			byte header = record.Entries[0].ToByteValue();
 			if (header != 82) //'R'
-				throw new CGTContentException("Invalid rule header");
+				throw new CGTContentException("Numero invalido de reglas");
 			this.index = record.Entries[1].ToIntValue();
 			this.nonterminal = record.Entries[2].ToIntValue();		
-			//skip reserved empty entry
 			this.symbols = new IntegerList();
 			for (int i=4;i<record.Entries.Count;i++)
 			{

@@ -194,13 +194,13 @@ namespace mini_java_compiler.Parse
 			rules = CreateRules(content);
 
 			StateCollection states = new StateCollection();
-			foreach (LALRStateRecord record in content.LALRStateTable)
+			foreach (LR1StateRecord record in content.LALRStateTable)
 			{
 				State state = new State(record.Index);
 				states.Add(state);
 			}
 			
-			foreach (LALRStateRecord record in content.LALRStateTable)
+			foreach (LR1StateRecord record in content.LALRStateTable)
 			{
 				State state = states[record.Index];
 				foreach (ActionSubRecord subRecord in record.ActionSubRecords)

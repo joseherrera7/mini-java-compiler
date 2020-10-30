@@ -4,39 +4,22 @@ using mini_java_compiler.Utilidades;
 
 namespace mini_java_compiler.Parse.dfa
 {
-	/// <summary>
-	/// DFA State.
-	/// </summary>
 	public class State
 	{
 		private int id;
 		private TransitionCollection transitions;
 
-		/// <summary>
-		/// Creates a new DFA state.
-		/// </summary>
-		/// <param name="id">The id of this state.</param>
 		public State(int id)
 		{
 			this.id = id;
 			transitions = new TransitionCollection();
 		}	
 
-		/// <summary>
-		/// The id of the DFA state.
-		/// </summary>
 		public int Id {get {return id;}}
 
-		/// <summary>
-		/// The transitions (edges) to other states.
-		/// </summary>
 		public TransitionCollection Transitions {get {return transitions;}}
 	}
 	
-	/// <summary>
-	/// A specific type of DFA state. When the current state of the DFA is an EndState,
-	/// then it means the input so far can be a token.
-	/// </summary>
 	public class EndState : State
 	{
 		private SymbolTerminal acceptSymbol;
@@ -46,15 +29,9 @@ namespace mini_java_compiler.Parse.dfa
 			this.acceptSymbol = acceptSymbol;
 		}
 		
-		/// <summary>
-		/// The accept symbol for the DFA.
-		/// </summary>
 		public SymbolTerminal AcceptSymbol {get {return acceptSymbol;}}
 	}
 
-	/// <summary>
-	/// Type-safe list for DFA states.
-	/// </summary>
 	public class StateCollection : IEnumerable
 	{
 		

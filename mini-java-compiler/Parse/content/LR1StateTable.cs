@@ -5,19 +5,16 @@ using mini_java_compiler.Parse.structure;
 
 namespace mini_java_compiler.Parse.content
 {
-	/// <summary>
-	/// LALRStateTable is a list of records the define LALR states.
-	/// </summary>
-	public class LALRStateTable : IEnumerable
+	public class LR1StateTable : IEnumerable
 	{
 		private IList list;
 
-		public LALRStateTable(CGTStructure structure, int start, int count)
+		public LR1StateTable(CGTStructure structure, int start, int count)
 		{
 			list = new ArrayList();
 			for (int i=start;i<start+count;i++)
 			{
-				LALRStateRecord lalrState = new LALRStateRecord(structure.Records[i]);
+				LR1StateRecord lalrState = new LR1StateRecord(structure.Records[i]);
 				list.Add(lalrState);
 			}			
 		}
@@ -27,12 +24,12 @@ namespace mini_java_compiler.Parse.content
 			return list.GetEnumerator();
 		}
 
-		public LALRStateRecord Get(int index)
+		public LR1StateRecord Get(int index)
 		{
-			return list[index] as LALRStateRecord;
+			return list[index] as LR1StateRecord;
 		}
 
-		public LALRStateRecord this[int index]
+		public LR1StateRecord this[int index]
 		{
 			get
 			{
