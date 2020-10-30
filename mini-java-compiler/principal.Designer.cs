@@ -264,6 +264,7 @@
             this.rtxASDR.Size = new System.Drawing.Size(601, 131);
             this.rtxASDR.TabIndex = 16;
             this.rtxASDR.Text = "";
+            this.rtxASDR.TextChanged += new System.EventHandler(this.rtxASDR_TextChanged);
             // 
             // Principal
             // 

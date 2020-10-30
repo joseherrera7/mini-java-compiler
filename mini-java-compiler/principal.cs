@@ -130,5 +130,10 @@ namespace mini_java_compiler
             
         }
 
+        private void rtxASDR_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
