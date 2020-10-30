@@ -46,6 +46,7 @@
             this.btnASDR = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.rtxASDR = new System.Windows.Forms.RichTextBox();
+            this.btnLimpiar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnLoadFile
@@ -266,6 +267,24 @@
             this.rtxASDR.Text = "";
             this.rtxASDR.TextChanged += new System.EventHandler(this.rtxASDR_TextChanged);
             // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.AllowDrop = true;
+            this.btnLimpiar.AutoEllipsis = true;
+            this.btnLimpiar.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.btnLimpiar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnLimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLimpiar.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnLimpiar.Location = new System.Drawing.Point(183, 524);
+            this.btnLimpiar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(124, 38);
+            this.btnLimpiar.TabIndex = 18;
+            this.btnLimpiar.Text = "Limpiar";
+            this.btnLimpiar.UseVisualStyleBackColor = false;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            // 
             // Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -273,6 +292,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1340, 694);
+            this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.rtxASDR);
             this.Controls.Add(this.btnASDR);
@@ -294,6 +314,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Principal";
             this.Text = "Mini Java Compiler";
+            this.Load += new System.EventHandler(this.Principal_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -318,6 +339,7 @@
         private System.Windows.Forms.Button btnASDR;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.RichTextBox rtxASDR;
+        private System.Windows.Forms.Button btnLimpiar;
     }
 }
 
