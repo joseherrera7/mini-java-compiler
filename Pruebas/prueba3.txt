@@ -25,15 +25,15 @@ public class Employee {
 		return firstName;
 	}
 
-	public void setFirstName(String firstName) {
+	public  setFirstName(String firstName) void{
 		this.firstName = firstName;
 	}
 
-	public String getLastName() {
+	public  getLastName() String{
 		return lastName;
 	}
 
-	public void setLastName(String lastName) {
+	public  setLastName(String lastName) void {
 		this.lastName = lastName;
 	}
 

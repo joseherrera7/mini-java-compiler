@@ -170,7 +170,7 @@ namespace mini_java_compiler.Parse
 				ParseErrorEventArgs e = 
 					new ParseErrorEventArgs(token, FindExpectedTokens());
 				OnParseError(this, e);
-				continueParsing = e.Continue != ContinueMode.Stop;
+				continueParsing = e.Continue != ContinueMode.Skip;
 				lookahead = e.NextToken;
 				if ((e.NextToken != null) && (e.Continue == ContinueMode.Insert))
 				    tokenizer.SetCurrentLocation(token.Location);

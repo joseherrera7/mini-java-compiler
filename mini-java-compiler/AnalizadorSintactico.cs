@@ -288,17 +288,18 @@ namespace mini_java_compiler
             parser.OnTokenError += new LR1Parser.TokenErrorHandler(TokenErrorEvent);
             parser.OnParseError += new LR1Parser.ParseErrorHandler(ParseErrorEvent);
         }
-        public string MensajeOK = String.Empty;
+        private string MensajeOK = String.Empty;
+        private bool hayError = false;
         public void Parse(string source)
         {
              
         NonterminalToken token = parser.Parse(source);
-            if (token != null)
+            if (token != null && !hayError)
             {
                 Object obj = CreateObject(token);
                 //todo: Use your object any way you like
                
-                MensajeOK += "Se analizo bien correctamente \n";
+                MensajeOK += "Se analizo correctamente \n";
             }
         }
 
@@ -1289,8 +1290,8 @@ namespace mini_java_compiler
 
         public void ParseErrorEvent(LR1Parser parser, ParseErrorEventArgs args)
         {
-            MensajeOK += "No se pudo reconocer el token: '" + args.UnexpectedToken.ToString() + "'" + "\n"; 
-       
+            MensajeOK += "No se pudo reconocer el token: '" + args.UnexpectedToken.ToString() + "'" + "\n";
+            hayError = true;
         }
 
     }
