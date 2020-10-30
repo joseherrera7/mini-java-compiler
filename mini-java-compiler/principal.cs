@@ -12,19 +12,22 @@ namespace mini_java_compiler
         private Reader rdr = new Reader();
         private Parser prs = new Parser();
         private AnalizadorSintactico analizador;
+
         public Principal()
         {
             InitializeComponent();
-            analizador = new AnalizadorSintactico(Application.StartupPath + "\\Gramatica\\Proyecto02.txt");
+            analizador = new AnalizadorSintactico(Application.StartupPath + "\\Gramatica\\Proyecto02.cgt");
         }
 
         private void btnLoadFile_Click(object sender, EventArgs e)
         {
             
+
             try
             {
                 using (OpenFileDialog openFileDialog = new OpenFileDialog())
                 {
+
                     openFileDialog.InitialDirectory = "c:\\";
                     openFileDialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
                     openFileDialog.FilterIndex = 2;
@@ -33,12 +36,11 @@ namespace mini_java_compiler
 
                     if (openFileDialog.ShowDialog() == DialogResult.OK)
                     {
-                        //Read the contents of the file into a stream
+                        
                         var fileStream = openFileDialog.OpenFile();
 
                         using (StreamReader reader = new StreamReader(fileStream))
                         {
-                            
                             var fileContent = string.Empty;
                             int lineCounter = 0;
                             while (!reader.EndOfStream)
@@ -47,15 +49,15 @@ namespace mini_java_compiler
                                 fileContent = reader.ReadLine();
                                 archivo += fileContent;
                                 rdr.ReadProgram(fileContent, lineCounter);
+                                
                             }
                             
 
                             reader.Close();
+                            
                         }
-                        
-                          
-                            analizador.Parse(archivo);
-                        
+
+                        analizador.Parse(archivo);
                     }
                     
                 }
@@ -138,8 +140,17 @@ namespace mini_java_compiler
 
         private void rtxASDR_TextChanged(object sender, EventArgs e)
         {
-
+       
         }
 
+        private void Principal_Load(object sender, EventArgs e)
+        {
+
+        }
+  
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            Application.Restart();
+        }
     }
 }
