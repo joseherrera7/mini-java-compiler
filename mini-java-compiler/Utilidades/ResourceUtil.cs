@@ -5,9 +5,6 @@ using System.Reflection;
 
 namespace mini_java_compiler.Utilidades
 {
-	/// <summary>
-	/// Summary description for ResourceUtil.
-	/// </summary>
 	public sealed class ResourceUtil
 	{
 		private ResourceUtil()

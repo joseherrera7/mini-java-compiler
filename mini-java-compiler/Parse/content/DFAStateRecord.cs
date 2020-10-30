@@ -14,10 +14,10 @@ namespace mini_java_compiler.Parse.content
 		public DFAStateRecord(Record record)
 		{
 			if (record.Entries.Count < 5)
-				throw new CGTContentException("Numero invalido de estados");
+				throw new ContentException("Numero invalido de estados");
 			byte header = record.Entries[0].ToByteValue();
 			if (header != 68) //'D'
-				throw new CGTContentException("Estado invalido ");
+				throw new ContentException("Estado invalido ");
 			this.index = record.Entries[1].ToIntValue();
 			this.acceptState = record.Entries[2].ToBoolValue();
 			this.acceptIndex = record.Entries[3].ToIntValue();

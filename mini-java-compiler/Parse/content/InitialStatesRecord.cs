@@ -12,10 +12,10 @@ namespace mini_java_compiler.Parse.content
 		public InitialStatesRecord(Record record)
 		{
 			if (record.Entries.Count != 3)
-				throw new CGTContentException("Numero invalido");
+				throw new ContentException("Numero invalido");
 			byte header = record.Entries[0].ToByteValue();
 			if (header != 73) //'I'
-				throw new CGTContentException("Numero invalido");
+				throw new ContentException("Numero invalido");
 			this.dfa   = record.Entries[1].ToIntValue();
 			this.lalr  = record.Entries[2].ToIntValue();
 		}

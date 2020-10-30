@@ -3,10 +3,7 @@ using System.Collections;
 
 namespace mini_java_compiler.Utilidades
 {
-	/// <summary>
-	/// Implements a set by using an ArrayList internally.
-	/// It is thefore only wise to use it for small collections.
-	/// </summary>
+
 	public class ArraySet : AbstractSet
 	{
 		private IList list;
@@ -36,10 +33,6 @@ namespace mini_java_compiler.Utilidades
 			list.Remove(obj);
 		}
 
-		/// <summary>
-		/// Returns an enumerator that can iterate through a collection.
-		/// </summary>
-		/// <returns>An IEnumerator that can be used to iterate through the collection.</returns>
 		public override IEnumerator GetEnumerator()
 		{
 			return collection.GetEnumerator();

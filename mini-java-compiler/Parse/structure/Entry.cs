@@ -62,7 +62,7 @@ namespace mini_java_compiler.Parse.structure
 		{
 			ByteEntry entry = this as ByteEntry;
 			if (entry == null)
-				throw new CGTContentException("No es byte");
+				throw new ContentException("No es byte");
 			return entry.Value;
 		}
 
@@ -70,7 +70,7 @@ namespace mini_java_compiler.Parse.structure
 		{
 			BooleanEntry entry = this as BooleanEntry;
 			if (entry == null)
-				throw new CGTContentException("No es boolean");
+				throw new ContentException("No es boolean");
 			return entry.Value;
 		}
 
@@ -78,7 +78,7 @@ namespace mini_java_compiler.Parse.structure
 		{
 			IntegerEntry entry = this as IntegerEntry;
 			if (entry == null)
-				throw new CGTContentException("No es integer");
+				throw new ContentException("No es integer");
 			return entry.Value;
 		}
 	
@@ -86,7 +86,7 @@ namespace mini_java_compiler.Parse.structure
 		{
 			StringEntry entry = this as StringEntry;
 			if (entry == null)
-				throw new CGTContentException("No es string");
+				throw new ContentException("No es string");
 			return entry.Value;
 		}
 	}
@@ -107,7 +107,7 @@ namespace mini_java_compiler.Parse.structure
 	{
 	    private byte value;
 	    
-	    public ByteEntry(CalithaBinReader reader)
+	    public ByteEntry(ReaderBin reader)
 	    {
 	        value = reader.ReadByte();
 	    }
@@ -125,7 +125,7 @@ namespace mini_java_compiler.Parse.structure
 	{
 	    private bool value;
 	    
-	    public BooleanEntry(CalithaBinReader reader)
+	    public BooleanEntry(ReaderBin reader)
 	    {
 	        value = reader.ReadBoolean();
 	    }
@@ -142,7 +142,7 @@ namespace mini_java_compiler.Parse.structure
 	{
 	    private short value;
 	    
-	    public IntegerEntry(CalithaBinReader reader)
+	    public IntegerEntry(ReaderBin reader)
 	    {
 	        value = reader.ReadInt16();
 	    }
@@ -159,7 +159,7 @@ namespace mini_java_compiler.Parse.structure
 	{
 	    private string value;
 	    
-	    public StringEntry(CalithaBinReader reader)
+	    public StringEntry(ReaderBin reader)
 	    {
 	        value = reader.ReadUnicodeString();
 	    }

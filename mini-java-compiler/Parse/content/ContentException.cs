@@ -6,18 +6,18 @@ using mini_java_compiler.Parse.structure;
 namespace mini_java_compiler.Parse.content
 {
 	[Serializable()]
-	public class CGTContentException : System.IO.IOException
+	public class ContentException : System.IO.IOException
 	{
-		public CGTContentException(string message) : base(message)
+		public ContentException(string message) : base(message)
 		{
 		}
 
-		public CGTContentException(string message,
+		public ContentException(string message,
 			Exception inner) : base(message, inner)
 		{
 		}
 
-		protected CGTContentException(SerializationInfo info,
+		protected ContentException(SerializationInfo info,
 			StreamingContext context) : base(info, context)
 		{
 		}

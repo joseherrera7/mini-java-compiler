@@ -12,10 +12,10 @@ namespace mini_java_compiler.Parse.content
 		public LR1StateRecord(Record record)
 		{
 			if (record.Entries.Count < 3)
-				throw new CGTContentException("Numero invalido");
+				throw new ContentException("Numero invalido");
 			byte header = record.Entries[0].ToByteValue();
 			if (header != 76) //'L'
-				throw new CGTContentException("Numero invalido");
+				throw new ContentException("Numero invalido");
 			this.index = record.Entries[1].ToIntValue();
 			actionSubRecords = new ActionSubRecordCollection(record,3);
 		}

@@ -4,24 +4,17 @@ using System.IO;
 
 namespace mini_java_compiler.Utilidades
 {
-	/// <summary>
-	/// This extension to the binary reader supports direct reading of
-	/// a unicode (utf-16) string.
-	/// </summary>
-	public class CalithaBinReader : System.IO.BinaryReader
+
+	public class ReaderBin : System.IO.BinaryReader
 	{
-	    public CalithaBinReader(Stream input) : base(input)
+	    public ReaderBin(Stream input) : base(input)
 	    {
 	    }
 	    
-	    public CalithaBinReader(Stream input, Encoding encoding) : base(input,encoding)
+	    public ReaderBin(Stream input, Encoding encoding) : base(input,encoding)
 	    {
 	    }
 	
-		/// <summary>
-		/// Reads a unicode (utf-16) string.
-		/// </summary>
-		/// <returns>Unicode string.</returns>
 	    public string ReadUnicodeString()
 	    {
             StringBuilder builder = new StringBuilder();

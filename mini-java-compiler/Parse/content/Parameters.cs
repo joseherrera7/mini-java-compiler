@@ -16,10 +16,10 @@ namespace mini_java_compiler.Parse.content
 		public Parameters(Record record)
 		{
 			if (record.Entries.Count != 7)
-				throw new CGTContentException("Numero invalido de parametros");
+				throw new ContentException("Numero invalido de parametros");
 			byte header = record.Entries[0].ToByteValue();
 			if (header != 80) //'P'
-				throw new CGTContentException("Numero invalido de parametros");
+				throw new ContentException("Numero invalido de parametros");
 			this.name           = record.Entries[1].ToStringValue();
 			this.version        = record.Entries[2].ToStringValue();
 			this.author         = record.Entries[3].ToStringValue();

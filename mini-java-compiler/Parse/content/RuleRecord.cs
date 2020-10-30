@@ -14,10 +14,10 @@ namespace mini_java_compiler.Parse.content
 		public RuleRecord(Record record)
 		{
 			if (record.Entries.Count < 4)
-				throw new CGTContentException("Numero invalido de reglas");
+				throw new ContentException("Numero invalido de reglas");
 			byte header = record.Entries[0].ToByteValue();
 			if (header != 82) //'R'
-				throw new CGTContentException("Numero invalido de reglas");
+				throw new ContentException("Numero invalido de reglas");
 			this.index = record.Entries[1].ToIntValue();
 			this.nonterminal = record.Entries[2].ToIntValue();		
 			this.symbols = new IntegerList();

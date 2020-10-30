@@ -3,10 +3,6 @@ using System.Collections;
 
 namespace mini_java_compiler.Utilidades
 {
-	/// <summary>
-	/// Implements a set using a hastable. It is therefore fast even
-	/// when having large collections.
-	/// </summary>
 	public class HashSet : AbstractSet
 	{
 		private IDictionary map;
@@ -37,10 +33,6 @@ namespace mini_java_compiler.Utilidades
 			map.Remove(obj);
 		}
 
-		/// <summary>
-		/// Returns an enumerator that can iterate through a collection.
-		/// </summary>
-		/// <returns>An IEnumerator that can be used to iterate through the collection.</returns>
 		public override IEnumerator GetEnumerator()
 		{
 			return map.Keys.GetEnumerator();

@@ -50,7 +50,7 @@ namespace mini_java_compiler.Parse
 			{
 				Reset();
 				this.stream = stream;
-				CalithaBinReader reader = new CalithaBinReader(stream);
+				ReaderBin reader = new ReaderBin(stream);
 				string header = "";
 				try
 				{
@@ -184,7 +184,7 @@ namespace mini_java_compiler.Parse
 			return states;
 		}
 
-		private Record ReadRecord(CalithaBinReader reader)
+		private Record ReadRecord(ReaderBin reader)
 		{
 			Record record = new Record();
             byte entriesHeader = reader.ReadByte();
@@ -201,7 +201,7 @@ namespace mini_java_compiler.Parse
             return record;
 		}
 		
-		private Entry ReadEntry(CalithaBinReader reader)
+		private Entry ReadEntry(ReaderBin reader)
 		{
 			Entry entry = EntryFactory.CreateEntry(reader);
 			if (entry == null)

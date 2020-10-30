@@ -50,7 +50,7 @@
     <Compile Include="ASDR\Parser.cs" />
     <Compile Include="Gramatica-Proyecto02.cs" />
     <Compile Include="Parse\content\ActionSubRecord.cs" />
-    <Compile Include="Parse\content\CGTContentException.cs" />
+    <Compile Include="Parse\content\ContentException.cs" />
     <Compile Include="Parse\content\CharacterSetRecord.cs" />
     <Compile Include="Parse\content\CharacterSetTable.cs" />
     <Compile Include="Parse\content\DFAStateRecord.cs" />

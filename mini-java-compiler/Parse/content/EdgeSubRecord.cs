@@ -13,7 +13,7 @@ namespace mini_java_compiler.Parse.content
 		{
 			list = new ArrayList();
 			if ((record.Entries.Count-start) % 3 != 0)
-				throw new CGTContentException("Numero invalido de estados");
+				throw new ContentException("Numero invalido de estados");
 			for (int i=start;i<record.Entries.Count;i=i+3)
 			{
 				EdgeSubRecord edgeRecord = new EdgeSubRecord(record.Entries[i],record.Entries[i+1]);

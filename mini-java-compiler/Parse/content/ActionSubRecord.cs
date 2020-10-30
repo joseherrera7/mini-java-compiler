@@ -14,7 +14,7 @@ namespace mini_java_compiler.Parse.content
 		{
 			list = new ArrayList();
 			if ((record.Entries.Count-start) % 4 != 0)
-				throw new CGTContentException("Numero invalido de estados en LR1");
+				throw new ContentException("Numero invalido de estados en LR1");
 			for (int i=start;i<record.Entries.Count;i=i+4)
 			{
 				ActionSubRecord actionRecord = new ActionSubRecord(record.Entries[i],
@@ -58,10 +58,10 @@ namespace mini_java_compiler.Parse.content
 		public TableCounts(Record record)
 		{
 			if (record.Entries.Count != 6)
-				throw new CGTContentException("Numero de tablas incorrecto");
+				throw new ContentException("Numero de tablas incorrecto");
 			byte header = record.Entries[0].ToByteValue();
 			if (header != 84) //'T'
-				throw new CGTContentException("Invalido");
+				throw new ContentException("Invalido");
 			this.symbolTable = record.Entries[1].ToIntValue();
 			this.characterSetTable = record.Entries[2].ToIntValue();
 			this.ruleTable = record.Entries[3].ToIntValue();
@@ -90,7 +90,7 @@ namespace mini_java_compiler.Parse.content
 		public CGTContent(CGTStructure structure)
 		{
 			if (structure.Records.Count < 3)
-				throw new CGTContentException("El archivo no tiene nada");
+				throw new ContentException("El archivo no tiene nada");
 			parameters = new Parameters(structure.Records[0]);
 			tableCounts = new TableCounts(structure.Records[1]);
 
@@ -102,7 +102,7 @@ namespace mini_java_compiler.Parse.content
 			int lalrStart = dfaStart + TableCounts.DFATable;
 			int specifiedRecordCount = lalrStart + TableCounts.LALRTable;
 			if (structure.Records.Count != specifiedRecordCount)
-				throw new CGTContentException("Numero invalido de entradas");
+				throw new ContentException("Numero invalido de entradas");
 
 			characterSetTable = new CharacterSetTable(structure,
 													  characterSetStart,

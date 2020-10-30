@@ -11,7 +11,7 @@ namespace mini_java_compiler.Parse.structure
 		{
 		}
 
-		static public Entry CreateEntry(CalithaBinReader reader)
+		static public Entry CreateEntry(ReaderBin reader)
 		{
 			Entry entry = null;
 			byte entryType = reader.ReadByte();

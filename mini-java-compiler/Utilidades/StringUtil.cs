@@ -3,23 +3,12 @@ using System.Text.RegularExpressions;
 
 namespace mini_java_compiler.Utilidades
 {
-	/// <summary>
-	/// StringUtil contains a selection of convenience methods for dealing with strings.
-	/// </summary>
 	public sealed class StringUtil
 	{
 
 		private StringUtil()
 		{}
 
-		/// <summary>
-		/// Replaces the characters null, alert, backspace, form feed,
-		/// newline, carriage return, horizontal tab and vertical tab
-		/// with their escaped version. This allows you to show
-		/// the escape characters.
-		/// </summary>
-		/// <param name="str"></param>
-		/// <returns></returns>
 		public static string ShowEscapeChars(string str)
 		{
 			Regex regex = new Regex("\0|\a|\b|\f|\n|\r|\t|\v");
