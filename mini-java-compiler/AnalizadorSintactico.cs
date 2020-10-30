@@ -7,6 +7,7 @@ using mini_java_compiler.Parse;
 using System.Windows.Forms;
 
 namespace mini_java_compiler
+
 {
 
     [Serializable()]
@@ -287,18 +288,21 @@ namespace mini_java_compiler
             parser.OnTokenError += new LR1Parser.TokenErrorHandler(TokenErrorEvent);
             parser.OnParseError += new LR1Parser.ParseErrorHandler(ParseErrorEvent);
         }
-
+        public string MensajeOK = String.Empty;
         public void Parse(string source)
         {
-            NonterminalToken token = parser.Parse(source);
+             
+        NonterminalToken token = parser.Parse(source);
             if (token != null)
             {
                 Object obj = CreateObject(token);
                 //todo: Use your object any way you like
-                MENSAJE = MessageBox.Show("Se analizo bien correctamente");
+               
+                MensajeOK += "Se analizo bien correctamente \n";
             }
         }
 
+        public string Correcto { get => MensajeOK; set => MensajeOK = value; }
         private Object CreateObject(Token token)
         {
             if (token is TerminalToken)
@@ -1278,15 +1282,15 @@ namespace mini_java_compiler
             throw new RuleException("Regla desconocida");
         }
 
-        private void TokenErrorEvent(LR1Parser parser, TokenErrorEventArgs args)
+        public void TokenErrorEvent(LR1Parser parser, TokenErrorEventArgs args)
         { 
-            string message = "Error de token no reconocido: '"+args.Token.ToString()+"'";
+            MensajeOK += "Símbolo no reconocido, arregle su léxico antes de analizar sintxis. \n";
         }
 
-        private void ParseErrorEvent(LR1Parser parser, ParseErrorEventArgs args)
+        public void ParseErrorEvent(LR1Parser parser, ParseErrorEventArgs args)
         {
-            string message = "No se pudo reconocer el token: '" + args.UnexpectedToken.ToString() + "'" + "en : "  +args.UnexpectedToken.Location ; 
-            MessageBox.Show(message);
+            MensajeOK += "No se pudo reconocer el token: '" + args.UnexpectedToken.ToString() + "'" + "\n"; 
+       
         }
 
     }

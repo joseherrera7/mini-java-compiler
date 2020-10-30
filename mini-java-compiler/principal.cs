@@ -15,7 +15,7 @@ namespace mini_java_compiler
         public Principal()
         {
             InitializeComponent();
-            analizador = new AnalizadorSintactico("C:\\Users\\jcher\\source\\repos\\mini-java-compiler\\Gramatica\\Proyecto02.cgt");
+            analizador = new AnalizadorSintactico(Application.StartupPath + "\\Gramatica\\Proyecto02.cgt");
         }
 
         private void btnLoadFile_Click(object sender, EventArgs e)
@@ -119,6 +119,12 @@ namespace mini_java_compiler
 
         private void btnASDR_Click(object sender, EventArgs e)
         {
+            string lineasError = analizador.Correcto;
+            rtxASDR.Text = analizador.Correcto;
+            rtxASDR.Text = lineasError;
+          
+
+
             /*prs.Empezar(rdr.GetListaTokens());
             MessageBox.Show("Se realizó el proceso correctamente.");
 
@@ -127,7 +133,7 @@ namespace mini_java_compiler
             rtxASDR.Text = lineasError;
             rtxASDR.Text = lineasError + lineasError2;*/
 
-            
+
         }
 
         private void rtxASDR_TextChanged(object sender, EventArgs e)
