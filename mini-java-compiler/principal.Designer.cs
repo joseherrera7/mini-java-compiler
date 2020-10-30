@@ -250,15 +250,15 @@
             this.label10.BackColor = System.Drawing.Color.Transparent;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.label10.Location = new System.Drawing.Point(689, 415);
+            this.label10.Location = new System.Drawing.Point(750, 432);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(318, 20);
+            this.label10.Size = new System.Drawing.Size(189, 20);
             this.label10.TabIndex = 17;
-            this.label10.Text = "ERRORES EN EL ARCHIVO (ASDR)";
+            this.label10.Text = "ERROR SINTACTICO";
             // 
             // rtxASDR
             // 
-            this.rtxASDR.Location = new System.Drawing.Point(548, 454);
+            this.rtxASDR.Location = new System.Drawing.Point(548, 470);
             this.rtxASDR.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rtxASDR.Name = "rtxASDR";
             this.rtxASDR.Size = new System.Drawing.Size(601, 131);

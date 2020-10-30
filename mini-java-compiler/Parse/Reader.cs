@@ -55,7 +55,7 @@ namespace mini_java_compiler.Parse
 				try
 				{
 					header = reader.ReadUnicodeString();
-					if (! header.StartsWith("Mini Compilador Java"))
+					if (! header.StartsWith("GOLD"))
 						throw new CGTStructureException("El encabezado del archivo es inválido");
 				}
 				catch (EndOfStreamException e)

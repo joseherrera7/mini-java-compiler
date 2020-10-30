@@ -295,7 +295,7 @@ namespace mini_java_compiler
             {
                 Object obj = CreateObject(token);
                 //todo: Use your object any way you like
-                MessageBox.Show("Se analizo bien correctamente");
+                MENSAJE = MessageBox.Show("Se analizo bien correctamente");
             }
         }
 
@@ -806,488 +806,486 @@ namespace mini_java_compiler
             {
                 case (int)RuleConstants.RULE_CHARACTERLITERAL_INDIRECTCHARLITERAL :
                 //<CharacterLiteral> ::= IndirectCharLiteral
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_CHARACTERLITERAL_STANDARDESCAPECHARLITERAL :
                 //<CharacterLiteral> ::= StandardEscapeCharLiteral
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_CHARACTERLITERAL_OCTALESCAPECHARLITERAL :
                 //<CharacterLiteral> ::= OctalEscapeCharLiteral
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_CHARACTERLITERAL_HEXESCAPECHARLITERAL :
                 //<CharacterLiteral> ::= HexEscapeCharLiteral
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_DECIMALINTEGERLITERAL_STARTWITHZERODECIMALINTEGERLITERAL :
                 //<DecimalIntegerLiteral> ::= StartWithZeroDecimalIntegerLiteral
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_DECIMALINTEGERLITERAL_STARTWITHNOZERODECIMALINTEGERLITERAL :
                 //<DecimalIntegerLiteral> ::= StartWithNoZeroDecimalIntegerLiteral
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_FLOATPOINTLITERAL_FLOATINGPOINTLITERAL :
                 //<FloatPointLiteral> ::= FloatingPointLiteral
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_FLOATPOINTLITERAL_FLOATINGPOINTLITERALEXPONENT :
                 //<FloatPointLiteral> ::= FloatingPointLiteralExponent
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_INTEGERLITERAL :
                 //<IntegerLiteral> ::= <DecimalIntegerLiteral>
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_INTEGERLITERAL_HEXINTEGERLITERAL :
                 //<IntegerLiteral> ::= HexIntegerLiteral
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_INTEGERLITERAL_OCTALINTEGERLITERAL :
                 //<IntegerLiteral> ::= OctalIntegerLiteral
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_LITERAL :
                 //<Literal> ::= <IntegerLiteral>
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_LITERAL2 :
                 //<Literal> ::= <FloatPointLiteral>
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_LITERAL_BOOLEANLITERAL :
                 //<Literal> ::= BooleanLiteral
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_LITERAL3 :
                 //<Literal> ::= <CharacterLiteral>
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_LITERAL_STRINGLITERAL :
                 //<Literal> ::= StringLiteral
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_LITERAL_NULLLITERAL :
                 //<Literal> ::= NullLiteral
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_NUMERICTYPE :
                 //<NumericType> ::= <IntegralType>
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_PROGRAM :
                 //<Program> ::= <Decl> <DeclPrima>
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_DECLPRIMA :
                 //<DeclPrima> ::= <Decl>
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_DECL :
                 //<Decl> ::= <VariableDecl>
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_DECL2 :
                 //<Decl> ::= <FunctionDecl>
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_DECL3 :
                 //<Decl> ::= <ConstDecl>
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_DECL4 :
                 //<Decl> ::= <ClassDecl>
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_DECL5 :
                 //<Decl> ::= <InterfaceDecl>
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_VARIABLEDECL_SEMI :
                 //<VariableDecl> ::= <Variable> ';' <VariableDecl>
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_VARIABLE_IDENTIFIER :
                 //<Variable> ::= <Type> Identifier
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_CONSTDECL_STATIC_IDENTIFIER_SEMI :
                 //<ConstDecl> ::= static <IntegralType> Identifier ';' <ConstDecl>
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_INTEGRALTYPE_INT :
                 //<IntegralType> ::= int
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_CONSTTYPE_DOUBLE :
                 //<ConstType> ::= double
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_CONSTTYPE_BOOLEAN :
                 //<ConstType> ::= boolean
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_CONSTTYPE_STRING :
                 //<ConstType> ::= string
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_TYPE_INT :
                 //<Type> ::= int
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_TYPE_DOUBLE :
                 //<Type> ::= double
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_TYPE_BOOLEAN :
                 //<Type> ::= boolean
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_TYPE_STRING :
                 //<Type> ::= string
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_TYPE_IDENTIFIER :
                 //<Type> ::= Identifier
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_TYPE_LBRACKETRBRACKET :
                 //<Type> ::= <Type> '[]'
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_FUNCTIONDECL_IDENTIFIER_LPAREN_RPAREN :
                 //<FunctionDecl> ::= <Type> Identifier '(' <Formals> ')' <StmtBlock>
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_FUNCTIONDECL_VOID_IDENTIFIER_LPAREN_RPAREN :
                 //<FunctionDecl> ::= void Identifier '(' <Formals> ')' <StmtBlock>
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_FORMALS_COMMA :
                 //<Formals> ::= <Variable> ',' <Formals>
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_FORMALS :
                 //<Formals> ::= <Variable>
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_CLASSDECL_CLASS_IDENTIFIER_LBRACE_RBRACE :
                 //<ClassDecl> ::= class Identifier <Extends> <Implements> '{' <Field> '}'
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_EXTENDS_EXTENDS_IDENTIFIER :
                 //<Extends> ::= extends Identifier
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_EXTENDS :
                 //<Extends> ::= 
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_IMPLEMENTS_IMPLEMENTS_IDENTIFIER_COMMA :
                 //<Implements> ::= implements Identifier ',' <ImplementsPrima>
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_IMPLEMENTSPRIMA :
                 //<ImplementsPrima> ::= <Implements>
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_FIELD :
                 //<Field> ::= <VariableDecl> <Field>
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_FIELD2 :
                 //<Field> ::= <FunctionDecl> <Field>
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_FIELD3 :
                 //<Field> ::= <ClassDecl> <Field>
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_INTERFACEDECL_INTERFACE_IDENTIFIER_LBRACE_RBRACE :
                 //<InterfaceDecl> ::= interface Identifier '{' <Prototype> '}'
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_PROTOTYPE_IDENTIFIER_LPAREN_RPAREN_SEMI :
                 //<Prototype> ::= <Type> Identifier '(' <Formals> ')' ';' <Prototype>
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_PROTOTYPE_VOID_IDENTIFIER_LPAREN_RPAREN_SEMI :
                 //<Prototype> ::= void Identifier '(' <Formals> ')' ';' <Prototype>
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_STMTBLOCK_LBRACE_RBRACE :
                 //<StmtBlock> ::= '{' <VariableDecl> <ConstDecl> <Stmt> '}'
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_STMT_SEMI :
                 //<Stmt> ::= <ExprStmt> ';' <Stmt>
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_EXPRSTMT :
                 //<ExprStmt> ::= <Expr>
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_STMT :
                 //<Stmt> ::= <ifStmt> <Stmt>
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_STMT2 :
                 //<Stmt> ::= <WhileStmt> <Stmt>
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_STMT3 :
                 //<Stmt> ::= <ForStmt> <Stmt>
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_STMT4 :
                 //<Stmt> ::= <BreakStmt> <Stmt>
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_STMT5 :
                 //<Stmt> ::= <ReturnStmt> <Stmt>
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_STMT6 :
                 //<Stmt> ::= <PrintStmt> <Stmt>
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_STMT7 :
                 //<Stmt> ::= <StmtBlock> <Stmt>
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_IFSTMT_IF_LPAREN_RPAREN :
                 //<ifStmt> ::= if '(' <Expr> ')' <Stmt> <ElseStmt>
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_ELSESTMT_ELSE :
                 //<ElseStmt> ::= else <Stmt>
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_ELSESTMT :
                 //<ElseStmt> ::= 
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_WHILESTMT_WHILE_LPAREN_RPAREN :
                 //<WhileStmt> ::= while '(' <Expr> ')' <Stmt>
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_FORSTMT_FOR_LPAREN_SEMI_SEMI_RPAREN :
                 //<ForStmt> ::= for '(' <Expr> ';' <Expr> ';' <Expr> ')' <Stmt>
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_RETURNSTMT_RETURN_SEMI :
                 //<ReturnStmt> ::= return <Expr> ';'
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_BREAKSTMT_BREAK_SEMI :
                 //<BreakStmt> ::= break ';'
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_PRINTSTMT_SYSTEMDOTOUTDOTPRINTLN_LPAREN_COMMA_RPAREN_SEMI :
                 //<PrintStmt> ::= 'System.out.println' '(' <Expr> <ExprPrima> ',' ')' ';'
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_EXPRPRIMA :
                 //<ExprPrima> ::= <Expr>
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_EXPR_EQ :
                 //<Expr> ::= <LValue> '=' <Expr>
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_EXPR :
                 //<Expr> ::= <Constant>
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_EXPR2 :
                 //<Expr> ::= <LValue>
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_EXPR_THIS :
                 //<Expr> ::= this
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_EXPR_LPAREN_RPAREN :
                 //<Expr> ::= '(' <Expr> ')'
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_EXPR_PLUS :
                 //<Expr> ::= <Expr> '+' <Expr>
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_EXPR_DIV :
                 //<Expr> ::= <Expr> '/' <Expr>
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_EXPR_PERCENT :
                 //<Expr> ::= <Expr> '%' <Expr>
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_EXPR_MINUS :
                 //<Expr> ::= '-' <Expr>
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_EXPR_GT :
                 //<Expr> ::= <Expr> '>' <Expr>
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_EXPR_GTEQ :
                 //<Expr> ::= <Expr> '>=' <Expr>
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_EXPR_EXCLAMEQ :
                 //<Expr> ::= <Expr> '!=' <Expr>
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_EXPR_PIPEPIPE :
                 //<Expr> ::= <Expr> '||' <Expr>
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_EXPR_EXCLAM :
                 //<Expr> ::= '!' <Expr>
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_EXPR_NEW_LPAREN_IDENTIFIER_RPAREN :
                 //<Expr> ::= New '(' Identifier ')'
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_LVALUE_IDENTIFIER :
                 //<LValue> ::= Identifier
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_LVALUE_DOT_IDENTIFIER :
                 //<LValue> ::= <Expr> '.' Identifier
-                //todo: Create a new object using the stored tokens.
+               
                 return null;
 
                 case (int)RuleConstants.RULE_CONSTANT :
                 //<Constant> ::= <IntegerLiteral>
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_CONSTANT2 :
                 //<Constant> ::= <FloatPointLiteral>
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
                 case (int)RuleConstants.RULE_CONSTANT_BOOLEANLITERAL :
                 //<Constant> ::= BooleanLiteral
-                //todo: Create a new object using the stored tokens.
+               
                 return null;
 
                 case (int)RuleConstants.RULE_CONSTANT_STRINGLITERAL :
                 //<Constant> ::= StringLiteral
-                //todo: Create a new object using the stored tokens.
+               
                 return null;
 
                 case (int)RuleConstants.RULE_CONSTANT_NULLLITERAL :
                 //<Constant> ::= NullLiteral
-                //todo: Create a new object using the stored tokens.
+                
                 return null;
 
             }
-            throw new RuleException("Unknown rule");
+            throw new RuleException("Regla desconocida");
         }
 
         private void TokenErrorEvent(LR1Parser parser, TokenErrorEventArgs args)
         { 
-            string message = "Token error with input: '"+args.Token.ToString()+"'";
-            //todo: Report message to UI?
+            string message = "Error de token no reconocido: '"+args.Token.ToString()+"'";
         }
 
         private void ParseErrorEvent(LR1Parser parser, ParseErrorEventArgs args)
         {
-            string message = "Parse error caused by token: '" + args.UnexpectedToken.ToString() + "'" + " en :" + args.UnexpectedToken.Location.ToString(); 
-            //todo: Report message to UI?
+            string message = "No se pudo reconocer el token: '" + args.UnexpectedToken.ToString() + "'" + "en : "  +args.UnexpectedToken.Location ; 
             MessageBox.Show(message);
         }
 
