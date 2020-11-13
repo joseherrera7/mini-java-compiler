@@ -1,11 +1,48 @@
-int a;
+package com.example.demo;
 
-void main() {
-   int b;
-   int a;
-   int d;
+public class Employee {
 
-   d = 2 + 3 * 4 - 6;
-   b = 3;
-   a = b + 2;
+	private Long id;
+	private String firstName;
+	private String lastName;
+	private String description;
+
+	public Employee(String firstName, String lastName, String description) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.description = description;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public  setFirstName(String firstName) void{
+		this.firstName = firstName;
+	}
+
+	public  getLastName() String{
+		return lastName;
+	}
+
+	public  setLastName(String lastName) void {
+		this.lastName = lastName;
+	}
+
+	public  getDescription() String {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 }

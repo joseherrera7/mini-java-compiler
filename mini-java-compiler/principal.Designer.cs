@@ -46,6 +46,7 @@
             this.btnASDR = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.rtxASDR = new System.Windows.Forms.RichTextBox();
+            this.btnLimpiar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnLoadFile
@@ -57,10 +58,10 @@
             this.btnLoadFile.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnLoadFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLoadFile.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnLoadFile.Location = new System.Drawing.Point(137, 247);
-            this.btnLoadFile.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnLoadFile.Location = new System.Drawing.Point(183, 304);
+            this.btnLoadFile.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnLoadFile.Name = "btnLoadFile";
-            this.btnLoadFile.Size = new System.Drawing.Size(93, 31);
+            this.btnLoadFile.Size = new System.Drawing.Size(124, 38);
             this.btnLoadFile.TabIndex = 0;
             this.btnLoadFile.Text = "Load File";
             this.btnLoadFile.UseVisualStyleBackColor = false;
@@ -72,10 +73,9 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.label1.Location = new System.Drawing.Point(80, 210);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(107, 258);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(196, 17);
+            this.label1.Size = new System.Drawing.Size(227, 20);
             this.label1.TabIndex = 1;
             this.label1.Text = "Paso 1: Cargue el archivo";
             // 
@@ -85,10 +85,9 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.label2.Location = new System.Drawing.Point(90, 289);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(120, 356);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(184, 17);
+            this.label2.Size = new System.Drawing.Size(214, 20);
             this.label2.TabIndex = 3;
             this.label2.Text = "Paso 2: Crear el archivo";
             // 
@@ -101,10 +100,10 @@
             this.btn_createFile.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn_createFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_createFile.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btn_createFile.Location = new System.Drawing.Point(137, 318);
-            this.btn_createFile.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_createFile.Location = new System.Drawing.Point(183, 391);
+            this.btn_createFile.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_createFile.Name = "btn_createFile";
-            this.btn_createFile.Size = new System.Drawing.Size(93, 31);
+            this.btn_createFile.Size = new System.Drawing.Size(124, 38);
             this.btn_createFile.TabIndex = 4;
             this.btn_createFile.Text = "Create File";
             this.btn_createFile.UseVisualStyleBackColor = false;
@@ -116,10 +115,9 @@
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(421, 17);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(561, 21);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(192, 23);
+            this.label3.Size = new System.Drawing.Size(238, 29);
             this.label3.TabIndex = 5;
             this.label3.Text = "Mini Java Compiler";
             // 
@@ -129,10 +127,9 @@
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label4.Location = new System.Drawing.Point(288, 63);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(384, 78);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(494, 45);
+            this.label4.Size = new System.Drawing.Size(578, 54);
             this.label4.TabIndex = 6;
             this.label4.Text = "Instrucciones: El siguiente programa leerá un archivo de texto y lo analizará\r\nlí" +
     "nea por linea, devolviendo un archivo con todo el análisis\r\ndel código Java.";
@@ -144,10 +141,9 @@
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.label5.Location = new System.Drawing.Point(6, 122);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Location = new System.Drawing.Point(8, 150);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(0, 15);
+            this.label5.Size = new System.Drawing.Size(0, 18);
             this.label5.TabIndex = 7;
             // 
             // label6
@@ -156,10 +152,9 @@
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.DarkOrange;
-            this.label6.Location = new System.Drawing.Point(13, 369);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Location = new System.Drawing.Point(17, 454);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(361, 26);
+            this.label6.Size = new System.Drawing.Size(464, 34);
             this.label6.TabIndex = 8;
             this.label6.Text = "NOTA: El archivo resultante llevará el nombre de result \r\ny se creará en una carp" +
     "eta llamada Resultado, en el Escritorio";
@@ -170,10 +165,9 @@
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.ForeColor = System.Drawing.SystemColors.Window;
-            this.label7.Location = new System.Drawing.Point(315, 516);
-            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Location = new System.Drawing.Point(420, 635);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(394, 13);
+            this.label7.Size = new System.Drawing.Size(528, 17);
             this.label7.TabIndex = 9;
             this.label7.Text = "José Herrera y Renato Cabrera. Universidad Rafael Landívar. Compiladores 2020.";
             // 
@@ -182,10 +176,9 @@
             this.estado.AutoSize = true;
             this.estado.BackColor = System.Drawing.Color.Transparent;
             this.estado.ForeColor = System.Drawing.Color.White;
-            this.estado.Location = new System.Drawing.Point(244, 257);
-            this.estado.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.estado.Location = new System.Drawing.Point(325, 316);
             this.estado.Name = "estado";
-            this.estado.Size = new System.Drawing.Size(103, 13);
+            this.estado.Size = new System.Drawing.Size(136, 17);
             this.estado.TabIndex = 10;
             this.estado.Text = "Estado: No Cargado";
             // 
@@ -194,19 +187,18 @@
             this.creado.AutoSize = true;
             this.creado.BackColor = System.Drawing.Color.Transparent;
             this.creado.ForeColor = System.Drawing.Color.White;
-            this.creado.Location = new System.Drawing.Point(246, 328);
-            this.creado.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.creado.Location = new System.Drawing.Point(328, 404);
             this.creado.Name = "creado";
-            this.creado.Size = new System.Drawing.Size(103, 13);
+            this.creado.Size = new System.Drawing.Size(136, 17);
             this.creado.TabIndex = 11;
             this.creado.Text = "Estado: No Cargado";
             // 
             // txtErrores
             // 
-            this.txtErrores.Location = new System.Drawing.Point(411, 171);
-            this.txtErrores.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtErrores.Location = new System.Drawing.Point(548, 210);
+            this.txtErrores.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtErrores.Name = "txtErrores";
-            this.txtErrores.Size = new System.Drawing.Size(452, 107);
+            this.txtErrores.Size = new System.Drawing.Size(601, 131);
             this.txtErrores.TabIndex = 12;
             this.txtErrores.Text = "";
             this.txtErrores.TextChanged += new System.EventHandler(this.txtErrores_TextChanged);
@@ -217,10 +209,9 @@
             this.label8.BackColor = System.Drawing.Color.Transparent;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.label8.Location = new System.Drawing.Point(100, 165);
-            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label8.Location = new System.Drawing.Point(133, 203);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(167, 17);
+            this.label8.Size = new System.Drawing.Size(201, 20);
             this.label8.TabIndex = 13;
             this.label8.Text = "PROCESO DE CARGA";
             // 
@@ -230,10 +221,9 @@
             this.label9.BackColor = System.Drawing.Color.Transparent;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.label9.Location = new System.Drawing.Point(537, 137);
-            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label9.Location = new System.Drawing.Point(716, 169);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(206, 17);
+            this.label9.Size = new System.Drawing.Size(247, 20);
             this.label9.TabIndex = 14;
             this.label9.Text = "ERRORES EN EL ARCHIVO";
             // 
@@ -246,12 +236,12 @@
             this.btnASDR.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnASDR.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnASDR.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnASDR.Location = new System.Drawing.Point(593, 299);
-            this.btnASDR.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnASDR.Location = new System.Drawing.Point(791, 368);
+            this.btnASDR.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnASDR.Name = "btnASDR";
-            this.btnASDR.Size = new System.Drawing.Size(93, 31);
+            this.btnASDR.Size = new System.Drawing.Size(124, 38);
             this.btnASDR.TabIndex = 15;
-            this.btnASDR.Text = "ASDR";
+            this.btnASDR.Text = "Analizar";
             this.btnASDR.UseVisualStyleBackColor = false;
             this.btnASDR.Click += new System.EventHandler(this.btnASDR_Click);
             // 
@@ -261,29 +251,48 @@
             this.label10.BackColor = System.Drawing.Color.Transparent;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.label10.Location = new System.Drawing.Point(517, 337);
-            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label10.Location = new System.Drawing.Point(750, 432);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(265, 17);
+            this.label10.Size = new System.Drawing.Size(189, 20);
             this.label10.TabIndex = 17;
-            this.label10.Text = "ERRORES EN EL ARCHIVO (ASDR)";
+            this.label10.Text = "ERROR SINTACTICO";
             // 
             // rtxASDR
             // 
-            this.rtxASDR.Location = new System.Drawing.Point(411, 369);
-            this.rtxASDR.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rtxASDR.Location = new System.Drawing.Point(548, 470);
+            this.rtxASDR.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rtxASDR.Name = "rtxASDR";
-            this.rtxASDR.Size = new System.Drawing.Size(452, 107);
+            this.rtxASDR.Size = new System.Drawing.Size(601, 131);
             this.rtxASDR.TabIndex = 16;
             this.rtxASDR.Text = "";
+            this.rtxASDR.TextChanged += new System.EventHandler(this.rtxASDR_TextChanged);
+            // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.AllowDrop = true;
+            this.btnLimpiar.AutoEllipsis = true;
+            this.btnLimpiar.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.btnLimpiar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnLimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLimpiar.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnLimpiar.Location = new System.Drawing.Point(183, 524);
+            this.btnLimpiar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(124, 38);
+            this.btnLimpiar.TabIndex = 18;
+            this.btnLimpiar.Text = "Limpiar";
+            this.btnLimpiar.UseVisualStyleBackColor = false;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // Principal
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1005, 564);
+            this.ClientSize = new System.Drawing.Size(1340, 694);
+            this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.rtxASDR);
             this.Controls.Add(this.btnASDR);
@@ -302,9 +311,10 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnLoadFile);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Principal";
             this.Text = "Mini Java Compiler";
+            this.Load += new System.EventHandler(this.Principal_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -329,6 +339,7 @@
         private System.Windows.Forms.Button btnASDR;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.RichTextBox rtxASDR;
+        private System.Windows.Forms.Button btnLimpiar;
     }
 }
 

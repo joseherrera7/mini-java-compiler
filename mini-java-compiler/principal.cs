@@ -11,26 +11,32 @@ namespace mini_java_compiler
         private string lineas = string.Empty;
         private Reader rdr = new Reader();
         private Parser prs = new Parser();
+        private AnalizadorSintactico analizador;
+
         public Principal()
         {
             InitializeComponent();
+            analizador = new AnalizadorSintactico(Application.StartupPath + "\\Gramatica\\Proyecto02.txt");
         }
 
         private void btnLoadFile_Click(object sender, EventArgs e)
         {
             
+
             try
             {
                 using (OpenFileDialog openFileDialog = new OpenFileDialog())
                 {
+
                     openFileDialog.InitialDirectory = "c:\\";
                     openFileDialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
                     openFileDialog.FilterIndex = 2;
                     openFileDialog.RestoreDirectory = true;
+                    string archivo = String.Empty;
 
                     if (openFileDialog.ShowDialog() == DialogResult.OK)
                     {
-                        //Read the contents of the file into a stream
+                        
                         var fileStream = openFileDialog.OpenFile();
 
                         using (StreamReader reader = new StreamReader(fileStream))
@@ -41,12 +47,19 @@ namespace mini_java_compiler
                             {
                                 lineCounter++;
                                 fileContent = reader.ReadLine();
+                                archivo += fileContent;
                                 rdr.ReadProgram(fileContent, lineCounter);
+                                
                             }
+                            
 
                             reader.Close();
+                            
                         }
+
+                        analizador.Parse(archivo);
                     }
+                    
                 }
                 
                 MessageBox.Show("¡Se leyó el archivo correctamente! Proceda a crear el archivo de salida.");
@@ -108,13 +121,36 @@ namespace mini_java_compiler
 
         private void btnASDR_Click(object sender, EventArgs e)
         {
-            prs.Empezar(rdr.GetListaTokens());
+            string lineasError = analizador.Correcto;
+            rtxASDR.Text = analizador.Correcto;
+            rtxASDR.Text = lineasError;
+          
+
+
+            /*prs.Empezar(rdr.GetListaTokens());
             MessageBox.Show("Se realizó el proceso correctamente.");
 
             string lineasError = prs.Error;
             string lineasError2 = prs.Error2;
             rtxASDR.Text = lineasError;
-            rtxASDR.Text = lineasError + lineasError2;
+            rtxASDR.Text = lineasError + lineasError2;*/
+
+
+        }
+
+        private void rtxASDR_TextChanged(object sender, EventArgs e)
+        {
+       
+        }
+
+        private void Principal_Load(object sender, EventArgs e)
+        {
+
+        }
+  
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            Application.Restart();
         }
     }
 }

@@ -48,9 +48,49 @@
   <ItemGroup>
     <Compile Include="ElToken.cs" />
     <Compile Include="ASDR\Parser.cs" />
-    <Compile Include="Parse\Calculos.cs" />
-    <Compile Include="Parse\Gramatica.cs" />
-    <Compile Include="Parse\RecursosGramatica.cs" />
+    <Compile Include="Analizador.cs" />
+    <Compile Include="Parse\content\ActionSubRecord.cs" />
+    <Compile Include="Parse\content\ContentException.cs" />
+    <Compile Include="Parse\content\CharacterSetRecord.cs" />
+    <Compile Include="Parse\content\CharacterSetTable.cs" />
+    <Compile Include="Parse\content\DFAStateRecord.cs" />
+    <Compile Include="Parse\content\DFAStateTable.cs" />
+    <Compile Include="Parse\content\EdgeSubRecord.cs" />
+    <Compile Include="Parse\content\InitialStatesRecord.cs" />
+    <Compile Include="Parse\content\LR1StateRecord.cs" />
+    <Compile Include="Parse\content\LR1StateTable.cs" />
+    <Compile Include="Parse\content\Parameters.cs" />
+    <Compile Include="Parse\content\RuleRecord.cs" />
+    <Compile Include="Parse\content\RuleTable.cs" />
+    <Compile Include="Parse\content\SymbolRecord.cs" />
+    <Compile Include="Parse\content\SymbolTable.cs" />
+    <Compile Include="Parse\dfa\DFA.cs" />
+    <Compile Include="Parse\dfa\State.cs" />
+    <Compile Include="Parse\dfa\Transition.cs" />
+    <Compile Include="Parse\LR1Parser.cs" />
+    <Compile Include="Parse\lalr\AcceptAction.cs" />
+    <Compile Include="Parse\lalr\Action.cs" />
+    <Compile Include="Parse\lalr\ActionFactory.cs" />
+    <Compile Include="Parse\lalr\GotoAction.cs" />
+    <Compile Include="Parse\lalr\ReduceAction.cs" />
+    <Compile Include="Parse\lalr\ShiftAction.cs" />
+    <Compile Include="Parse\lalr\State.cs" />
+    <Compile Include="Parse\Location.cs" />
+    <Compile Include="Parse\ParserEvents.cs" />
+    <Compile Include="Parse\ParserException.cs" />
+    <Compile Include="Parse\Reader.cs" />
+    <Compile Include="Parse\Rule.cs" />
+    <Compile Include="Parse\StateStack.cs" />
+    <Compile Include="Parse\StringTokenizer.cs" />
+    <Compile Include="Parse\structure\CGTStructure.cs" />
+    <Compile Include="Parse\structure\CGTStructureException.cs" />
+    <Compile Include="Parse\structure\Entry.cs" />
+    <Compile Include="Parse\structure\EntryFactory.cs" />
+    <Compile Include="Parse\structure\Record.cs" />
+    <Compile Include="Parse\Symbol.cs" />
+    <Compile Include="Parse\SymbolFactory.cs" />
+    <Compile Include="Parse\Token.cs" />
+    <Compile Include="Parse\TokenStack.cs" />
     <Compile Include="Principal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -60,6 +100,16 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reader.cs" />
+    <Compile Include="Utilidades\AbstractSet.cs" />
+    <Compile Include="Utilidades\ArraySet.cs" />
+    <Compile Include="Utilidades\BinaryReader.cs" />
+    <Compile Include="Utilidades\FileUtil.cs" />
+    <Compile Include="Utilidades\HashSet.cs" />
+    <Compile Include="Utilidades\IntegerList.cs" />
+    <Compile Include="Utilidades\ISet.cs" />
+    <Compile Include="Utilidades\ResourceUtil.cs" />
+    <Compile Include="Utilidades\StringUtil.cs" />
+    <Compile Include="Utilidades\Util.cs" />
     <EmbeddedResource Include="Principal.resx">
       <DependentUpon>Principal.cs</DependentUpon>
     </EmbeddedResource>
