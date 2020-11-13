@@ -48,7 +48,7 @@
   <ItemGroup>
     <Compile Include="ElToken.cs" />
     <Compile Include="ASDR\Parser.cs" />
-    <Compile Include="AnalizadorSintactico.cs" />
+    <Compile Include="Analizador.cs" />
     <Compile Include="Parse\content\ActionSubRecord.cs" />
     <Compile Include="Parse\content\ContentException.cs" />
     <Compile Include="Parse\content\CharacterSetRecord.cs" />
