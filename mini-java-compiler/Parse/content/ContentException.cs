@@ -1,26 +1,24 @@
 using System;
 using System.Runtime.Serialization;
-using mini_java_compiler.Parse.content;
-using mini_java_compiler.Parse.structure;
 
 namespace mini_java_compiler.Parse.content
 {
-	[Serializable()]
-	public class ContentException : System.IO.IOException
-	{
-		public ContentException(string message) : base(message)
-		{
-		}
+    [Serializable()]
+    public class ContentException : System.IO.IOException
+    {
+        public ContentException(string message) : base(message)
+        {
+        }
 
-		public ContentException(string message,
-			Exception inner) : base(message, inner)
-		{
-		}
+        public ContentException(string message,
+            Exception inner) : base(message, inner)
+        {
+        }
 
-		protected ContentException(SerializationInfo info,
-			StreamingContext context) : base(info, context)
-		{
-		}
+        protected ContentException(SerializationInfo info,
+            StreamingContext context) : base(info, context)
+        {
+        }
 
-	}
+    }
 }

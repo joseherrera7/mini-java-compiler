@@ -257,6 +257,9 @@ namespace mini_java_compiler
             stream.Close();
         }
 
+        private string MensajeOK = String.Empty;
+        private bool hayError = false;
+
         public AnalizadorSintactico(Stream stream)
         {
             Init(stream);
@@ -276,10 +279,12 @@ namespace mini_java_compiler
         public void Parse(string source)
         {
             NonterminalToken token = parser.Parse(source);
+            SymbolCollection Tabla = parser.Symbols;
             if (token != null)
             {
                 Object obj = CreateObject(token);
                 //todo: Use your object any way you like
+                MensajeOK += "Se analizo correctamente \n";
             }
         }
 
@@ -1184,15 +1189,17 @@ namespace mini_java_compiler
 
         private void TokenErrorEvent(LR1Parser parser, TokenErrorEventArgs args)
         {
-            string message = "Token error with input: '"+args.Token.ToString()+"'";
+            MensajeOK += "Símbolo no reconocido, arregle su léxico antes de analizar sintxis. \n";
             //todo: Report message to UI?
         }
 
         private void ParseErrorEvent(LR1Parser parser, ParseErrorEventArgs args)
         {
-            string message = "Parse error caused by token: '"+args.UnexpectedToken.ToString()+"'";
+            MensajeOK += "No se pudo reconocer el token: '" + args.UnexpectedToken.ToString() + "'" + "\n";
+            hayError = true;
             //todo: Report message to UI?
         }
 
+        public string Correcto { get => MensajeOK; set => MensajeOK = value; }
     }
 }

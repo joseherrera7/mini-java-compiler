@@ -25,7 +25,7 @@ namespace mini_java_compiler
         public bool esMultilinea = false;
         private bool cadenaAbrir = false;
         private string errores = String.Empty;
-        
+
 
         private Dictionary<string, string> tokens = new Dictionary<string, string>();
 
@@ -593,6 +593,11 @@ namespace mini_java_compiler
         private bool BufferEsCorrecto(string buffer)
         {
             return Segmentation2(buffer) != 0 ? true : false;
+        }
+
+        public Dictionary<string, string> getSimbolos()
+        {
+            return tokens;
         }
     }
 }

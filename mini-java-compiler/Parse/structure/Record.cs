@@ -1,79 +1,76 @@
-using System;
-using System.Text;
 using System.Collections;
-using mini_java_compiler.Parse.content;
-using mini_java_compiler.Parse.structure;
+using System.Text;
 
 namespace mini_java_compiler.Parse.structure
 {
 
-	public class RecordCollection : IEnumerable
-	{
-		private IList list;
+    public class RecordCollection : IEnumerable
+    {
+        private IList list;
 
-		public RecordCollection()
-		{
-			list = new ArrayList();
-		}
-		
-		public IEnumerator GetEnumerator()
-		{
-			return list.GetEnumerator();
-		}
-		
-		public int Add(Record record)
-		{
-			return list.Add(record);
-		}
-		
-		public override string ToString()
-		{
-			StringBuilder str = new StringBuilder();
-			str.Append("Records:\n");
-			foreach (Record record in this)
-			{
-				str.Append("***START RECORD***\n");
-				str.Append(record.ToString());                
-				str.Append("***END RECORD***\n");
-			}
-			return str.ToString();
-		}			
+        public RecordCollection()
+        {
+            list = new ArrayList();
+        }
 
-		public Record Get(int index)
-		{
-			if (index < 0 || index >= list.Count)
-				return null;
-			else
-				return list[index] as Record;
-		}
-			
+        public IEnumerator GetEnumerator()
+        {
+            return list.GetEnumerator();
+        }
 
-	
-		public Record this[int index]
-		{
-			get
-			{
-				return Get(index);
-			}
-		}
-		
-		public int Count { get{return list.Count;} }
-	}
+        public int Add(Record record)
+        {
+            return list.Add(record);
+        }
 
-	public class Record
-	{
-		private EntryCollection entries;
+        public override string ToString()
+        {
+            StringBuilder str = new StringBuilder();
+            str.Append("Records:\n");
+            foreach (Record record in this)
+            {
+                str.Append("***START RECORD***\n");
+                str.Append(record.ToString());
+                str.Append("***END RECORD***\n");
+            }
+            return str.ToString();
+        }
 
-		public Record()
-		{
-			this.entries = new EntryCollection();
-		}
-		
-		public override string ToString()
-		{
-			return entries.ToString();
-		}
-		
-		public EntryCollection Entries{ get{return entries;} }
-	}
+        public Record Get(int index)
+        {
+            if (index < 0 || index >= list.Count)
+                return null;
+            else
+                return list[index] as Record;
+        }
+
+
+
+        public Record this[int index]
+        {
+            get
+            {
+                return Get(index);
+            }
+        }
+
+        public int Count { get { return list.Count; } }
+    }
+
+    public class Record
+    {
+        private EntryCollection entries;
+
+        public Record()
+        {
+            this.entries = new EntryCollection();
+        }
+
+        public override string ToString()
+        {
+            return entries.ToString();
+        }
+
+        public EntryCollection Entries { get { return entries; } }
+    }
 }

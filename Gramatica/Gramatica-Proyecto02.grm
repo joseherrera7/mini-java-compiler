@@ -1,48 +1,83 @@
-ident = (Identifier)  
-intConstant = {Digit}+[ABCDEF]
-boolConstant = 'true' | 'false'
-doubleConstant = {Digit}+'.'{Digit}+
-stringConstant = {Printable}
-               
+{String Char} = {Printable} - ["]
+StartWithNoZeroDecimalIntegerLiteral = {NoZeroDigit}{Digit}*{LongTypeSuffix}?
+StartWithZeroDecimalIntegerLiteral = '0'{LongTypeSuffix}? 
+HexIntegerLiteral = '0'('x'|'X'){HexDigit}+{LongTypeSuffix}?
+FloatingPointLiteral   = {Digit}+'.'{Digit}+{FloatTypeSuffix}? | {Digit}+{FloatTypeSuffix} | '.'{Digit}+{FloatTypeSuffix}?
+FloatingPointLiteralExponent = {Digit}+'.'{Digit}+{ExponentPartIndicator}{Sign}?{Digit}+{FloatTypeSuffix}? | {Digit}+{ExponentPartIndicator}{Sign}?{Digit}+{FloatTypeSuffix}? | '.'{Digit}+{ExponentPartIndicator}{Sign}?{Digit}+{FloatTypeSuffix}?
+             
 
+ident = {IdLetter}{IdAlphaNumeric}*
+boolConstant = 'true' | 'false'
+stringConstant = '"'{String Char}*'"'
+        
+<DecimalIntegerLiteral> 
+        ::= StartWithZeroDecimalIntegerLiteral
+         |  StartWithNoZeroDecimalIntegerLiteral
+                
+<doubleConstant> 
+        ::= FloatingPointLiteral
+         |  FloatingPointLiteralExponent
+
+<intConstant> 
+        ::= <DecimalIntegerLiteral>
+         |  HexIntegerLiteral  
+
+             
+"Case Sensitive" = 'True'
+Comment Start = '/*'
+Comment End = '*/'
+Comment Line = '//'
 "Start Symbol" = <Program>
-<Program> ::= <Decl><DeclPrima>
-<DeclPrima> ::= <Decl> 
-<DeclPrima> ::= 
+<Program> ::= <Decls>
+<Decls> ::= <Decl>
+         | <Decls> <Decl>
 <Decl> ::= <VariableDecl>  
-<Decl> ::= <FunctionDecl> 
-<Decl> ::= <ConstDecl> 
-<Decl> ::= <ClassDecl>
-<Decl> ::= <InterfaceDecl>
-<VariableDecl> ::= <Variable> ';' <VariableDecl>
+        | <FunctionDecl> 
+        | <ConstDecl> 
+        | <ClassDecl>
+        | <InterfaceDecl>
+<VariableDecl> ::= <Variable> ';'
 <Variable> ::= <Type> ident
-<ConstDecl> ::= static <ConstType> ident ';' <ConstDecl>
-<ConstType> ::= int 
-<ConstType> ::= double
-<ConstType> ::= boolean
-<ConstType> ::= string
-<Type> ::= int
-<Type> ::= double
-<Type> ::= boolean
-<Type> ::= string
-<Type> ::= ident 
-<Type> ::= <Type> '[]' 
+<ConstDecl> ::= 'static' <ConstType> ident ';'
+<ConstType> ::= 'int' 
+        | 'double'
+        | 'boolean'
+        | 'string'
+<Type> ::= 'int'
+        | 'double'
+        | 'boolean'
+        | 'string'
+        | ident
+        | <Type> '[]' 
 <FunctionDecl> ::= <Type> ident '(' <Formals> ')' <StmtBlock> 
-<FunctionDecl> ::= void ident '(' <Formals> ')' <StmtBlock>
+        | 'void' ident '(' <Formals> ')' <StmtBlock>
 <Formals> ::= <Variable> ',' <Formals> 
-<Formals> ::= <Variable>
-<ClassDecl> ::= class ident <Extends> <Implements> '{' <Field> '}'
-<Extends> ::= extends ident | 
-<Implements> ::= implements ident ',' <ImplementsPrima>
-<ImplementsPrima> ::= <Implements> 
-<Field> ::= <VariableDecl> <Field>  
-<Field> ::= <FunctionDecl> <Field>
-<Field> ::= <ClassDecl> <Field> 
-<InterfaceDecl> ::= interface ident '{' <Prototype> '}'
-<Prototype> ::= <Type> ident '(' <Formals> ')' ';' <Prototype>
-<Prototype> ::= void ident '(' <Formals> ')' ';' <Prototype>
+        | <Variable>
+<ClassDecl> ::= 'class' ident <Extends> <Implements> '{' <Field> '}'
+             | 'class' ident <Implements> '{' <Field> '}'
+             | 'class' ident <Extends> '{' <Field> '}'
+             | 'class' ident '{' <Field> '}'
+             | 'class' ident '{' '}'
+<Extends> ::= 'extends' ident
+<Implements> ::= 'implements' <ImplementsPrima>
+<ImplementsPrima> ::= ident 
+                   | <ImplementsPrima> ',' ident
+<Field> ::= <FieldPrima>
+         | <Field> <FieldPrima> 
+<FieldPrima> ::=  <VariableDecl>
+        | <FunctionDecl>
+        | <ClassDecl> 
+<InterfaceDecl> ::= 'interface' ident '{' <Prototype> '}'
+                 | 'interface' ident '{' '}'
+<Prototype> ::= <PrototypePrima>
+             | <Prototype> <PrototypePrima>
+<PrototypePrima> ::=  <Type> ident '(' <Formals> ')' ';'
+                 | 'void' ident '(' <Formals> ')' ';'
 <StmtBlock> ::= '{' <VariableDecl> <ConstDecl> <Stmt> '}'
-<Stmt> ::= <ExprStmt> ';' <Stmt>
+             | '{' '}'
+<Stmt> ::=  <StmtPrima>
+        | <Stmt> <StmtPrima>
+<StmtPrima> ::= <ExprStmt> ';'
 <ExprStmt> ::= <Expr> |
 <Stmt> ::= <ifStmt> <Stmt>
 <Stmt> ::= <WhileStmt> <Stmt>
@@ -51,18 +86,18 @@ stringConstant = {Printable}
 <Stmt> ::= <ReturnStmt> <Stmt>
 <Stmt> ::= <PrintStmt> <Stmt>
 <Stmt> ::= <StmtBlock> <Stmt>
-<ifStmt> ::= if '(' <Expr> ')' <Stmt> <ElseStmt>
-<ElseStmt>::=  else <Stmt> |
-<WhileStmt> ::= while '(' <Expr> ')' <Stmt>
-<ForStmt> ::= for '(' <Expr> ';' <Expr> ';' <Expr> ')' <Stmt>
-<ReturnStmt> ::= return <Expr> ';' 
-<BreakStmt> ::= break ';'
+<ifStmt> ::= 'if' '(' <Expr> ')' <Stmt> <ElseStmt>
+<ElseStmt>::=  'else' <Stmt> |
+<WhileStmt> ::= 'while' '(' <Expr> ')' <Stmt>
+<ForStmt> ::= 'for' '(' <Expr> ';' <Expr> ';' <Expr> ')' <Stmt>
+<ReturnStmt> ::= 'return' <Expr> ';' 
+<BreakStmt> ::= 'break' ';'
 <PrintStmt> ::= 'System.out.println''(' <Expr><ExprPrima> ',' ')'';'
 <ExprPrima> ::= <Expr> | 
 <Expr> ::= <LValue> '=' <Expr> 
 <Expr> ::= <Constant> 
 <Expr> ::= <LValue> 
-<Expr> ::= this 
+<Expr> ::= 'this'
 <Expr> ::= '(' <Expr> ')'  
 <Expr> ::= <Expr> '+' <Expr> 
 <Expr> ::= <Expr> '/' <Expr> 
@@ -73,12 +108,12 @@ stringConstant = {Printable}
 <Expr> ::= <Expr> '!=' <Expr> 
 <Expr> ::= <Expr> '||' <Expr> 
 <Expr> ::= '!'<Expr> 
-<Expr> ::= New'('ident')'
+<Expr> ::= 'New''('ident')'
 <LValue> ::= ident 
 <LValue> ::= <Expr>'.'ident
-<Constant> ::= intConstant 
-<Constant> ::= doubleConstant 
+<Constant> ::= <intConstant> 
+<Constant> ::= <doubleConstant> 
 <Constant> ::= boolConstant 
 <Constant> ::= stringConstant 
-<Constant> ::= null
+<Constant> ::= 'null'
 

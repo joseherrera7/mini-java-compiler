@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Drawing;
 using System.IO;
-using System.Media;
 using System.Windows.Forms;
 
 namespace mini_java_compiler
@@ -11,17 +10,17 @@ namespace mini_java_compiler
         private string lineas = string.Empty;
         private Reader rdr = new Reader();
         private Parser prs = new Parser();
-        private AnalizadorSintactico analizador;
+        private MyParser analizador;
 
         public Principal()
         {
             InitializeComponent();
-            analizador = new AnalizadorSintactico(Application.StartupPath + "\\Gramatica\\Proyecto02.txt");
+            analizador = new MyParser(Application.StartupPath + "\\Gramatica\\Proyecto02.txt");
         }
 
         private void btnLoadFile_Click(object sender, EventArgs e)
         {
-            
+
 
             try
             {
@@ -36,7 +35,7 @@ namespace mini_java_compiler
 
                     if (openFileDialog.ShowDialog() == DialogResult.OK)
                     {
-                        
+
                         var fileStream = openFileDialog.OpenFile();
 
                         using (StreamReader reader = new StreamReader(fileStream))
@@ -49,19 +48,19 @@ namespace mini_java_compiler
                                 fileContent = reader.ReadLine();
                                 archivo += fileContent;
                                 rdr.ReadProgram(fileContent, lineCounter);
-                                
+
                             }
-                            
+
 
                             reader.Close();
-                            
-                        }
 
+                        }
+                        rdr.getSimbolos();
                         analizador.Parse(archivo);
                     }
-                    
+
                 }
-                
+
                 MessageBox.Show("¡Se leyó el archivo correctamente! Proceda a crear el archivo de salida.");
                 estado.Text = "Estado: Archivo Cargado";
                 estado.ForeColor = Color.Green;
@@ -77,7 +76,7 @@ namespace mini_java_compiler
             }
             catch
             {
-               
+
                 MessageBox.Show("No se pudo leer el archivo, por favor revisar que su archivo de entrada sea válido o que el archivo de entrada no esté corrupto.");
                 estado.ForeColor = Color.Red;
                 estado.Text = "Estado: Error";
@@ -100,14 +99,14 @@ namespace mini_java_compiler
                     outputFile.Close();
 
                 }
-                
+
                 MessageBox.Show("¡El archivo de creó exitosamente! Podrá encontrarlo en la carpeta Resultado ubicada en el Escritorio de su computadora.");
                 creado.Text = "Estado: Archivo Creado";
                 creado.ForeColor = Color.Green;
             }
             catch
             {
-                
+
                 MessageBox.Show("No se pudo crear el archivo, por favor revisar que su archivo de entrada sea válido o que el archivo de entrada no esté corrupto.");
                 creado.ForeColor = Color.Red;
                 creado.Text = "Estado: Error";
@@ -124,7 +123,7 @@ namespace mini_java_compiler
             string lineasError = analizador.Correcto;
             rtxASDR.Text = analizador.Correcto;
             rtxASDR.Text = lineasError;
-          
+
 
 
             /*prs.Empezar(rdr.GetListaTokens());
@@ -140,14 +139,14 @@ namespace mini_java_compiler
 
         private void rtxASDR_TextChanged(object sender, EventArgs e)
         {
-       
+
         }
 
         private void Principal_Load(object sender, EventArgs e)
         {
 
         }
-  
+
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             Application.Restart();

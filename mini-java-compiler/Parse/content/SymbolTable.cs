@@ -1,44 +1,42 @@
-using System;
-using System.Collections;
-using mini_java_compiler.Parse.content;
 using mini_java_compiler.Parse.structure;
+using System.Collections;
 
 namespace mini_java_compiler.Parse.content
 {
-	public class SymbolTable : IEnumerable
-	{
-		private IList list;
+    public class SymbolTable : IEnumerable
+    {
+        private IList list;
 
-		public SymbolTable(CGTStructure cgtStructure, int start, int count)
-		{
-			list = new ArrayList();
-			for (int i=start;i<start+count;i++)
-			{
-				SymbolRecord symbol = new SymbolRecord(cgtStructure.Records[i]);
-				list.Add(symbol);
-			}
-		}
-		
-		public IEnumerator GetEnumerator()
-		{
-			return list.GetEnumerator();
-		}
-	
-		public SymbolRecord Get(int index)
-		{
-			return list[index] as SymbolRecord;
-		}
+        public SymbolTable(CGTStructure cgtStructure, int start, int count)
+        {
+            list = new ArrayList();
+            for (int i = start; i < start + count; i++)
+            {
+                SymbolRecord symbol = new SymbolRecord(cgtStructure.Records[i]);
+                list.Add(symbol);
+            }
+        }
 
-		public SymbolRecord this[int index]
-		{
-			get
-			{
-				return Get(index);
-			}
-		}
+        public IEnumerator GetEnumerator()
+        {
+            return list.GetEnumerator();
+        }
 
-		public int Count {get{return list.Count;}}
-		
-	}
-	
+        public SymbolRecord Get(int index)
+        {
+            return list[index] as SymbolRecord;
+        }
+
+        public SymbolRecord this[int index]
+        {
+            get
+            {
+                return Get(index);
+            }
+        }
+
+        public int Count { get { return list.Count; } }
+
+    }
+
 }

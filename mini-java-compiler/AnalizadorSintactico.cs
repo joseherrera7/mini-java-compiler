@@ -294,11 +294,13 @@ namespace mini_java_compiler
         {
              
         NonterminalToken token = parser.Parse(source);
+            var tabla = parser.Symbols;
+            var tokens = parser.StoreTokens;
             if (token != null && !hayError)
             {
                 Object obj = CreateObject(token);
                 //todo: Use your object any way you like
-               
+
                 MensajeOK += "Se analizo correctamente \n";
             }
         }
@@ -1293,6 +1295,5 @@ namespace mini_java_compiler
             MensajeOK += "No se pudo reconocer el token: '" + args.UnexpectedToken.ToString() + "'" + "\n";
             hayError = true;
         }
-
     }
 }
