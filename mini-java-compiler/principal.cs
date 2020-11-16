@@ -9,7 +9,6 @@ namespace mini_java_compiler
     {
         private string lineas = string.Empty;
         private Reader rdr = new Reader();
-        private Parser prs = new Parser();
         private MyParser analizador;
 
         public Principal()
