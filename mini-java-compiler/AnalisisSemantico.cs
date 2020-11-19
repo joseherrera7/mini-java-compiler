@@ -215,7 +215,7 @@ namespace mini_java_compiler
 
             Assignmentes.ForEach(Node =>
             {
-                List<ParseTreeNode> leaf = Tree.leafDe(node);
+                List<ParseTreeNode> leaf = Tree.leafDe(Node);
                 listAssignables.Add(leaf);
             });
 
