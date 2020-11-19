@@ -10,6 +10,7 @@ namespace mini_java_compiler
         private string lineas = string.Empty;
         private Reader rdr = new Reader();
         private MyParser analizador;
+        private AnalisisSemantico semantico = new AnalisisSemantico();
 
         public Principal()
         {
@@ -56,6 +57,7 @@ namespace mini_java_compiler
                         }
                         rdr.getSimbolos();
                         analizador.Parse(archivo);
+                        semantico.SemanticAnalyzer(archivo);
                     }
 
                 }

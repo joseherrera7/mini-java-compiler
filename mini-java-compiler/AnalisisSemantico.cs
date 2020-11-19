@@ -122,7 +122,7 @@ namespace mini_java_compiler
         }
 
         public void SemanticAnalyzer(string text)
-        {
+        {   
             ParseTree parseTree = Analize(text);
 
             if (parseTree.Root == null)
@@ -543,7 +543,7 @@ namespace mini_java_compiler
             public const string Float = "float";
             public const string Double = "double";
             public const string Bool = "bool";
-            public const string String = "string";
+            public const string String = "String";
 
             public const string And = "and";
             public const string Or = "or";
@@ -728,25 +728,39 @@ namespace mini_java_compiler
 
             Begin.Rule =
                 DeclarationFunction + Begin |
+                typeFunction + Begin |
+                typeFunction |
                 DeclarationFunction;
 
-
-            /*DeclarationFunction.Rule =
-                ToTerm("public") + ToTerm("static") + ToTerm("void") + ToTerm("main") + ParenthesisOpen_ + string_ + ToTerm("[") + ToTerm("]") + ToTerm("args") + ParenthesisClose_ + SectionFunction;*/
-
             DeclarationFunction.Rule =
-                ToTerm("public") + ToTerm("class") + ToTerm("Main") + KeyOpen_ + ToTerm("public") + ToTerm("static") + ToTerm("void") + ToTerm("main") + ParenthesisOpen_ + string_ + ToTerm("[") + ToTerm("]") + ToTerm("args") + ParenthesisClose_ + SectionFunction + KeyClose_;
+                ToTerm("public") + ToTerm("class") + id + SectionFunction; //|
+                //ToTerm("public") + ToTerm("static") + ToTerm("void") + ToTerm("main") + ParenthesisOpen_ + string_ + ToTerm("[") + ToTerm("]") + ToTerm("args") + ParenthesisClose_ + SectionFunction;
+
+            //DeclarationFunction.Rule =
+                
+            //DeclarationFunction.Rule =
+                //ToTerm("public") + ToTerm("class") + ToTerm("Main") + KeyOpen_ + ToTerm("public") + ToTerm("static") + ToTerm("void") + ToTerm("main") + ParenthesisOpen_ + string_ + ToTerm("[") + ToTerm("]") + ToTerm("args") + ParenthesisClose_ + SectionFunction + KeyClose_;
 
             typeFunction.Rule =
                 void_ |
                 type;
 
             type.Rule =
-                int_ |
+                ToTerm("public") +  int_ |
+                ToTerm("public") + float_ |
+                ToTerm("public") + double_ |
+                ToTerm("public") + bool_ |
+                ToTerm("public") + string_ |
+                ToTerm("private") + int_ |
+                ToTerm("private") + float_ |
+                ToTerm("private") + double_ |
+                ToTerm("private") + bool_ |
+                ToTerm("private") + string_ |
+                 int_ |
                 float_ |
                 double_ |
                 bool_ |
-                string_;
+                string_; 
 
             SectionFunction.Rule =
                 KeyOpen_ + KeyClose_ |
