@@ -336,7 +336,7 @@ namespace mini_java_compiler
         }
 
         /// <summary>
-        /// Obtener las hojas de la root especificada
+        /// Obtener las hojas de la raiz especificada
         /// </summary>
         /// <param name="root"></param>
         /// <returns></returns>
@@ -374,7 +374,7 @@ namespace mini_java_compiler
         }
 
         /// <summary>
-        /// Obtener toTwo los noTwo del arbol
+        /// Obtener nodos los nodos del arbol
         /// </summary>
         /// <returns></returns>
         public List<ParseTreeNode> Travel()
@@ -385,7 +385,7 @@ namespace mini_java_compiler
         }
 
         /// <summary>
-        /// Obtener toTwo los nodes del Tree recorriendo desde la root especificada
+        /// Obtener nodos los nodes del arbol recorriendo desde la raiz especificada
         /// </summary>
         /// <param name="root"></param>
         /// <returns></returns>
@@ -406,7 +406,7 @@ namespace mini_java_compiler
         }
 
         /// <summary>
-        /// Obtener toTwo los noTwo que conforman una el lado derecho de una Assignment (despues del '=')
+        /// Obtener los nodos que conforman una el lado derecho de una Asignacion (despues del '=')
         /// </summary>
         /// <param name="root"></param>
         /// <returns></returns>
@@ -427,7 +427,7 @@ namespace mini_java_compiler
         }
 
         /// <summary>
-        /// Obtener toTwo los noTwo que pertenezcan al termino especificado
+        /// Obtener nodos los nodos que pertenezcan al termino especificado
         /// </summary>
         /// <param name="term"></param>
         /// <returns></returns>
@@ -441,7 +441,7 @@ namespace mini_java_compiler
         }
 
         /// <summary>
-        /// Obtener toTwo los noTwo desde recorriendo desde la raiz especificada y que pertenezcan al termino especificado
+        /// Obtener nodos los nodos desde recorriendo desde la raiz especificada y que pertenezcan al termino especificado
         /// </summary>
         /// <param name="root"></param>
         /// <param name="term"></param>
