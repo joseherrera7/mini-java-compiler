@@ -19,7 +19,7 @@ namespace mini_java_compiler
         SymbolTables SymbolTable = new SymbolTables();
         public static ParseTree Analize(string entry)
         {
-            var grammar = new grammar();
+            var grammar = new Grammar();
             var syntactic = new Parser(grammar);
 
             return syntactic.Parse(entry);
@@ -61,7 +61,7 @@ namespace mini_java_compiler
                     continue;
 
                 // Si el value del símbolo actual es un id
-                if (ValidateRegex(value, grammar.RegularExpressions.IdRegex) && !ValidateRegex(value, grammar.RegularExpressions.StringRegex))
+                if (ValidateRegex(value, Grammar.RegularExpressions.IdRegex) && !ValidateRegex(value, Grammar.RegularExpressions.StringRegex))
                 {
                     // Primero, checamos si el identifier existe
                     if (!table.ContainsSymbol(value))
@@ -73,9 +73,9 @@ namespace mini_java_compiler
 
                 switch (type)
                 {
-                    case grammar.Terminals.Int:
+                    case Grammar.Terminals.Int:
                         {
-                            if (!ValidateRegex(value, grammar.RegularExpressions.RegexNumber))
+                            if (!ValidateRegex(value, Grammar.RegularExpressions.RegexNumber))
                                 return false;
 
                             if (value.Contains('.'))
@@ -84,33 +84,33 @@ namespace mini_java_compiler
                             break;
                         }
 
-                    case grammar.Terminals.Float:
+                    case Grammar.Terminals.Float:
                         {
-                            if (!ValidateRegex(value, grammar.RegularExpressions.RegexNumber))
+                            if (!ValidateRegex(value, Grammar.RegularExpressions.RegexNumber))
                                 return false;
 
                             break;
                         }
 
-                    case grammar.Terminals.Double:
+                    case Grammar.Terminals.Double:
                         {
-                            if (!ValidateRegex(value, grammar.RegularExpressions.RegexNumber))
+                            if (!ValidateRegex(value, Grammar.RegularExpressions.RegexNumber))
                                 return false;
 
                             break;
                         }
 
-                    case grammar.Terminals.Bool:
+                    case Grammar.Terminals.Bool:
                         {
-                            if (!value.Equals(grammar.Terminals.True) || !value.Equals(grammar.Terminals.False))
+                            if (!value.Equals(Grammar.Terminals.True) || !value.Equals(Grammar.Terminals.False))
                                 return false;
 
                             break;
                         }
 
-                    case grammar.Terminals.String:
+                    case Grammar.Terminals.String:
                         {
-                            if (!ValidateRegex(value, grammar.RegularExpressions.StringRegex))
+                            if (!ValidateRegex(value, Grammar.RegularExpressions.StringRegex))
                                 return false;
 
                             break;
@@ -180,7 +180,7 @@ namespace mini_java_compiler
             if (Symbol.value == null)
                 return null;
 
-            if (ValidateRegex(Symbol.value, grammar.RegularExpressions.IdRegex) && !ValidateRegex(Symbol.value, grammar.RegularExpressions.StringRegex))
+            if (ValidateRegex(Symbol.value, Grammar.RegularExpressions.IdRegex) && !ValidateRegex(Symbol.value, Grammar.RegularExpressions.StringRegex))
             {
                 Console.WriteLine("Recursando...");
                 return ValueOf(table, Symbol.value);
@@ -193,7 +193,7 @@ namespace mini_java_compiler
         public SymbolTables GenerateTable(Tree Tree)
         {
             var table = new SymbolTables();
-            List<ParseTreeNode> nodes = Tree.Travel(grammar.NoTerminals.VariableDeclaration);
+            List<ParseTreeNode> nodes = Tree.Travel(Grammar.NoTerminals.VariableDeclaration);
 
             foreach (ParseTreeNode node in nodes)
             {
@@ -208,9 +208,9 @@ namespace mini_java_compiler
         {
             var Symbols = new List<Symbol>();
 
-            List<ParseTreeNode> types = Tree.Travel(node, grammar.NoTerminals.type);
-            List<ParseTreeNode> ids = Tree.Travel(node, grammar.RegularExpressions.Id);
-            List<ParseTreeNode> Assignmentes = Tree.Travel(node, grammar.NoTerminals.Assignable);
+            List<ParseTreeNode> types = Tree.Travel(node, Grammar.NoTerminals.type);
+            List<ParseTreeNode> ids = Tree.Travel(node, Grammar.RegularExpressions.Id);
+            List<ParseTreeNode> Assignmentes = Tree.Travel(node, Grammar.NoTerminals.Assignable);
             var listAssignables = new List<List<ParseTreeNode>>();
 
             Assignmentes.ForEach(Node =>
