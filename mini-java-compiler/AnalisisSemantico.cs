@@ -83,6 +83,12 @@ namespace mini_java_compiler
             Simbolos.Add(simbolo);
         }
 
+        public void EliminarSimbolo(string identificador)
+        {
+            var index = Simbolos.IndexOf(BuscarSimbolo(identificador));
+            Simbolos.RemoveAt(index);
+        }
+
         public void AgregarSimbolos(List<Simbolo> simbolos)
         {
             Simbolos.AddRange(simbolos);
@@ -134,136 +140,6 @@ namespace mini_java_compiler
             List<ParseTreeNode> nodos = new List<ParseTreeNode>();
             Dfs(raiz, nodos);
             return nodos;
-        }
-
-        public void aCodigo(string texto)
-        {
-            int n = 0;
-            int errores = 0;
-            int i = 0;
-            int j = 0;
-
-            // SINTACTICO
-            bool resultado = sintesis.analizar(texto);
-
-            if (resultado)
-            {
-                
-
-                // SEMANTICO
-                ts.Simbolos.Clear();
-
-                ParseTree parseTree = sintesis.AnalisisSemantico(texto);
-
-                if (parseTree.Root == null)
-                {
-                    Console.WriteLine("Error sintactico");
-                    return;
-                }
-
-                ParseTreeNode raiz = parseTree.Root;
-
-                var nodos = Dfs(raiz);
-                for (int k = 0; k < nodos.Count(); k++)
-                {
-                    var nodo = nodos[k];
-                    if (nodo.Term.ToString().Equals("<tipo>"))
-                    {
-
-                        var id = nodo.FindTokenAndGetText();
-                        var variable = nodos[k + 3].FindTokenAndGetText();
-                        var resultados = "";
-                        try
-                        {
-                            resultados = nodos[k + 6].FindTokenAndGetText();
-                        }
-                        catch
-                        {
-                            resultados = null;
-                        }
-                        ts.AgregarSimbolo(new Simbolo(id, variable, resultados));
-
-                        Console.WriteLine("El tipo es " + id);
-                        Console.WriteLine("La variable es " + variable);
-                        Console.WriteLine("El resultado es" + resultados);
-                    }
-                }
-                int q = 0;
-                List<String> repetido = new List<string>();
-                List<String> temporal = new List<string>();
-
-                // LLENAR TABLA DE SIMBOLOS
-                foreach (var recorrido in ts.Simbolos)
-                {
-                    repetido.Add(recorrido.Tipo);
-                    q++;
-                }
-
-                /* MANEJAR TABLA DE SIMBOLOS AQUI */
-
-                bool duplicados = VerificarDuplicados(ts);
-
-                if (duplicados == false)
-                {
-                    Console.WriteLine("Variables duplicadas");
-                    return;
-                }
-
-                bool tipos = VerficarTipos(ts);
-
-                if (tipos == false)
-                {
-                    Console.WriteLine("Error de tipo");
-                    return;
-                }
-
-                /* MANEJAR TABLA DE SIMBOLOS FINALIZA AQUI */
-
-                q = 0;
-                int re = 0;
-                bool enc = false;
-
-                for (int z = 0; z < temporal.Count; z++)
-                {
-                    for (int zz = 0; zz < temporal.Count; z++)
-                    {
-                        if (temporal[z].Equals(temporal[zz]))
-                        {
-                            Console.WriteLine("Repetido");
-                            re++;
-                            break;
-                        }
-                    }
-                }
-                Console.WriteLine("Valores: " + re);
-
-                if (re > 2)
-                {
-                    Console.WriteLine("No repetir variables");
-                    
-                }
-                re = 0;
-                foreach (var mm in temporal)
-                {
-                    Console.WriteLine($"Valor de temporal {mm}");
-                }
-                temporal.Clear();
-                repetido.Clear();
-            }
-            else
-            {
-                MessageBox.Show("Sintactico incorrecto");
-                
-            }
-            /*
-            Kuto kt = new Kuto(tbxCode.Text);
-            kt = kt.Extract("public static void main(String []args){","");
-            string[] separador = kt.ToString().Split(';');
-            for(int t = 0;t < separador.Length; t++)
-            {
-                MessageBox.Show(separador[t]);
-            }
-            */
         }
 
         public bool VerificarDuplicados(TablaSimbolos tabla)
@@ -569,6 +445,7 @@ namespace mini_java_compiler
 
             foreach (ParseTreeNode nodo in nodos)
             {
+                MessageBox.Show(arbol.ImprimirNodo(nodo));
                 List<Simbolo> simbolos = CrearSimbolos(arbol, nodo);
                 tabla.AgregarSimbolos(simbolos);
             }
@@ -697,8 +574,8 @@ namespace mini_java_compiler
                 listaAsignables.Add(hojas);
             });
 
-            // Crear simbolos
-            //for (int i = 0; i < ids.Count; i++)
+            // Create symbols
+            
             for (int i = 0; i < 1; i++)
             {
                 string tipo = "";
@@ -729,6 +606,9 @@ namespace mini_java_compiler
                     });
 
                     string asignable = sb.ToString().Trim();
+
+
+
                     simbolos.Add(new Simbolo(tipo, id, asignable));
                 }
             }
