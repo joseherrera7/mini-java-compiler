@@ -166,8 +166,37 @@ namespace mini_java_compiler
         {
             string tablasimbolos = semantico.TS;
             var table = semantico.GetActions;
-            rtbTablaSimbolos.Text += semantico.TS;
             rtbTablaSimbolos.Text += table.GetAct();
+
+                try
+                {
+                    //SE CREA LA CARPETA RESULTADO
+                    string ruta = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Resultado";
+                    if (!Directory.Exists(ruta))
+                        Directory.CreateDirectory(ruta);
+
+                    using (StreamWriter outputFile = new StreamWriter(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Resultado\\TablaSimbolos.out"))
+                    {
+
+                        outputFile.WriteLine(tablasimbolos);
+                        outputFile.Close();
+
+                    }
+
+
+                    MessageBox.Show("¡El archivo de creó exitosamente! Podrá encontrarlo en la carpeta Resultado ubicada en el Escritorio de su computadora.");
+                    lbTS.Text = "Estado: Archivo Creado";
+                    lbTS.ForeColor = Color.Green;
+                }
+                catch
+                {
+
+                    MessageBox.Show("No se pudo crear el archivo, por favor revisar que su archivo de entrada sea válido o que el archivo de entrada no esté corrupto.");
+                    lbTS.ForeColor = Color.Red;
+                    lbTS.Text = "Estado: Error";
+                }
+            }
         }
+        
     }
-}
+
