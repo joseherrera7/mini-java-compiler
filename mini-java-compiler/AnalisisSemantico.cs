@@ -463,10 +463,23 @@ namespace mini_java_compiler
         {
             var tabla = new TableSymbol();
             List<ParseTreeNode> nodos = arbol.Recorrer(Gramatica.NoTerminales.DeclaracionVariable);
+            List<ParseTreeNode> nodoFunc = arbol.Recorrer(Gramatica.NoTerminales.DeclaracionFuncion);
+            List<ParseTreeNode> nodoCOnst = arbol.Recorrer(Gramatica.NoTerminales.DeclaracionConstante);
 
             foreach (ParseTreeNode nodo in nodos)
             {
-                MessageBox.Show(arbol.ImprimirNodo(nodo));
+                List<SYMBOL> simbolos = CrearSimbolos(arbol, nodo);
+                tabla.ADDSYMBOL(simbolos);
+            }
+
+            foreach (ParseTreeNode nodo in nodoFunc)
+            {
+                List<SYMBOL> simbolos = CrearSimbolos(arbol, nodo);
+                tabla.ADDSYMBOL(simbolos);
+            }
+
+            foreach (ParseTreeNode nodo in nodoCOnst)
+            {
                 List<SYMBOL> simbolos = CrearSimbolos(arbol, nodo);
                 tabla.ADDSYMBOL(simbolos);
             }
