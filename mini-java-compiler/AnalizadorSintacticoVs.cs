@@ -3,7 +3,6 @@ using mini_java_compiler.Utilidades;
 using System;
 using System.IO;
 using System.Runtime.Serialization;
-using System.Windows.Forms;
 
 namespace mini_java_compiler
 {
@@ -669,6 +668,7 @@ namespace mini_java_compiler
     public class MyParser
     {
         private LR1Parser parser;
+        public int a;
 
         public MyParser(string filename)
         {
@@ -712,9 +712,17 @@ namespace mini_java_compiler
 
         public void Parse(string source)
         {
-            parser.Parse(source);
-            
+            var lol = parser.Parse(source);
+            foreach (var item in lol.Tokens)
+            {
+                
+            }
 
+        }
+        public int temporal;
+        public string GenerateTemp()
+        {
+            return "Proceso: " + (++temporal);
         }
 
         private void TokenReadEvent(LR1Parser parser, TokenReadEventArgs args)

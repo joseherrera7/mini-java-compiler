@@ -57,7 +57,7 @@ namespace mini_java_compiler
                         }
                         rdr.getSimbolos();
                         analizador.Parse(archivo);
-                        semantico.SemanticAnalyzer(archivo);
+                        semantico.analisisSemantico(archivo);
                     }
 
                 }
