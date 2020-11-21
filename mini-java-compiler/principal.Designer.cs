@@ -50,6 +50,7 @@
             this.rtbTablaSimbolos = new System.Windows.Forms.RichTextBox();
             this.btnTablaSimbolos = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
+            this.lbTS = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnLoadFile
@@ -327,6 +328,17 @@
             this.label11.TabIndex = 21;
             this.label11.Text = "TABLA DE SIMBOLOS";
             // 
+            // lbTS
+            // 
+            this.lbTS.AutoSize = true;
+            this.lbTS.BackColor = System.Drawing.Color.Transparent;
+            this.lbTS.ForeColor = System.Drawing.Color.White;
+            this.lbTS.Location = new System.Drawing.Point(1137, 679);
+            this.lbTS.Name = "lbTS";
+            this.lbTS.Size = new System.Drawing.Size(136, 17);
+            this.lbTS.TabIndex = 22;
+            this.lbTS.Text = "Estado: No Cargado";
+            // 
             // Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -334,6 +346,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1654, 776);
+            this.Controls.Add(this.lbTS);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.btnTablaSimbolos);
             this.Controls.Add(this.rtbTablaSimbolos);
@@ -388,6 +401,7 @@
         private System.Windows.Forms.RichTextBox rtbTablaSimbolos;
         private System.Windows.Forms.Button btnTablaSimbolos;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label lbTS;
     }
 }
 
