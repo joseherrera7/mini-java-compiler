@@ -1,46 +1,8 @@
 public class Employee {
 
 	private int id;
-	private String PrimerNombre;
-	private String UltimoNombre;
-	private String Descripcion;
-
-	public Employee(String firstName, String lastName, String description) {
-		PrimerNombre = firstName;
-		UltimoNombre = lastName;
-		Descripcion = description;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int Id) {
-		id = Id;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		PrimerNombre = firstName;
-	}
-
-	public String getLastName() {
-		return UltimoNombre;
-	}
-
-	public void setLastName(String lastName)  {
-		UltimoNombre = lastName;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		Descripcion = description;
-	}
+	private string PrimerNombre;
+	private string UltimoNombre;
+	private string Descripcion;
 
 }

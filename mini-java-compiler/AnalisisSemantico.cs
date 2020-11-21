@@ -47,62 +47,62 @@ namespace mini_java_compiler
         }
     }
 
-    public class Simbolo
+    public class SYMBOL
     {
-        public string Tipo;
-        public string Id;
-        public string Valor;
+        public string TYPE;
+        public string IDENTIFIER;
+        public string VALUE;
 
-        public Simbolo(string tipo, string identificador)
+        public SYMBOL(string Typee, string IDENT)
         {
-            this.Tipo = tipo;
-            this.Id = identificador;
+            this.TYPE = Typee;
+            this.IDENTIFIER = IDENT;
         }
 
-        public Simbolo(string tipo, string identificador, string valor)
+        public SYMBOL(string TY, string IDENT, string VAL)
         {
-            this.Tipo = tipo;
-            this.Id = identificador;
-            this.Valor = valor;
+            this.TYPE = TY;
+            this.IDENTIFIER = IDENT;
+            this.VALUE = VAL;
         }
 
         public override string ToString()
         {
-            return "|||\t\t'" + Tipo + "'\t\t|||\t\t'" + Id + "'\t\t|||\t\t'" + Valor + "'\t\t|||\t\t";
+            return "|||\t\t'" + TYPE + "'\t\t|||\t\t'" + IDENTIFIER + "'\t\t|||\t\t'" + VALUE + "'\t\t|||\t\t";
         }
     }
 
-    public class TablaSimbolos
+    public class TableSymbol
     {
-        public List<Simbolo> Simbolos = new List<Simbolo>();
+        public List<SYMBOL> SYMBOLS = new List<SYMBOL>();
 
-        public TablaSimbolos() { }
+        public TableSymbol() { }
 
-        public void AgregarSimbolo(Simbolo simbolo)
+        public void ADDSYMBOL(SYMBOL SYM)
         {
-            Simbolos.Add(simbolo);
+            SYMBOLS.Add(SYM);
         }
 
-        public void EliminarSimbolo(string identificador)
+        public void REMOVESYMBOL(string IDENTIFIER)
         {
-            var index = Simbolos.IndexOf(BuscarSimbolo(identificador));
-            Simbolos.RemoveAt(index);
+            var index = SYMBOLS.IndexOf(SEARCHSYMBOL(IDENTIFIER));
+            SYMBOLS.RemoveAt(index);
         }
 
-        public void AgregarSimbolos(List<Simbolo> simbolos)
+        public void ADDSYMBOL(List<SYMBOL> simbolos)
         {
-            Simbolos.AddRange(simbolos);
+            SYMBOLS.AddRange(simbolos);
         }
 
-        public Simbolo BuscarSimbolo(string identificador)
+        public SYMBOL SEARCHSYMBOL(string IDENTIFIER)
         {
-            return Simbolos.Find((simbolo) => simbolo.Id.Equals(identificador)) ?? null;
+            return SYMBOLS.Find((SYM) => SYM.IDENTIFIER.Equals(IDENTIFIER)) ?? null;
         }
 
-        public bool ContieneSimbolo(string identificador)
+        public bool CONTAINSYMBOL(string IDENTIFIER)
         {
-            foreach (Simbolo simbolo in Simbolos)
-                if (simbolo.Id.Equals(identificador))
+            foreach (SYMBOL simbolo in SYMBOLS)
+                if (simbolo.IDENTIFIER.Equals(IDENTIFIER))
                     return true;
 
             return false;
@@ -113,7 +113,7 @@ namespace mini_java_compiler
             var sb = new StringBuilder();
             sb.Append("TablaSimbolos\n|||\t\tTipo\t\t|||\t\tIdentificador\t\t|||\t\tValor\t\t|||\n");
 
-            foreach (Simbolo simbolo in Simbolos)
+            foreach (SYMBOL simbolo in SYMBOLS)
             {
                 sb.Append(simbolo.ToString()).Append('\n');
             }
@@ -125,7 +125,7 @@ namespace mini_java_compiler
     }
     class AnalisisSemantico
     {
-        TablaSimbolos ts = new TablaSimbolos();
+        TableSymbol ts = new TableSymbol();
         public void Dfs(ParseTreeNode raiz, List<ParseTreeNode> nodos)
         {
             nodos.Add(raiz);
@@ -142,13 +142,13 @@ namespace mini_java_compiler
             return nodos;
         }
 
-        public bool VerificarDuplicados(TablaSimbolos tabla)
+        public bool VerificarDuplicados(TableSymbol tabla)
         {
             var contadores = new Dictionary<string, int>();
 
-            foreach (Simbolo simbolo in tabla.Simbolos)
+            foreach (SYMBOL simbolo in tabla.SYMBOLS)
             {
-                string id = simbolo.Id;
+                string id = simbolo.IDENTIFIER;
 
                 if (!contadores.ContainsKey(id))
                     contadores[id] = 0;
@@ -162,13 +162,13 @@ namespace mini_java_compiler
             return true;
         }
 
-        public Dictionary<string, int> ObtenerDuplicados(TablaSimbolos tabla)
+        public Dictionary<string, int> ObtenerDuplicados(TableSymbol tabla)
         {
             var contadores = new Dictionary<string, int>();
 
-            foreach (Simbolo simbolo in tabla.Simbolos)
+            foreach (SYMBOL simbolo in tabla.SYMBOLS)
             {
-                string id = simbolo.Id;
+                string id = simbolo.IDENTIFIER;
 
                 if (!contadores.ContainsKey(id))
                     contadores[id] = 0;
@@ -381,7 +381,7 @@ namespace mini_java_compiler
             var sb = new StringBuilder();
 
             MessageBox.Show(ts.ToString());
-            foreach (var s in ts.Simbolos)
+            foreach (var s in ts.SYMBOLS)
             {
                 //agregar la tabla de simbolos
                 
@@ -438,16 +438,16 @@ namespace mini_java_compiler
             }
         }
 
-        public TablaSimbolos GenerarTablaSimbolos(Arbol arbol)
+        public TableSymbol GenerarTablaSimbolos(Arbol arbol)
         {
-            var tabla = new TablaSimbolos();
+            var tabla = new TableSymbol();
             List<ParseTreeNode> nodos = arbol.Recorrer(Gramatica.NoTerminales.DeclaracionVariable);
 
             foreach (ParseTreeNode nodo in nodos)
             {
                 MessageBox.Show(arbol.ImprimirNodo(nodo));
-                List<Simbolo> simbolos = CrearSimbolos(arbol, nodo);
-                tabla.AgregarSimbolos(simbolos);
+                List<SYMBOL> simbolos = CrearSimbolos(arbol, nodo);
+                tabla.ADDSYMBOL(simbolos);
             }
 
             return tabla;
@@ -460,19 +460,19 @@ namespace mini_java_compiler
         }
 
 
-        private string ValorDe(TablaSimbolos tabla, string id)
+        private string ValorDe(TableSymbol tabla, string id)
         {
             Console.WriteLine("/ = / = / = / = / = / = / = / = / = / = / = / = / = / = / = / = / = / = / = / = / = /");
             Console.WriteLine($"Checando tipo del id '{id}'");
 
-            Simbolo simbolo = tabla.BuscarSimbolo(id);
+            SYMBOL simbolo = tabla.SEARCHSYMBOL(id);
 
-            Console.WriteLine($"El valor del id actual '{id}' es '{simbolo.Valor}'");
+            Console.WriteLine($"El valor del id actual '{id}' es '{simbolo.VALUE}'");
 
-            if (id.Equals(simbolo.Valor))
+            if (id.Equals(simbolo.VALUE))
                 return null;
 
-            if (simbolo.Valor == null)
+            if (simbolo.VALUE == null)
                 return null;
 
             /*if (ValidarRegex(simbolo.Valor, Gramatica.ExpresionesRegulares.IdRegex) && !ValidarRegex(simbolo.Valor, Gramatica.ExpresionesRegulares.StringRegex))
@@ -481,17 +481,17 @@ namespace mini_java_compiler
                 return ValorDe(tabla, simbolo.Valor);
             }*/
 
-            Console.WriteLine($"Se encontro el tipo del id '{id}'. Tipo es '{simbolo.Tipo}'");
-            return simbolo.Valor;
+            Console.WriteLine($"Se encontro el tipo del id '{id}'. Tipo es '{simbolo.TYPE}'");
+            return simbolo.VALUE;
         }
 
-        public bool VerficarTipos(TablaSimbolos tabla)
+        public bool VerficarTipos(TableSymbol tabla)
         {
-            foreach (Simbolo simbolo in tabla.Simbolos)
+            foreach (SYMBOL simbolo in tabla.SYMBOLS)
             {
-                string tipo = simbolo.Tipo;
-                string valor = simbolo.Valor;
-                string id = simbolo.Id;
+                string tipo = simbolo.TYPE;
+                string valor = simbolo.VALUE;
+                string id = simbolo.IDENTIFIER;
 
                 if (valor == null)
                     continue;
@@ -500,7 +500,7 @@ namespace mini_java_compiler
                 if (ValidarRegex(valor, Gramatica.ExpresionesRegulares.IdRegex) && !ValidarRegex(valor, Gramatica.ExpresionesRegulares.StringRegex))
                 {
                     // Primero, checamos si el identificador existe
-                    if (!tabla.ContieneSimbolo(id))
+                    if (!tabla.CONTAINSYMBOL(id))
                         return false;
 
                     // Despues, tenemos que obtener el valor de dicho id para comprobar su tipo
@@ -557,9 +557,9 @@ namespace mini_java_compiler
             return true;
         }
 
-        private List<Simbolo> CrearSimbolos(Arbol arbol, ParseTreeNode nodo)
+        private List<SYMBOL> CrearSimbolos(Arbol arbol, ParseTreeNode nodo)
         {
-            var simbolos = new List<Simbolo>();
+            var simbolos = new List<SYMBOL>();
 
             List<ParseTreeNode> tipos = arbol.Recorrer(nodo, Gramatica.NoTerminales.Tipo);
             List<ParseTreeNode> ids = arbol.Recorrer(nodo, Gramatica.ExpresionesRegulares.Id);
@@ -593,7 +593,7 @@ namespace mini_java_compiler
                 string id = ids[i].FindTokenAndGetText();
 
                 if (listaAsignables.Count == 0)
-                    simbolos.Add(new Simbolo(tipo, id));
+                    simbolos.Add(new SYMBOL(tipo, id));
 
                 else
                 {
@@ -601,7 +601,6 @@ namespace mini_java_compiler
 
                     listaAsignables[0].ForEach(token =>
                     {
-                        MessageBox.Show(token.IsOperator().ToString());
                         sb.Append($"{token.FindTokenAndGetText()} ");
                     });
 
@@ -609,7 +608,7 @@ namespace mini_java_compiler
 
 
 
-                    simbolos.Add(new Simbolo(tipo, id, asignable));
+                    simbolos.Add(new SYMBOL(tipo, id, asignable));
                 }
             }
 
