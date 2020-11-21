@@ -689,7 +689,7 @@ namespace mini_java_compiler
             public const string Float = "float";
             public const string Double = "double";
             public const string Bool = "bool";
-            public const string String = "string";
+            public const string String = "String";
 
             public const string And = "and";
             public const string Or = "or";
