@@ -11,6 +11,7 @@ namespace mini_java_compiler
         private Reader rdr = new Reader();
         private MyParser analizador;
         private AnalisisSemantico semantico = new AnalisisSemantico();
+        private TableSymbol tablasym = new TableSymbol();
 
         public Principal()
         {
@@ -121,10 +122,29 @@ namespace mini_java_compiler
 
         private void btnASDR_Click(object sender, EventArgs e)
         {
+            string escribir_ts = tablasym.AddSymbol;
+            string remueve_ts = tablasym.RemoveSymbol;
+            string busca_ts = tablasym.SearchSymbol;
+            string contiene_ts = tablasym.ContainsSym;
+            string escribir2_ts = tablasym.AddSymbols;
+            string contiene2_ts = tablasym.ContainSym;
+
+            rtxASDR.Text = tablasym.AddSymbol;
+            rtxASDR.Text = escribir_ts;
+            rtxASDR.Text = tablasym.RemoveSymbol;
+            rtxASDR.Text = remueve_ts;
+            rtxASDR.Text = tablasym.ContainsSym;
+            rtxASDR.Text = contiene_ts;
+            rtxASDR.Text = tablasym.SearchSymbol;
+            rtxASDR.Text = busca_ts;
+            rtxASDR.Text = tablasym.AddSymbols;
+            rtxASDR.Text = escribir2_ts;
+            rtxASDR.Text = tablasym.ContainSym;
+            rtxASDR.Text = contiene2_ts;
+
             string lineasError = analizador.Correcto;
             rtxASDR.Text = analizador.Correcto;
             rtxASDR.Text = lineasError;
-
 
 
             /*prs.Empezar(rdr.GetListaTokens());
@@ -151,6 +171,11 @@ namespace mini_java_compiler
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             Application.Restart();
+        }
+
+        private void label10_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

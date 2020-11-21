@@ -75,29 +75,40 @@ namespace mini_java_compiler
     public class TableSymbol
     {
         public List<SYMBOL> SYMBOLS = new List<SYMBOL>();
-
+        private string addsym = String.Empty;
+        private string addsyms = String.Empty;
+        private string removesym = String.Empty;
+        private string containssym = String.Empty;
+        private string searchsym = String.Empty;
+        private string containsym = String.Empty;
         public TableSymbol() { }
 
         public void ADDSYMBOL(SYMBOL SYM)
         {
             SYMBOLS.Add(SYM);
+            addsym += "*** ESCRIBIENDO: Simbolo: " + SYM + " \n";
         }
-
+        public string AddSymbol { get => addsym; set => addsym = value; }
         public void REMOVESYMBOL(string IDENTIFIER)
         {
             var index = SYMBOLS.IndexOf(SEARCHSYMBOL(IDENTIFIER));
             SYMBOLS.RemoveAt(index);
+            removesym += "*** REMOVIENDO: Simbolo: " + IDENTIFIER + " \n";
         }
+        public string RemoveSymbol { get => removesym; set => removesym = value; }
 
         public void ADDSYMBOL(List<SYMBOL> simbolos)
         {
             SYMBOLS.AddRange(simbolos);
+            addsyms += "*** ESCRIBIENDO: Simbolo: " + simbolos + " \n";
         }
-
+        public string AddSymbols { get => addsyms; set => addsyms = value; }
         public SYMBOL SEARCHSYMBOL(string IDENTIFIER)
         {
+            searchsym += "*** ESCRIBIENDO: " + IDENTIFIER + " \n";
             return SYMBOLS.Find((SYM) => SYM.IDENTIFIER.Equals(IDENTIFIER)) ?? null;
         }
+        public string SearchSymbol { get => searchsym; set => searchsym = value; }
 
         public bool CONTAINSYMBOL(string IDENTIFIER)
         {
@@ -105,8 +116,10 @@ namespace mini_java_compiler
                 if (simbolo.IDENTIFIER.Equals(IDENTIFIER))
                     return true;
 
-            return false;
+            containssym += "*** CONTIENE: Simbolo: " + IDENTIFIER + " \n";
+            return false;    
         }
+        public string ContainsSym { get => containssym; set => containssym = value; }
 
         public override string ToString()
         {
@@ -119,10 +132,12 @@ namespace mini_java_compiler
             }
 
             sb.Append(' ');
-
+            containsym += "*** CONTIENE: Simbolo: " + SYMBOLS + " \n";
             return sb.ToString();
         }
+        public string ContainSym { get => containsym; set => containsym = value; }
     }
+    
     class AnalisisSemantico
     {
         TableSymbol ts = new TableSymbol();

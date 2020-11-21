@@ -253,9 +253,10 @@
             this.label10.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.label10.Location = new System.Drawing.Point(750, 432);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(189, 20);
+            this.label10.Size = new System.Drawing.Size(202, 20);
             this.label10.TabIndex = 17;
-            this.label10.Text = "ERROR SINTACTICO";
+            this.label10.Text = "TABLA DE SÍMBOLOS";
+            this.label10.Click += new System.EventHandler(this.label10_Click);
             // 
             // rtxASDR
             // 
@@ -291,7 +292,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1340, 694);
+            this.ClientSize = new System.Drawing.Size(1391, 694);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.rtxASDR);
