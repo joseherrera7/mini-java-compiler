@@ -165,8 +165,9 @@ namespace mini_java_compiler
         private void btnTablaSimbolos_Click(object sender, EventArgs e)
         {
             string tablasimbolos = semantico.TS;
-            rtbTablaSimbolos.Text = semantico.TS;
-            rtbTablaSimbolos.Text = tablasimbolos;
+            var table = semantico.GetActions;
+            rtbTablaSimbolos.Text += semantico.TS;
+            rtbTablaSimbolos.Text += table.GetAct();
         }
     }
 }

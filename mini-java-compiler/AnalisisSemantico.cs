@@ -100,7 +100,9 @@ namespace mini_java_compiler
         public void ADDSYMBOL(List<SYMBOL> simbolos)
         {
             SYMBOLS.AddRange(simbolos);
-            addsyms += "*** ESCRIBIENDO: Simbolo: " + simbolos.ToString() + " \n";
+            simbolos.ForEach(sym =>
+            addsyms += "*** ESCRIBIENDO: Simbolo===> Tipo=" + sym.TYPE + " : Identificador=" + sym.IDENTIFIER + " : Valor=" + sym.VALUE +" \n");
+            
         }
         public string AddSymbols { get => addsyms; set => addsyms = value; }
         public SYMBOL SEARCHSYMBOL(string IDENTIFIER)
@@ -109,6 +111,11 @@ namespace mini_java_compiler
             return SYMBOLS.Find((SYM) => SYM.IDENTIFIER.Equals(IDENTIFIER)) ?? null;
         }
         public string SearchSymbol { get => searchsym; set => searchsym = value; }
+
+        public string GetAct()
+        {
+            return addsym + addsyms + removesym + searchsym;
+        }
 
         public bool CONTAINSYMBOL(string IDENTIFIER)
         {
@@ -410,6 +417,7 @@ namespace mini_java_compiler
 
         }
         public string TS { get => ts.ToString(); set => ts = value; }
+        public TableSymbol GetActions { get => ts; }
         public void instrucciones(ParseTreeNode actual)
         {
             if (actual.ChildNodes.Count == 2)
