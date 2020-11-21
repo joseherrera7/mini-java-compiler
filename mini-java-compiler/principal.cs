@@ -59,6 +59,8 @@ namespace mini_java_compiler
                         rdr.getSimbolos();
                         analizador.Parse(archivo);
                         semantico.analisisSemantico(archivo);
+                        
+                       
                     }
 
                 }
@@ -122,25 +124,7 @@ namespace mini_java_compiler
 
         private void btnASDR_Click(object sender, EventArgs e)
         {
-            string escribir_ts = tablasym.AddSymbol;
-            string remueve_ts = tablasym.RemoveSymbol;
-            string busca_ts = tablasym.SearchSymbol;
-            string contiene_ts = tablasym.ContainsSym;
-            string escribir2_ts = tablasym.AddSymbols;
-            string contiene2_ts = tablasym.ContainSym;
-
-            rtxASDR.Text = tablasym.AddSymbol;
-            rtxASDR.Text = escribir_ts;
-            rtxASDR.Text = tablasym.RemoveSymbol;
-            rtxASDR.Text = remueve_ts;
-            rtxASDR.Text = tablasym.ContainsSym;
-            rtxASDR.Text = contiene_ts;
-            rtxASDR.Text = tablasym.SearchSymbol;
-            rtxASDR.Text = busca_ts;
-            rtxASDR.Text = tablasym.AddSymbols;
-            rtxASDR.Text = escribir2_ts;
-            rtxASDR.Text = tablasym.ContainSym;
-            rtxASDR.Text = contiene2_ts;
+           
 
             string lineasError = analizador.Correcto;
             rtxASDR.Text = analizador.Correcto;
@@ -176,6 +160,29 @@ namespace mini_java_compiler
         private void label10_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnTablaSimbolos_Click(object sender, EventArgs e)
+        {
+            string escribir_ts = tablasym.AddSymbol;
+            string remueve_ts = tablasym.RemoveSymbol;
+            string busca_ts = tablasym.SearchSymbol;
+            string contiene_ts = tablasym.ContainsSym;
+            string escribir2_ts = tablasym.AddSymbols;
+            string contiene2_ts = tablasym.ContainSym;
+
+            rtbTablaSimbolos.Text = tablasym.AddSymbol;
+            rtbTablaSimbolos.Text = escribir_ts;
+            rtbTablaSimbolos.Text = tablasym.RemoveSymbol;
+            rtbTablaSimbolos.Text = remueve_ts;
+            rtbTablaSimbolos.Text = tablasym.ContainsSym;
+            rtbTablaSimbolos.Text = contiene_ts;
+            rtbTablaSimbolos.Text = tablasym.SearchSymbol;
+            rtbTablaSimbolos.Text = busca_ts;
+            rtbTablaSimbolos.Text = tablasym.AddSymbols;
+            rtbTablaSimbolos.Text = escribir2_ts;
+            rtbTablaSimbolos.Text = tablasym.ContainSym;
+            rtbTablaSimbolos.Text = contiene2_ts;
         }
     }
 }

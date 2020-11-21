@@ -47,6 +47,9 @@
             this.label10 = new System.Windows.Forms.Label();
             this.rtxASDR = new System.Windows.Forms.RichTextBox();
             this.btnLimpiar = new System.Windows.Forms.Button();
+            this.rtbTablaSimbolos = new System.Windows.Forms.RichTextBox();
+            this.btnTablaSimbolos = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnLoadFile
@@ -165,7 +168,7 @@
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.ForeColor = System.Drawing.SystemColors.Window;
-            this.label7.Location = new System.Drawing.Point(420, 635);
+            this.label7.Location = new System.Drawing.Point(492, 733);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(528, 17);
             this.label7.TabIndex = 9;
@@ -236,7 +239,7 @@
             this.btnASDR.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnASDR.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnASDR.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnASDR.Location = new System.Drawing.Point(791, 368);
+            this.btnASDR.Location = new System.Drawing.Point(784, 356);
             this.btnASDR.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnASDR.Name = "btnASDR";
             this.btnASDR.Size = new System.Drawing.Size(124, 38);
@@ -251,19 +254,19 @@
             this.label10.BackColor = System.Drawing.Color.Transparent;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.label10.Location = new System.Drawing.Point(750, 432);
+            this.label10.Location = new System.Drawing.Point(1272, 169);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(202, 20);
+            this.label10.Size = new System.Drawing.Size(223, 20);
             this.label10.TabIndex = 17;
-            this.label10.Text = "TABLA DE SÍMBOLOS";
+            this.label10.Text = "ERRORES SEMANTICOS";
             this.label10.Click += new System.EventHandler(this.label10_Click);
             // 
             // rtxASDR
             // 
-            this.rtxASDR.Location = new System.Drawing.Point(548, 470);
+            this.rtxASDR.Location = new System.Drawing.Point(1208, 210);
             this.rtxASDR.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rtxASDR.Name = "rtxASDR";
-            this.rtxASDR.Size = new System.Drawing.Size(601, 131);
+            this.rtxASDR.Size = new System.Drawing.Size(368, 131);
             this.rtxASDR.TabIndex = 16;
             this.rtxASDR.Text = "";
             this.rtxASDR.TextChanged += new System.EventHandler(this.rtxASDR_TextChanged);
@@ -286,13 +289,54 @@
             this.btnLimpiar.UseVisualStyleBackColor = false;
             this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
+            // rtbTablaSimbolos
+            // 
+            this.rtbTablaSimbolos.Location = new System.Drawing.Point(548, 511);
+            this.rtbTablaSimbolos.Name = "rtbTablaSimbolos";
+            this.rtbTablaSimbolos.Size = new System.Drawing.Size(601, 144);
+            this.rtbTablaSimbolos.TabIndex = 19;
+            this.rtbTablaSimbolos.Text = "";
+            // 
+            // btnTablaSimbolos
+            // 
+            this.btnTablaSimbolos.AllowDrop = true;
+            this.btnTablaSimbolos.AutoEllipsis = true;
+            this.btnTablaSimbolos.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.btnTablaSimbolos.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnTablaSimbolos.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnTablaSimbolos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTablaSimbolos.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnTablaSimbolos.Location = new System.Drawing.Point(1171, 617);
+            this.btnTablaSimbolos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnTablaSimbolos.Name = "btnTablaSimbolos";
+            this.btnTablaSimbolos.Size = new System.Drawing.Size(161, 38);
+            this.btnTablaSimbolos.TabIndex = 20;
+            this.btnTablaSimbolos.Text = "Tabla de Simbolos";
+            this.btnTablaSimbolos.UseVisualStyleBackColor = false;
+            this.btnTablaSimbolos.Click += new System.EventHandler(this.btnTablaSimbolos_Click);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.BackColor = System.Drawing.Color.Transparent;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.label11.Location = new System.Drawing.Point(743, 468);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(202, 20);
+            this.label11.TabIndex = 21;
+            this.label11.Text = "TABLA DE SIMBOLOS";
+            // 
             // Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1391, 694);
+            this.ClientSize = new System.Drawing.Size(1654, 776);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.btnTablaSimbolos);
+            this.Controls.Add(this.rtbTablaSimbolos);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.rtxASDR);
@@ -341,6 +385,9 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.RichTextBox rtxASDR;
         private System.Windows.Forms.Button btnLimpiar;
+        private System.Windows.Forms.RichTextBox rtbTablaSimbolos;
+        private System.Windows.Forms.Button btnTablaSimbolos;
+        private System.Windows.Forms.Label label11;
     }
 }
 
