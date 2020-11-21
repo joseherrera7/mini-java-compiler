@@ -291,9 +291,9 @@
             // 
             // rtbTablaSimbolos
             // 
-            this.rtbTablaSimbolos.Location = new System.Drawing.Point(548, 511);
+            this.rtbTablaSimbolos.Location = new System.Drawing.Point(548, 501);
             this.rtbTablaSimbolos.Name = "rtbTablaSimbolos";
-            this.rtbTablaSimbolos.Size = new System.Drawing.Size(601, 144);
+            this.rtbTablaSimbolos.Size = new System.Drawing.Size(975, 144);
             this.rtbTablaSimbolos.TabIndex = 19;
             this.rtbTablaSimbolos.Text = "";
             // 
@@ -306,10 +306,10 @@
             this.btnTablaSimbolos.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnTablaSimbolos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTablaSimbolos.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnTablaSimbolos.Location = new System.Drawing.Point(1155, 586);
+            this.btnTablaSimbolos.Location = new System.Drawing.Point(968, 661);
             this.btnTablaSimbolos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnTablaSimbolos.Name = "btnTablaSimbolos";
-            this.btnTablaSimbolos.Size = new System.Drawing.Size(103, 69);
+            this.btnTablaSimbolos.Size = new System.Drawing.Size(163, 50);
             this.btnTablaSimbolos.TabIndex = 20;
             this.btnTablaSimbolos.Text = "Tabla de Simbolos";
             this.btnTablaSimbolos.UseVisualStyleBackColor = false;
@@ -321,7 +321,7 @@
             this.label11.BackColor = System.Drawing.Color.Transparent;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.label11.Location = new System.Drawing.Point(743, 468);
+            this.label11.Location = new System.Drawing.Point(947, 468);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(202, 20);
             this.label11.TabIndex = 21;
