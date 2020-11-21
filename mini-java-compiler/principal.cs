@@ -75,10 +75,10 @@ namespace mini_java_compiler
                 }
                 txtErrores.Text = lineasError;
             }
-            catch
+            catch (Exception lol)
             {
 
-                MessageBox.Show("No se pudo leer el archivo, por favor revisar que su archivo de entrada sea válido o que el archivo de entrada no esté corrupto.");
+                MessageBox.Show("No se pudo leer el archivo, por favor revisar que su archivo de entrada sea válido o que el archivo de entrada no esté corrupto.", lol.ToString());
                 estado.ForeColor = Color.Red;
                 estado.Text = "Estado: Error";
             }

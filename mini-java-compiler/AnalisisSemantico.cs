@@ -475,6 +475,8 @@ namespace mini_java_compiler
 
             // hacer arbol
             var arbol = new Arbol(parseTree);
+            //instrucciones(parseTree.Root.ChildNodes.ElementAt(0));
+
 
             // verificar tabla de simbolos
             ts = GenerarTablaSimbolos(arbol);
@@ -509,6 +511,55 @@ namespace mini_java_compiler
                 
             }
 
+        }
+
+        public void instrucciones(ParseTreeNode actual)
+        {
+            if (actual.ChildNodes.Count == 2)
+            {
+                instruccion(actual.ChildNodes.ElementAt(0));
+                instrucciones(actual.ChildNodes.ElementAt(1));
+            }
+            else
+            {
+                instruccion(actual.ChildNodes.ElementAt(0));
+            }
+        }
+
+        public void instruccion(ParseTreeNode actual)
+        {
+            System.Diagnostics.Debug.WriteLine("El valor de la expresion es: " + expresion(actual.ChildNodes.ElementAt(2)));
+        }
+
+
+        public double expresion(ParseTreeNode actual)
+        {
+            if (actual.ChildNodes.Count == 3)
+            {
+                string tokenOperador = actual.ChildNodes.ElementAt(1).ToString().Split(' ')[0];
+                switch (tokenOperador)
+                {
+                    case "+":
+                        return expresion(actual.ChildNodes.ElementAt(0)) + expresion(actual.ChildNodes.ElementAt(2));
+                    case "-":
+                        return expresion(actual.ChildNodes.ElementAt(0)) - expresion(actual.ChildNodes.ElementAt(2));
+                    case "*":
+                        return expresion(actual.ChildNodes.ElementAt(0)) * expresion(actual.ChildNodes.ElementAt(2));
+                    case "/":
+                        return expresion(actual.ChildNodes.ElementAt(0)) / expresion(actual.ChildNodes.ElementAt(2));
+                    default:
+                        return expresion(actual.ChildNodes.ElementAt(1));
+                }
+
+            }
+            else if (actual.ChildNodes.Count == 2)
+            {
+                return -1 * expresion(actual.ChildNodes.ElementAt(1));
+            }
+            else
+            {
+                return Double.Parse(actual.ChildNodes.ElementAt(0).ToString().Split(' ')[0]);
+            }
         }
 
         public TablaSimbolos GenerarTablaSimbolos(Arbol arbol)
@@ -638,6 +689,8 @@ namespace mini_java_compiler
             List<ParseTreeNode> asignaciones = arbol.Recorrer(nodo, Gramatica.NoTerminales.Asignable);
             var listaAsignables = new List<List<ParseTreeNode>>();
 
+            
+
             asignaciones.ForEach(node =>
             {
                 List<ParseTreeNode> hojas = arbol.HojasDe(node);
@@ -671,6 +724,7 @@ namespace mini_java_compiler
 
                     listaAsignables[0].ForEach(token =>
                     {
+                        MessageBox.Show(token.IsOperator().ToString());
                         sb.Append($"{token.FindTokenAndGetText()} ");
                     });
 
@@ -784,6 +838,8 @@ namespace mini_java_compiler
             public const string Modulo = "%";
             public const string Potencia = "^";
             public const string Raiz = "~";
+
+            //RegisterOperators(1, Mas, Menos);
 
             public const string Punto = ".";
             public const string Coma = ",";
