@@ -164,25 +164,9 @@ namespace mini_java_compiler
 
         private void btnTablaSimbolos_Click(object sender, EventArgs e)
         {
-            string escribir_ts = tablasym.AddSymbol;
-            string remueve_ts = tablasym.RemoveSymbol;
-            string busca_ts = tablasym.SearchSymbol;
-            string contiene_ts = tablasym.ContainsSym;
-            string escribir2_ts = tablasym.AddSymbols;
-            string contiene2_ts = tablasym.ContainSym;
-
-            rtbTablaSimbolos.Text = tablasym.AddSymbol;
-            rtbTablaSimbolos.Text = escribir_ts;
-            rtbTablaSimbolos.Text = tablasym.RemoveSymbol;
-            rtbTablaSimbolos.Text = remueve_ts;
-            rtbTablaSimbolos.Text = tablasym.ContainsSym;
-            rtbTablaSimbolos.Text = contiene_ts;
-            rtbTablaSimbolos.Text = tablasym.SearchSymbol;
-            rtbTablaSimbolos.Text = busca_ts;
-            rtbTablaSimbolos.Text = tablasym.AddSymbols;
-            rtbTablaSimbolos.Text = escribir2_ts;
-            rtbTablaSimbolos.Text = tablasym.ContainSym;
-            rtbTablaSimbolos.Text = contiene2_ts;
+            string tablasimbolos = semantico.TS;
+            rtbTablaSimbolos.Text = semantico.TS;
+            rtbTablaSimbolos.Text = tablasimbolos;
         }
     }
 }

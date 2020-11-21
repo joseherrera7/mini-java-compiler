@@ -86,26 +86,26 @@ namespace mini_java_compiler
         public void ADDSYMBOL(SYMBOL SYM)
         {
             SYMBOLS.Add(SYM);
-            addsym += "*** ESCRIBIENDO: Simbolo: " + SYM + " \n";
+            addsym += "*** ESCRIBIENDO: Simbolo: " + SYM.ToString() + " \n";
         }
         public string AddSymbol { get => addsym; set => addsym = value; }
         public void REMOVESYMBOL(string IDENTIFIER)
         {
             var index = SYMBOLS.IndexOf(SEARCHSYMBOL(IDENTIFIER));
             SYMBOLS.RemoveAt(index);
-            removesym += "*** REMOVIENDO: Simbolo: " + IDENTIFIER + " \n";
+            removesym += "*** REMOVIENDO: Simbolo: " + IDENTIFIER.ToString() + " \n";
         }
         public string RemoveSymbol { get => removesym; set => removesym = value; }
 
         public void ADDSYMBOL(List<SYMBOL> simbolos)
         {
             SYMBOLS.AddRange(simbolos);
-            addsyms += "*** ESCRIBIENDO: Simbolo: " + simbolos + " \n";
+            addsyms += "*** ESCRIBIENDO: Simbolo: " + simbolos.ToString() + " \n";
         }
         public string AddSymbols { get => addsyms; set => addsyms = value; }
         public SYMBOL SEARCHSYMBOL(string IDENTIFIER)
         {
-            searchsym += "*** ESCRIBIENDO: " + IDENTIFIER + " \n";
+            searchsym += "*** ESCRIBIENDO: " + IDENTIFIER.ToString() + " \n";
             return SYMBOLS.Find((SYM) => SYM.IDENTIFIER.Equals(IDENTIFIER)) ?? null;
         }
         public string SearchSymbol { get => searchsym; set => searchsym = value; }
@@ -116,7 +116,7 @@ namespace mini_java_compiler
                 if (simbolo.IDENTIFIER.Equals(IDENTIFIER))
                     return true;
 
-            containssym += "*** CONTIENE: Simbolo: " + IDENTIFIER + " \n";
+            containssym += "*** CONTIENE: Simbolo: " + IDENTIFIER.ToString() + " \n";
             return false;    
         }
         public string ContainsSym { get => containssym; set => containssym = value; }
@@ -132,10 +132,14 @@ namespace mini_java_compiler
             }
 
             sb.Append(' ');
-            containsym += "*** CONTIENE: Simbolo: " + SYMBOLS + " \n";
+
             return sb.ToString();
         }
-        public string ContainSym { get => containsym; set => containsym = value; }
+
+        public static implicit operator TableSymbol(string v)
+        {
+            throw new NotImplementedException();
+        }
     }
     
     class AnalisisSemantico
@@ -372,6 +376,8 @@ namespace mini_java_compiler
             // verificar tabla de simbolos
             ts = GenerarTablaSimbolos(arbol);
 
+
+
             bool duplicados = VerificarDuplicados(ts);
             Dictionary<string, int> cont = ObtenerDuplicados(ts);
 
@@ -395,7 +401,7 @@ namespace mini_java_compiler
 
             var sb = new StringBuilder();
 
-            MessageBox.Show(ts.ToString());
+            
             foreach (var s in ts.SYMBOLS)
             {
                 //agregar la tabla de simbolos
@@ -403,7 +409,7 @@ namespace mini_java_compiler
             }
 
         }
-
+        public string TS { get => ts.ToString(); set => ts = value; }
         public void instrucciones(ParseTreeNode actual)
         {
             if (actual.ChildNodes.Count == 2)

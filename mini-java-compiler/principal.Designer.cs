@@ -254,7 +254,7 @@
             this.label10.BackColor = System.Drawing.Color.Transparent;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.label10.Location = new System.Drawing.Point(1272, 169);
+            this.label10.Location = new System.Drawing.Point(1220, 169);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(223, 20);
             this.label10.TabIndex = 17;
@@ -263,7 +263,7 @@
             // 
             // rtxASDR
             // 
-            this.rtxASDR.Location = new System.Drawing.Point(1208, 210);
+            this.rtxASDR.Location = new System.Drawing.Point(1155, 210);
             this.rtxASDR.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rtxASDR.Name = "rtxASDR";
             this.rtxASDR.Size = new System.Drawing.Size(368, 131);
@@ -306,10 +306,10 @@
             this.btnTablaSimbolos.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnTablaSimbolos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTablaSimbolos.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnTablaSimbolos.Location = new System.Drawing.Point(1171, 617);
+            this.btnTablaSimbolos.Location = new System.Drawing.Point(1155, 586);
             this.btnTablaSimbolos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnTablaSimbolos.Name = "btnTablaSimbolos";
-            this.btnTablaSimbolos.Size = new System.Drawing.Size(161, 38);
+            this.btnTablaSimbolos.Size = new System.Drawing.Size(103, 69);
             this.btnTablaSimbolos.TabIndex = 20;
             this.btnTablaSimbolos.Text = "Tabla de Simbolos";
             this.btnTablaSimbolos.UseVisualStyleBackColor = false;
